@@ -1,5 +1,5 @@
 
-@extends('layouts.app')
+@extends('components.layouts.app')
 
 @section('content')
 <div>
@@ -9,8 +9,7 @@
 
    <x-button class="btn btn-info">start</x-button>
 
-   <x-loading>Loading</x-loading>
-   <x-spinner>Loading</x-spinner>
+
 </div>
 
 @endsection

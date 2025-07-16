@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+
+    .card-group {
+        @apply border rounded-md font-['lato']
+    }
+    .card {
+        @apply bg-slate-50  border rounded-md;
+    }
+
+    .card-header{
+        @apply px-3 py-2  border-b-2;
+    }
+    .card-heading{
+        @apply text-lg font-bold uppercase;
+    }
+
+    .card-body{
+        @apply bg-slate-50 font-medium px-3 py-2 ;
+    }
+
+    .card-footer{
+        @apply font-semibold px-3 py-2 border-2 rounded-md;
+    }
+}
+
+@layer components {
+
+    .modal {
+        @apply fixed inset-0 overflow-y-auto;
+    }
+
+    .modal-overlay{
+        @apply fixed inset-0 bg-black bg-opacity-50;
+    }
+
+    .modal-body{
+        @apply relative flex  items-center justify-center p-4 ;
+    }
+
+    .modal-content{
+        @apply relative w-full max-w-4xl overflow-y-auto rounded-xl bg-white p-12 shadow-lg mt-16;
+    }
+
+}
+
+
+@layer components{
+    .form-controll{
+        @apply w-full my-2 rounded-md shadow-sm border border-gray-200 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+    }
+
+    .form-label{
+        @apply p-2 bg-slate-300 font-['lato'] rounded-md font-bold
+    }
+
+    .btn-close {
+        @apply  bg-red-700 hover:bg-red-900 hover:text-white text-white
+    }
+
+    .btn-submit {
+        @apply  bg-green-500 hover:bg-green-900 hover:text-white text-white
+    }
+
+    .btn-update {
+        @apply bg-orange-500 hover:bg-orange-800 hover:text-white text-white
+    }
+    .btn-info {
+        @apply bg-orange-600 hover:bg-orange-900 text-white hover:text-white
+    }
+    .btn-blue {
+        @apply bg-blue-600 hover:bg-blue-900 text-white hover:text-white
+    }
+
+}
+
+
+@layer components {
+
+    .table-overflow{
+        @apply  overflow-auto rounded-lg shadow-md
+    }
+
+    .table {
+        @apply w-full
+    }
+
+    .table-md {
+        @apply w-[80%]
+    }
+    .table-head{
+        @apply bg-gray-50 border-b-2 border-gray-200
+    }
+
+    .table-th{
+        @apply text-left tracking-wide text-sm whitespace-nowrap
+    }
+
+    .table-tr{
+        @apply uppercase
+    }
+
+    .table-td{
+        @apply px-2 py-3 tracking-wide bg-slate-50 font-['lato'] whitespace-nowrap text-xs
+    }
+}

@@ -75,6 +75,9 @@
     .btn-blue {
         @apply bg-blue-600 hover:bg-blue-900 text-white hover:text-white
     }
+    .form-group {
+        @apply p-3
+    }
 
 }
 

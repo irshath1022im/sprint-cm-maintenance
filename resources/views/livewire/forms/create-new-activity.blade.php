@@ -1,5 +1,6 @@
 <div>
 
+    <x-success></x-success>
 
         <div class="card">
 
@@ -12,28 +13,19 @@
                 <div>
                     <div class="form-group">
                         <div class="form-label">SERVICE TYPE</div>
-                       <select name="" id="" class="form-controll" wire:model="service_type">
+                        <select name="" id="" class="form-controll" wire:model="service_type">
                             <option value="" class="form-controll">Select</option>
                                 <option value="replaced">PARTS REPLACE</option>
                                 <option value="repaired">PARTS REPAIR</option>
 
                         </select>
+                        <x-form-error field="service_type"></x-form-error>
                     </div>
                 </div>
 
                 <div class="flex justify-between">
 
-                        <div class="form-group">
-                         <div class="form-label">ITEM</div>
-                          <select name="" id="" wire:model="item_id">
-                                <option value="">Select</option>
-                                {{-- {{ $qty? }} --}}
-                                    @foreach ($items as $item)
-                                            <option value="{{ $item->id }}">{{ $item->item }}</option>
-                                    @endforeach
 
-                            </select>
-                       </div>
 
                        <div class="form-group">
                         <div class="form-label">REPLACED PART</div>
@@ -49,23 +41,23 @@
 
                        <div class="form-group">
                          <div class="form-label">PART NUMBER</div>
-                         <input type="text" name="" id="" class="form-controll" wire:model="spare_part_number">
+                         <input type="text" name="" id="" class="form-controll" wire:model="spare_part_number" disabled>
                        </div>
 
 
                        <div class="form-group">
                          <div class="form-label">QTY</div>
-                         <input type="text" name="" id="" class="form-controll" wire:model="qty">
+                         <input type="number" name="" id="" class="form-controll" wire:model="qty">
                        </div>
 
                        <div class="form-group">
                          <div class="form-label">UNIT PRICE</div>
-                         <input type="text" name="" id="" class="form-controll" wire:model="unit_price">
+                         <input type="number" name="" id="" class="form-controll" wire:model="unit_price">
                        </div>
 
                        <div class="form-group">
                          <div class="form-label">TOTAL</div>
-                         <input type="text" name="" id="" class="form-controll" wire:model="total">
+                         <input type="number" name="" id="" class="form-controll" wire:model="total">
                        </div>
                     </div>
 

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\CorrectiveMaintenance;
 use App\Models\Item;
 use App\Models\ServiceActivity;
 use App\Models\SparePart;
@@ -13,15 +14,11 @@ use Livewire\Component;
 class CreateNewActivity extends Component
 {
     public $cm_number_id;
-    public $technician_id;
 
     #[Validate('required')]
     public $service_type;
 
-    #[Validate('required')]
-    public $item_id;
     public $spare_part_id;
-    public $spare_part_number;
     public $qty;
     public $unit_price;
     public $total;
@@ -30,25 +27,27 @@ class CreateNewActivity extends Component
 
     public $sParts;
     public $items;
+    public $spare_part_number;
 
 
     public function formSubmit()
     {
+
+        $this->validate();
         $data = [
             'cm_number_id' => $this->cm_number_id,
-            'technician_id'=> $this->technician_id,
             'service_type' => $this->service_type,
-            'item_id' => $this->item_id,
             'spare_part_id' => $this->spare_part_id,
-            'spare_part_number' => $this->spare_part_number,
             'qty' => $this->qty,
             'unit_price' => $this->unit_price,
             'total' => $this->total,
             'service_description' => $this->service_description,
-            'remark' => $this->remark
         ];
 
         ServiceActivity::create($data);
+
+        session()->flash('created', 'New Service has been Addedd!!!');
+        $this->resetExcept('cm_number_id', 'sParts','items');
     }
 
     public function updatedSparePartId()
@@ -62,12 +61,12 @@ class CreateNewActivity extends Component
         }
     }
 
-    public function mount($cm_number_id, $technician_id)
+    public function mount($cm_number_id)
     {
         $this->cm_number_id = $cm_number_id;
-        $this->technician_id = $technician_id;
         $this->sParts = SparePart::get();
         $this->items = Item::get();
+        // $this->cmDetails = CorrectiveMaintenance::find($cm_number_id);
     }
 
     public function render()

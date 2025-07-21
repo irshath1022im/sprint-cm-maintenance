@@ -3,7 +3,6 @@
 
 <div class="p-4 mb-4 text-sm text-green-100 bg-green-600 rounded-lg" role="alert">
    <span class="font-medium">  {{ session('created') }}</span>
-     <button class="btn btn-info">GO TO</button>
 </div>
 
 @endif

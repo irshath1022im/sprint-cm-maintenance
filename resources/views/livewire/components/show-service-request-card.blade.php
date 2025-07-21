@@ -12,9 +12,6 @@
                 </th>
 
                 <th scope="col" class="px-6 py-3">
-                    TECHNICIAN
-                </th>
-                <th scope="col" class="px-6 py-3">
                     SER TYPE
                 </th>
                 <th scope="col" class="px-6 py-3">
@@ -45,7 +42,7 @@
         </thead>
         <tbody>
 
-            @foreach ($activities as $activity)
+            {{-- @foreach ($activities as $activity)
 
 
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -53,9 +50,7 @@
                     {{ $activity->cm_number_id }}
                 </th>
 
-                <td class="px-6 py-4">
-                    {{ $activity->technician->name }}
-                </td>
+
                 <td class="px-6 py-4">
                     {{ $activity->service_type }}
                 </td>
@@ -81,11 +76,11 @@
                    {{ $activity->remark }}
                 </td>
 
-                {{-- <td class="px-6 py-4 text-right">
+                <td class="px-6 py-4 text-right">
                     <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                </td> --}}
+                </td>
             </tr>
-        @endforeach
+        @endforeach --}}
         </tbody>
     </table>
 </div>

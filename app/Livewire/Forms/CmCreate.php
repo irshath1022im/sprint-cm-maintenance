@@ -3,6 +3,7 @@
 namespace App\Livewire\Forms;
 
 use App\Models\CorrectiveMaintenance;
+use App\Models\Item;
 use App\Models\Technician;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -12,6 +13,10 @@ class CmCreate extends Component
 
     public $technicians;
     public $updated_id;
+    public $items;
+
+    #[Validate('required')]
+    public $item_id;
 
     #[Validate('required|unique:corrective_maintenances,cm_number')]
     public $cm_number;
@@ -25,6 +30,9 @@ class CmCreate extends Component
      #[Validate('required')]
     public $status;
 
+    #[Validate('required')]
+    public $remarks;
+
 
 
 
@@ -32,7 +40,7 @@ class CmCreate extends Component
     {
         $validated = $this->validate();
         $result = CorrectiveMaintenance::create($validated);
-        $this->resetExcept('technicians');
+        $this->resetExcept('technicians', 'items');
         $this->updated_id = $result->id;
         session()->flash('created', 'CM Created Successfully!');
         // redirect()->to('cm/'.$result->id.'');
@@ -43,6 +51,7 @@ class CmCreate extends Component
 
 
         $this->technicians = Technician::get();
+        $this->items = Item::get();
     }
 
 

@@ -14,12 +14,15 @@ return new class extends Migration
         Schema::create('corrective_maintenances', function (Blueprint $table) {
             $table->id();
             $table->string('cm_number');
+            $table->unsignedBigInteger('item_id');
             $table->unsignedBigInteger('technician_id');
             $table->date('request_date');
             $table->string('status');
+            $table->string('remarks')->nullable();
             $table->timestamps();
 
             $table->foreign('technician_id')->references('id')->on('technicians');
+            $table->foreign('item_id')->references('id')->on('items');
         });
     }
 

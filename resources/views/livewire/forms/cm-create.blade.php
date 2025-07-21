@@ -5,7 +5,7 @@
 
     <div class="p-4 mb-4 text-sm text-green-100 bg-green-600 rounded-lg" role="alert">
     <span class="font-medium">  {{ session('created') }}</span>
-        <a href={{ route('cm_show',['id' => $updated_id]) }}>
+        <a href={{ route('admin_cm_show',['id' => $updated_id]) }}>
             <x-button class="btn btn-info">GO TO</x-button>
         </a>
     </div>
@@ -23,48 +23,78 @@
         <div class="card-body bg-slate-200">
             <div>
 
-                <div class="form-group">
-                    <label for="" class="form-label">CM NUMBER</label>
-                    <input type="text" name="" id="" class="form-controll" wire:model="cm_number">
+                <div class="flex justify-between">
 
-                    <x-form-error field="cm_number"></x-form-error>
-                </div>
+                    <div class="form-group flex-auto">
+                        <label for="" class="form-label">CM NUMBER</label>
+                        <input type="text" name="" id="" class="form-controll" wire:model="cm_number">
 
-                   <div class="form-group">
-                    <label for="" class="form-label">CM REQUESTED BY</label>
-                        <select name="" id="" class="form-controll" wire:model="technician_id">
-                            <option value="" class="form-controll">Select</option>
-                            @foreach ($technicians as $technician)
-                                <option value="{{ $technician->id }}">{{ $technician['name'] }}</option>
-                            @endforeach
-                        </select>
+                        <x-form-error field="cm_number"></x-form-error>
+                    </div>
 
-                <x-form-error field="technician_id"></x-form-error>
+                    <div class="form-group flex-auto">
+                        <label for="" class="form-label">REQUEST DATE</label>
+                        <input type="date" name="" id="" class="form-controll" wire:model="request_date">
+                        <x-form-error field="request_date"></x-form-error>
+                    </div>
 
                 </div>
 
-                   <div class="form-group">
-                    <label for="" class="form-label">REQUEST DATE</label>
-                    <input type="date" name="" id="" class="form-controll" wire:model="request_date">
-                       <x-form-error field="request_date"></x-form-error>
-                </div>
 
-                   <div class="form-group">
-                    <label for="" class="form-label">STATUS</label>
+                <div class="flex justify-between">
 
-                    <select name="" id="" class="form-controll" wire:model="status">
-                            <option value="" class="form-controll">Select</option>
+                    <div class="form-group flex-auto">
+                        <label for="" class="form-label">CM REQUESTED BY</label>
+                            <select name="" id="" class="form-controll" wire:model="technician_id">
+                                <option value="" class="form-controll">Select</option>
+                                @foreach ($technicians as $technician)
+                                    <option value="{{ $technician->id }}">{{ $technician['name'] }}</option>
+                                @endforeach
+                            </select>
 
-                                <option value="active">Active</option>
-                                <option value="pending">Pending</option>
+                        <x-form-error field="technician_id"></x-form-error>
 
-                        </select>
+                    </div>
+
+                    <div class="form-group flex-auto">
+                         <div class="form-label">ITEM</div>
+                          <select name="" id="" wire:model="item_id" class="form-controll">
+                                <option value="">Select</option>
+                                {{-- {{ $qty? }} --}}
+                                    @foreach ($items as $item)
+                                            <option value="{{ $item->id }}">{{ $item->item }}</option>
+                                    @endforeach
+
+                            </select>
+
+                              <x-form-error field="item_id"></x-form-error>
+                    </div>
+
+                     <div class="form-group">
+
+                        <label for="" class="form-label">STATUS</label>
+                        <select name="" id="" class="form-controll" wire:model="status">
+                                <option value="" class="form-controll">Select</option>
+
+                                    <option value="active">Active</option>
+                                    <option value="completed">Completed</option>
+
+                            </select>
 
                          <x-form-error field="status"></x-form-error>
 
+                    </div>
+
                 </div>
 
-                    <x-button class="btn-submit" wire:click="formSubmit">SUBMIT</x-button>
+                <div>
+                    <textarea name="" id="" cols="30" rows="5" wire:model="remarks" class="form-controll" placeholder="Remark"></textarea>
+                </div>
+
+
+
+                <x-button class="btn-submit" wire:click="formSubmit">SUBMIT</x-button>
+
             </div>
             {{-- END OF FORM  --}}
         </div>

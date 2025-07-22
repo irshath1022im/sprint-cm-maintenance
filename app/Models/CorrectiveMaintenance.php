@@ -23,10 +23,16 @@ class CorrectiveMaintenance extends Model
         return $this->belongsTo(Technician::class);
     }
 
-    public function item()
+    public function equipment()
     {
-        return $this->belongsTo(Item::class);
+        return $this->belongsTo(Equipment::class);
     }
+
+    public function equipmentPartNumber()
+    {
+        return $this->belongsTo(EquipmentPartNumber::class, 'equipment_part_id');
+    }
+
 
 
 

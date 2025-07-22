@@ -24,7 +24,10 @@
                             <tr class="table-tr">
                                 <td class="table-td">{{ $item->id }}</td>
                                 <td class="table-td">{{ $item->equipment_part_number }}</td>
-                                <td class="table-td">{{ $item->equipment->equipment }}</td>
+
+                                    <td class="table-td">
+                                        <a href="{{ route('admin_equipment_show',['id' => $item->equipment->id]) }}" target="_blank">{{ $item->equipment->equipment }}</a></td>
+
                                 <td class="table-td flex justify-end">
                                     <x-button class="btn btn-blue">Edit</x-button>
                                     <x-button class="btn btn-close">Delete</x-button>

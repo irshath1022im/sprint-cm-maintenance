@@ -32,8 +32,8 @@ class CmShow extends Component
     public function render()
     {
 
-        $ser_result = ServiceActivity::where('cm_number_id', $this->cm_number_id)
-                                        ->with('technician','item')
+        $ser_result = CorrectiveMaintenance::findOrfail($this->id)
+                                        ->with('technician','equipment')
                                         ->get();
 
         return view('livewire.corrective-maintenance.cm-show',['activities' => $ser_result])

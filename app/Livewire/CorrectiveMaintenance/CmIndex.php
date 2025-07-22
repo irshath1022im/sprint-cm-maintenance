@@ -4,15 +4,19 @@ namespace App\Livewire\CorrectiveMaintenance;
 
 use App\Models\CorrectiveMaintenance;
 use Livewire\Component;
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 
 class CmIndex extends Component
 {
 
     public $filterStatus;
 
-    public function udpatedFilterStatus()
-    {
+    use WithPagination, WithoutUrlPagination;
 
+    public function updated($filterStatus)
+    {
+        $this->resetPage();
     }
 
 
@@ -23,7 +27,7 @@ class CmIndex extends Component
         $result = CorrectiveMaintenance::when($this->filterStatus, function($q){
             return $q->where('status', $this->filterStatus);
                     })
-                    ->with(['technician', 'item'])
+                    ->with(['technician', 'equipment','equipmentPartNumber'])
                     ->orderBy('id', 'desc')
                     ->paginate(8);
 

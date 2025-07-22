@@ -28,7 +28,7 @@
 
         {{-- {{ $activities->count() }} --}}
 
-        <div class="mt-2">
+        {{-- <div class="mt-2">
             @if($activities->count() > 0 )
                @livewire('components.show-service-request-card',['activities' => $activities])
             @else
@@ -38,13 +38,13 @@
                         <x-button class="btn btn-info">NEW ACTIVITY</x-button>
                 </div>
             @endif
-        </div>
+        </div> --}}
 
 
         {{-- SHOW SERVICE DISCRIPTION --}}
 
 
-        @livewire('forms.create-new-activity', ['cm_number_id' => $cm_number_id, 'technician_id' => $technician_id,  ])
+        {{-- @livewire('forms.create-new-activity', ['cm_number_id' => $cm_number_id, 'technician_id' => $technician_id,  ]) --}}
 
 
         </div>

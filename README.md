@@ -48,3 +48,4 @@ when we create the cm
             $table->timestamps();
 
 
+<a href="{{ route('admin_equipment_show',['id' => $item->equipment->id]) }}" target="_blank">

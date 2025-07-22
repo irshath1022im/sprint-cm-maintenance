@@ -12,4 +12,9 @@ class Equipment extends Model
     {
         return $this->hasMany(EquipmentPartNumber::class);
     }
+
+    public function cmRequests()
+    {
+        return $this->hasMany(CorrectiveMaintenance::class);
+    }
 }

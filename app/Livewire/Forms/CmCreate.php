@@ -3,7 +3,8 @@
 namespace App\Livewire\Forms;
 
 use App\Models\CorrectiveMaintenance;
-use App\Models\Item;
+use App\Models\Equipment;
+use App\Models\EquipmentPartNumber;
 use App\Models\Technician;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -13,10 +14,14 @@ class CmCreate extends Component
 
     public $technicians;
     public $updated_id;
-    public $items;
+    public $equipment;
+    public $equipmentParts = [];
 
     #[Validate('required')]
-    public $item_id;
+    public $equipment_id;
+
+    #[Validate('required')]
+    public $equipment_part_id;
 
     #[Validate('required|unique:corrective_maintenances,cm_number')]
     public $cm_number;
@@ -35,12 +40,21 @@ class CmCreate extends Component
 
 
 
+    public function updatedEquipmentId()
+    {
+        // $this->equipment_part_id = 2;
+
+        $this->equipmentParts =EquipmentPartNumber::where('equipment_id', $this->equipment_id )->get();
+
+
+    }
+
 
     public function formSubmit()
     {
         $validated = $this->validate();
         $result = CorrectiveMaintenance::create($validated);
-        $this->resetExcept('technicians', 'items');
+        $this->resetExcept('technicians', 'equipment');
         $this->updated_id = $result->id;
         session()->flash('created', 'CM Created Successfully!');
         // redirect()->to('cm/'.$result->id.'');
@@ -51,7 +65,7 @@ class CmCreate extends Component
 
 
         $this->technicians = Technician::get();
-        $this->items = Item::get();
+        $this->equipment = Equipment::get();
     }
 
 

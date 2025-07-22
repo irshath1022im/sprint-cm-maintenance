@@ -1,8 +1,9 @@
 <div
     x-data="{
-        showPartNumbers : false
+        showPartNumbers : false,
+        showCM : false
     }"
-    x-soak
+    x-cloak
 >
 
     <div class="card">
@@ -26,10 +27,14 @@
                         x-show="showPartNumbers"
                         x-transition.duration.500ms
                     >
-                        <ul class="">
-                            @foreach ($equipment->partNumbers  as $item)
-                                <div>
+                        <ul class="flex flex-wrap gap-1">
 
+                             @empty($equipment->partNumbers)
+                                        No Records found
+                            @endempty
+
+                            @foreach ($equipment->partNumbers  as $item)
+                                <div class="">
                                     <x-button class="btn btn-blue">{{ $item->equipment_part_number }}</x-button>
                                 </div>
 
@@ -42,25 +47,49 @@
                  <div class="card">
                     <div class="card-header">
                         <div class="card-heading flex justify-between items-center">
-                            <span>SERVICE REQUESTS / {{ $equipment->partNumbers->count() }}</span>
+                            <span>CM/ {{ $equipment->cmRequests->count() }}</span>
                             <x-button class="btn btn-blue"
-                                x-on:click="showPartNumbers = !showPartNumbers"
+                                x-on:click="showCM = !showCM"
                             >EXPAND/CLOSE</x-button>
                         </div>
                     </div>
 
                     <div class="card-body"
-                        x-show="showPartNumbers"
+                        x-show="showCM"
                         x-transition.duration.500ms
                     >
                         <ul class="">
-                            @foreach ($equipment->partNumbers  as $item)
-                                <div>
 
-                                    <x-button class="btn btn-blue">{{ $item->equipment_part_number }}</x-button>
-                                </div>
+                            @if ($equipment->has('cmRequests'))
 
-                            @endforeach
+                                    @foreach ($equipment->cmRequests  as $cmItem)
+                                        <div>
+                                           <a href="{{ route('admin_cm_show', ['id' => $cmItem->id])}}">
+                                                <x-button class="btn btn-blue">CM# {{ $cmItem->cm_number }}</x-button>
+                                           </a>
+
+                                             <a href="">
+                                                <x-button class="btn btn-info">E_PART# {{ $cmItem->equipmentPartNumber->equipment_part_number }}</x-button>
+                                           </a>
+
+                                            <a href="">
+                                                <x-button class="btn btn-info">STATUS# {{ $cmItem->status }}</x-button>
+                                           </a>
+
+                                            <a href="">
+                                                <x-button class="btn btn-info">TECHNICIAN# {{ $cmItem->technician ->name}}</x-button>
+                                           </a>
+                                        </div>
+
+                                    @endforeach
+
+                            @else
+
+                            No Records Found
+
+                            @endif
+
+
 
                         </ul>
                     </div>

@@ -38,12 +38,7 @@
                         <x-form-error field="request_date"></x-form-error>
                     </div>
 
-                </div>
-
-
-                <div class="flex justify-between">
-
-                    <div class="form-group flex-auto">
+                     <div class="form-group flex-auto">
                         <label for="" class="form-label">CM REQUESTED BY</label>
                             <select name="" id="" class="form-controll" wire:model="technician_id">
                                 <option value="" class="form-controll">Select</option>
@@ -56,18 +51,39 @@
 
                     </div>
 
+                </div>
+
+
+                <div class="flex justify-between">
+
+
+
                     <div class="form-group flex-auto">
-                         <div class="form-label">ITEM</div>
-                          <select name="" id="" wire:model="item_id" class="form-controll">
+                         <div class="form-label">EQUIPMENT</div>
+                          <select name="" id="" wire:model.live="equipment_id" class="form-controll">
                                 <option value="">Select</option>
                                 {{-- {{ $qty? }} --}}
-                                    @foreach ($items as $item)
-                                            <option value="{{ $item->id }}">{{ $item->item }}</option>
+                                    @foreach ($equipment as $item)
+                                            <option value="{{ $item->id }}">{{ $item->equipment }}</option>
                                     @endforeach
 
                             </select>
 
-                              <x-form-error field="item_id"></x-form-error>
+                              <x-form-error field="equipment_id"></x-form-error>
+                    </div>
+
+                    <div class="form-group flex-auto">
+                         <div class="form-label">EQUIPMENT PART</div>
+                          <select name="" id="" wire:model.live="equipment_part_id" class="form-controll">
+                                <option value="">Select</option>
+                                {{-- {{ $qty? }} --}}
+                                    @foreach ($equipmentParts as $equParts)
+                                            <option value="{{ $equParts->id }}">{{ $equParts->equipment_part_number }}</option>
+                                    @endforeach
+
+                            </select>
+
+                              <x-form-error field="equipment_part_id"></x-form-error>
                     </div>
 
                      <div class="form-group">

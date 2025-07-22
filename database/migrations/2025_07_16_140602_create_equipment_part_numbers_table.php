@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-
-        Schema::create('spare_parts', function (Blueprint $table) {
+        Schema::create('equipment_part_numbers', function (Blueprint $table) {
             $table->id();
-            $table->string('part_name')->nallable();
-            $table->string('part_number')->nullable();
-            $table->string('image')->nullable();
+            $table->string('equipment_part_number');
+            $table->unsignedBigInteger('equipment_id');
             $table->timestamps();
+            $table->foreign('equipment_id')->references('id')->on('equipment');
         });
-
     }
 
     /**
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('spare_parts');
+        Schema::dropIfExists('equipment_part_numbers');
     }
 };

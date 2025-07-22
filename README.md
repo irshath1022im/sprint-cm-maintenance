@@ -1,6 +1,8 @@
 || Equipment ID
 
 each quipment will have moer then one part numbers
+    create a equipment_part table and link with equipment
+
 ex: laptop is a equupment, this will laptop will have multiple equipment id
 
 CM - based on item equipment id 
@@ -27,9 +29,22 @@ when we create the cm
             note: if the part purchased / taken from outsite the store, there should be badge order if not, not required
 
             badge order:
+            subtask cm no
             purchadse from
             qty, price, total, service chargge , parts, invoices details, qutaion numberrs
 
-
+ Schema::create('batch_orders', function (Blueprint $table) {
+            $table->id();
+            $table->string('batch_oder_no');
+            $table->date('date')
+            $table->unsignedBigInteger('spare_part_id')
+            $table->manufacture()
+            $table->supplier()
+            $table->paymentStatus -> payid or not
+            $table->purcahseStatus -> parts delivered or not
+            $table->support_documents
+            $table->emails
+            $table->in
+            $table->timestamps();
 
 

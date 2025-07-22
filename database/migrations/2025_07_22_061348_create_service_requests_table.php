@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('service_activities', function (Blueprint $table) {
+        Schema::create('service_requests', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cm_number_id');
-            $table->string('service_type')->nullable();
-            $table->unsignedBigInteger('spare_part_id')->nullable();
             $table->integer('qty')->nullable();
             $table->integer('unit_price')->nullable();
             $table->integer('total')->nullable();
             $table->longText('service_description')->nullable();
             $table->foreign('cm_number_id')->references('id')->on('corrective_maintenances');
-            $table->foreign('spare_part_id')->references('id')->on('spare_parts');
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('service_activities');
+        Schema::dropIfExists('service_requests');
     }
 };

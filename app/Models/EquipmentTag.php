@@ -4,17 +4,18 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Equipment extends Model
+class EquipmentTag extends Model
 {
     //
 
-    public function tags()
+     public function equipment()
     {
-        return $this->hasMany(EquipmentTag::class);
+        return $this->belongsTo(Equipment::class);
     }
 
     public function cmRequests()
     {
         return $this->hasMany(CorrectiveMaintenance::class);
     }
+    
 }

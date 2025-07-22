@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="card-heading flex justify-between items-center">
-                            <span>PART NUMBERS / {{ $equipment->partNumbers->count() }}</span>
+                            <span>EQUIPMENT TAGS / {{ $equipment->tags->count() }}</span>
                             <x-button class="btn btn-blue"
                                 x-on:click="showPartNumbers = !showPartNumbers"
                             >EXPAND/CLOSE</x-button>
@@ -29,13 +29,16 @@
                     >
                         <ul class="flex flex-wrap gap-1">
 
-                             @empty($equipment->partNumbers)
+                             @empty($equipment->tags)
                                         No Records found
                             @endempty
 
-                            @foreach ($equipment->partNumbers  as $item)
+                            @foreach ($equipment->tags  as $item)
                                 <div class="">
-                                    <x-button class="btn btn-blue">{{ $item->equipment_part_number }}</x-button>
+                                    <x-button class="btn btn-blue">
+                                        <a href="{{ route('admin_tag_show', ['id'=> $item->id]) }}" target="_blank">
+                                            {{ $item->equipment_tag }}</a>
+                                    </x-button>
                                 </div>
 
                             @endforeach
@@ -69,7 +72,10 @@
                                            </a>
 
                                              <a href="">
-                                                <x-button class="btn btn-info">E_PART# {{ $cmItem->equipmentPartNumber->equipment_part_number }}</x-button>
+                                                <x-button class="btn btn-info">
+                                                    <a href="{{ route('admin_tag_show', ['id'=> $cmItem->tags->id]) }}" target="_blank">E TAG# {{ $cmItem->tags->equipment_tag }}
+                                                    </a>
+                                                    </x-button>
                                            </a>
 
                                             <a href="">

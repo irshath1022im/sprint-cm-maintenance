@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('cm_number');
             $table->unsignedBigInteger('technician_id');
             $table->unsignedBigInteger('equipment_id');
-            $table->unsignedBigInteger('equipment_part_id');
+            $table->unsignedBigInteger('equipment_tag_id');
             $table->date('request_date');
             $table->string('status');
             $table->string('remarks')->nullable();
@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->foreign('technician_id')->references('id')->on('technicians');
             $table->foreign('equipment_id')->references('id')->on('equipment');
-            $table->foreign('equipment_part_id')->references('id')->on('equipment_part_numbers');
+            $table->foreign('equipment_tag_id')->references('id')->on('equipment_tags');
         });
     }
 

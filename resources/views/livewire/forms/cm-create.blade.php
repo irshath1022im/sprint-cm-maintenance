@@ -73,17 +73,17 @@
                     </div>
 
                     <div class="form-group flex-auto">
-                         <div class="form-label">EQUIPMENT PART</div>
-                          <select name="" id="" wire:model.live="equipment_part_id" class="form-controll">
+                         <div class="form-label">EQUIPMENT TAG</div>
+                          <select name="" id="" wire:model.live="equipment_tag_id" class="form-controll">
                                 <option value="">Select</option>
                                 {{-- {{ $qty? }} --}}
-                                    @foreach ($equipmentParts as $equParts)
-                                            <option value="{{ $equParts->id }}">{{ $equParts->equipment_part_number }}</option>
+                                    @foreach ($tags as $equParts)
+                                            <option value="{{ $equParts->id }}">{{ $equParts->equipment_tag }}</option>
                                     @endforeach
 
                             </select>
 
-                              <x-form-error field="equipment_part_id"></x-form-error>
+                              <x-form-error field="equipment_tag_id"></x-form-error>
                     </div>
 
                      <div class="form-group">

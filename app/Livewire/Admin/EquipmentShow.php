@@ -12,7 +12,7 @@ class EquipmentShow extends Component
     public function render()
     {
 
-        $result = Equipment::with('partNumbers')->findOrfail($this->id);
+        $result = Equipment::with('tags')->findOrfail($this->id);
         return view('livewire.admin.equipment-show',['equipment' => $result])
                 ->extends('components.layouts.app');
     }

@@ -31,7 +31,7 @@
                             <div class=" col-span-1">REQ DATE</div>
                             <div class=" col-span-1 text-center">TECHNICIAN</div>
                             <div class=" col-span-2 text-center">EQUIPMENT</div>
-                            <div class=" col-span-3">E PART NUMBER</div>
+                            <div class=" col-span-3">EQUIPMENT TAG</div>
                             <div class="">STATUS</div>
                             <div class=" col-span-3" ></div>
                         </div>
@@ -65,7 +65,7 @@
                                         {{-- <div>{{ $item->remarks }}</div> --}}
                                     </div>
 
-                                    <div class="col-span-3">{{ $item->equipmentPartNumber->equipment_part_number }}</div>
+                                    <div class="col-span-3">{{ $item->tags->equipment_tag }}</div>
 
                                     <div class="">{{ $item->status }}</div>
 

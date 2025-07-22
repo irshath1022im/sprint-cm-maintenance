@@ -4,7 +4,7 @@ namespace App\Livewire\Forms;
 
 use App\Models\CorrectiveMaintenance;
 use App\Models\Equipment;
-use App\Models\EquipmentPartNumber;
+use App\Models\EquipmentTag;
 use App\Models\Technician;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -15,13 +15,13 @@ class CmCreate extends Component
     public $technicians;
     public $updated_id;
     public $equipment;
-    public $equipmentParts = [];
+    public $tags = [];
 
     #[Validate('required')]
     public $equipment_id;
 
     #[Validate('required')]
-    public $equipment_part_id;
+    public $equipment_tag_id;
 
     #[Validate('required|unique:corrective_maintenances,cm_number')]
     public $cm_number;
@@ -40,11 +40,11 @@ class CmCreate extends Component
 
 
 
-    public function updatedEquipmentId()
+    public function updated($equipment_tag_id)
     {
         // $this->equipment_part_id = 2;
 
-        $this->equipmentParts =EquipmentPartNumber::where('equipment_id', $this->equipment_id )->get();
+        $this->tags =EquipmentTag::where('equipment_id', $this->equipment_id )->get();
 
 
     }

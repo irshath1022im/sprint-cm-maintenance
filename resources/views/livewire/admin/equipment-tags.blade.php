@@ -1,34 +1,34 @@
 <div>
+   <div>
 
     <div class="card">
         <div class="card-header">
             <div class="card-heading flex justify-between items-center">
-                <span>EQUIPMENT <x-button class="btn btn-info">{{ $equipment->total() }}</x-button></span>
-                <x-button class="btn btn-blue">NEW EQUIPMENT</x-button>
+                <span>EQUIPMENT TAG <x-button class="btn btn-info">{{ $tags->total() }}</x-button></span>
+                <x-button class="btn btn-blue">NEW PART NUMBER</x-button>
             </div>
         </div>
 
         <div class="card-body">
             <table class="table">
                 <thead class="table-head">
-                    <td class="table-td">IMAGE</td>
                     <td class="table-td">ID</td>
+                    <td class="table-td">EQUIPMENT TAG</td>
                     <td class="table-td">EQUIPMENT</td>
-                    <td class="table-td">TAGS COUNT</td>
-                    <td class="table-td">REMARK</td>
                 </thead>
 
                 <tbody class="table-body">
 
-                    @if ($equipment->count()>1)
-                        @foreach ($equipment as $item)
+                    @if ($tags->count()>1)
+                        @foreach ($tags as $item)
 
                             <tr class="table-tr">
-                                <td class="table-td">{{ $item->image }}</td>
                                 <td class="table-td">{{ $item->id }}</td>
-                                <td class="table-td"><a href="{{ route('admin_equipment_show',['id'=>$item->id]) }}">{{ $item->equipment }}</a></td>
-                                <td class="table-td">{{ $item->tags->count() }}</td>
-                                <td class="table-td">{{ $item->remark }}</td>
+                                <td class="table-td"><a href="{{ route('admin_tag_show', ['id'=> $item->id]) }}" target="_blank">{{ $item->equipment_tag }}</a></td>
+
+                                    <td class="table-td">
+                                        <a href="{{ route('admin_equipment_show',['id' => $item->equipment->id]) }}" target="_blank">{{ $item->equipment->equipment }}</a></td>
+
                                 <td class="table-td flex justify-end">
                                     <x-button class="btn btn-blue">Edit</x-button>
                                     <x-button class="btn btn-close">Delete</x-button>
@@ -45,7 +45,13 @@
     </div>
 
         <div>
-            {{ $equipment->links() }}
+            {{ $tags->links() }}
         </div>
+
+</div>
+
+
+
+
 
 </div>

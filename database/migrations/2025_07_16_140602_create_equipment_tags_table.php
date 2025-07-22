@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('equipment_part_numbers', function (Blueprint $table) {
+        Schema::create('equipment_tags', function (Blueprint $table) {
             $table->id();
-            $table->string('equipment_part_number');
+            $table->string('equipment_tag');
             $table->unsignedBigInteger('equipment_id');
             $table->timestamps();
             $table->foreign('equipment_id')->references('id')->on('equipment');
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('equipment_part_numbers');
+        Schema::dropIfExists('equipment_tags');
     }
 };

@@ -24,7 +24,6 @@ Route::get('admin/equipment/{id}', EquipmentShow::class)->name('admin_equipment_
 Route::get('admin/equipment_tag', EquipmentTags::class)->name('admin_tags');
 Route::get('admin/equipment_tag/{id}', EquipmentTagShow::class)->name('admin_tag_show');
 Route::get('admin/create_cm', CmCreate::class)->name('admin_create_cm');
-Route::get('admin/service_requests', ServiceRequestHome::class)->name('admin_service_requests');
 Route::get('admin/spare_parts', SpareParts::class)->name('admin_spare_parts');
 Route::get('admin/cm/{id}', CmShow::class )->name('admin_cm_show');
 // Route::get('cm_home', CmIndex::class)->name('cm_index');

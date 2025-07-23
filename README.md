@@ -50,3 +50,5 @@ when we create the cm
 
 <a href="{{ route('admin_equipment_show',['id' => $item->equipment->id]) }}" target="_blank">
 <a href="{{ route('admin_tag_show', ['id'=> $item->id]) }}" target="_blank">
+
+

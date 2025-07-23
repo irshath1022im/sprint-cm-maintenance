@@ -28,12 +28,15 @@ class CorrectiveMaintenance extends Model
         return $this->belongsTo(Equipment::class);
     }
 
-    public function tags()
+    public function tag()
     {
         return $this->belongsTo(EquipmentTag::class, 'equipment_tag_id');
     }
 
-
+    public function serviceRequest()
+    {
+        return $this->hasMany(ServiceRequest::class,'cm_number_id');
+    }
 
 
 }

@@ -73,7 +73,7 @@
 
                                              <a href="">
                                                 <x-button class="btn btn-info">
-                                                    <a href="{{ route('admin_tag_show', ['id'=> $cmItem->tags->id]) }}" target="_blank">E TAG# {{ $cmItem->tags->equipment_tag }}
+                                                    <a href="{{ route('admin_tag_show', ['id'=> $cmItem->tag->id]) }}" target="_blank">E TAG# {{ $cmItem->tag->equipment_tag }}
                                                     </a>
                                                     </x-button>
                                            </a>

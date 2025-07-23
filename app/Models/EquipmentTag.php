@@ -17,5 +17,16 @@ class EquipmentTag extends Model
     {
         return $this->hasMany(CorrectiveMaintenance::class);
     }
-    
+
+    public function serviceRequests()
+    {
+        return $this->hasManyThrough(
+            ServiceRequest::class,  //we will get the all the records from this table , this will be the output
+            CorrectiveMaintenance::class, // get the information thru this table..becase equipmentTag is not have any direct relatiopship
+            'equipment_tag_id', //we need the information related the equipment_tag_id which has in CorrectiveMaintenance Table
+            'cm_number_id', // this colum should match / have in both table ( serviceRequest and CorrectiveMaintenance table)
+            'id',
+        );
+    }
+
 }

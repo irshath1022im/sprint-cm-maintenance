@@ -3,7 +3,7 @@
 namespace App\Livewire\CorrectiveMaintenance;
 
 use App\Models\CorrectiveMaintenance;
-use App\Models\ServiceActivity;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class CmShow extends Component
@@ -16,27 +16,23 @@ class CmShow extends Component
     public $requested_date;
     public $status;
 
-    public $service_type;
-    // public $
+    public $serviceRequestModal = false;
 
-    public function mount($id)
+    #[On('formCloseRequest')]
+
+    public function formCloseRequest()
     {
-        $cm = CorrectiveMaintenance::find($id);
-        $this->cm_number_id = $cm->id;
-        $this->cm_number = $cm->cm_number;
-        $this->technician_id = $cm->technician_id;
-        $this->requested_date = $cm->request_date;
-        $this->status = $cm->status;
+        $this->serviceRequestModal = false;
     }
+
+
+
 
     public function render()
     {
 
-        $ser_result = CorrectiveMaintenance::findOrfail($this->id)
-                                        ->with('technician','equipment')
-                                        ->get();
-
-        return view('livewire.corrective-maintenance.cm-show',['activities' => $ser_result])
+        $result = CorrectiveMaintenance::with('technician','equipment', 'tag', 'serviceRequest')->findOrfail($this->id);
+        return view('livewire.corrective-maintenance.cm-show',['cm' => $result])
         ->extends('components.layouts.app')
         ;
     }

@@ -1,15 +1,23 @@
 <div
     x-data="{
         showPartNumbers : false,
-        showCM : false
+        showCM : true,
+        showServiceRequest:false
     }"
     x-cloak
 >
+
+{{-- @dump($tag->cmRequests[0]->serviceRequest) --}}
 
     <div class="card">
         <div class="card-header">
             <div class="card-heading flex justify-between">
                 <span>EQUIPMENT TAG / <x-button class="btn btn-info">{{ $id }} /{{$tag->equipment_tag}}</x-button></span>
+                        @if ($tag->cmRequests->isNotEmpty())
+
+                            <x-button class="btn btn-close">Total Expenses => {{ $tag->serviceRequests->sum('total') }} Qr</x-button>
+                        @endif
+
                 <x-button class="btn btn-info">
                     <a href="{{ route('admin_equipment_show',['id' => $tag->equipment->id]) }}" target="_blank">
                         {{$tag->equipment->equipment}}</a>
@@ -18,9 +26,6 @@
         </div>
 
         <div class="card-body">
-
-                
-
                  <div class="card">
                     <div class="card-header">
                         <div class="card-heading flex justify-between items-center">
@@ -37,7 +42,7 @@
                     >
                         <ul class="">
 
-                            @if ($tag->has('cmRequests'))
+                            @if ($tag->cmRequests->isNotEmpty())
 
                                     @foreach ($tag->cmRequests  as $cmItem)
                                         <div>
@@ -45,24 +50,29 @@
                                                 <x-button class="btn btn-blue">CM# {{ $cmItem->cm_number }}</x-button>
                                            </a>
 
-                                             <a href="">
-                                                <x-button class="btn btn-info">E TAG# {{ $cmItem->tags->equipment_tag }}</x-button>
-                                           </a>
+                                        </div>
 
-                                            <a href="">
-                                                <x-button class="btn btn-info">STATUS# {{ $cmItem->status }}</x-button>
-                                           </a>
+                                        @if ($cmItem->serviceRequest->isNotEmpty())
 
-                                            <a href="">
-                                                <x-button class="btn btn-info">TECHNICIAN# {{ $cmItem->technician ->name}}</x-button>
-                                           </a>
+                                                @component('components.service-request-show-table',['serviceItems' => $cmItem->serviceRequest])
+
+                                                @endcomponent
+
+                                        @else
+
+                                            <div class="emptyData">No Service Request has been created !!!</div>
+
+                                        @endif
+
+                                        <div>
+
                                         </div>
 
                                     @endforeach
 
                             @else
 
-                            No Records Found
+                            <div class="emptyData bg-red-200">There are no service / maintenance request yet</div>
 
                             @endif
 
@@ -71,7 +81,6 @@
                         </ul>
                     </div>
                 </div>
-
         </div>
     </div>
 

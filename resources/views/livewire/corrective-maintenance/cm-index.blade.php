@@ -29,8 +29,8 @@
                             <div class="">#</div>
                             <div class="">CM NO</div>
                             <div class=" col-span-1">REQ DATE</div>
-                            <div class=" col-span-1 text-center">TECHNICIAN</div>
-                            <div class=" col-span-2 text-center">EQUIPMENT</div>
+                            {{-- <div class=" col-span-1 text-center">TECHNICIAN</div> --}}
+                            <div class=" col-span-3 text-center">EQUIPMENT</div>
                             <div class=" col-span-3">EQUIPMENT TAG</div>
                             <div class="">STATUS</div>
                             <div class=" col-span-3" ></div>
@@ -54,10 +54,10 @@
 
 
                                     <div class=" col-span-1">{{ $item->request_date }}</div>
-                                    <div class=" col-span-1 ">{{ $item->technician->name }}</div>
+                                    {{-- <div class=" col-span-1 ">{{ $item->technician->name }}</div> --}}
 
 
-                                    <div class=" col-span-2 flex flex-col">
+                                    <div class=" col-span-3 flex flex-col">
                                         <span class="">
                                             <a href="{{ route('admin_equipment_show',['id' => $item->equipment->id]) }}" target="_blank">
                                                 {{ $item->equipment->equipment}}</a>
@@ -65,7 +65,11 @@
                                         {{-- <div>{{ $item->remarks }}</div> --}}
                                     </div>
 
-                                    <div class="col-span-3">{{ $item->tags->equipment_tag }}</div>
+                                    <div class="col-span-3">
+                                        <a href="{{ route('admin_tag_show', ['id'=> $item->tag->id]) }}" target="_blank">
+                                            {{ $item->tag->equipment_tag }}
+                                        </a>
+                                    </div>
 
                                     <div class="">{{ $item->status }}</div>
 

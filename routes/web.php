@@ -4,12 +4,12 @@ use App\Livewire\Admin\EquipmentHome;
 use App\Livewire\Admin\EquipmentShow;
 use App\Livewire\Admin\EquipmentTags;
 use App\Livewire\Admin\EquipmentTagShow;
+use App\Livewire\Admin\MaterialRequest;
 use App\Livewire\Admin\SpareParts;
 use App\Livewire\Admin\TechnicianHome;
 use App\Livewire\CorrectiveMaintenance\CmIndex;
 use App\Livewire\CorrectiveMaintenance\CmShow;
 use App\Livewire\Forms\CmCreate;
-use App\Livewire\ServiceRequestHome;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -26,5 +26,6 @@ Route::get('admin/equipment_tag/{id}', EquipmentTagShow::class)->name('admin_tag
 Route::get('admin/create_cm', CmCreate::class)->name('admin_create_cm');
 Route::get('admin/spare_parts', SpareParts::class)->name('admin_spare_parts');
 Route::get('admin/cm/{id}', CmShow::class )->name('admin_cm_show');
+Route::get('admin/meterial_request', MaterialRequest::class )->name('admin_meterial_request');
 // Route::get('cm_home', CmIndex::class)->name('cm_index');
 //

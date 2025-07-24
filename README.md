@@ -52,3 +52,8 @@ when we create the cm
 <a href="{{ route('admin_tag_show', ['id'=> $item->id]) }}" target="_blank">
 
 
+request meterial
+spare part name, spare part number,qty
+
+recevubg
+batch order, uprice qty total 

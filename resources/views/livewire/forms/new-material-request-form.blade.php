@@ -3,6 +3,13 @@
     {{-- @dump($equipmentSpareParts) --}}
 
 
+ <x-success></x-success>
+
+    <div wire:loading>
+        <x-loading></x-loading>
+    </div>
+
+
                     <div class="flex justify-between">
 
                         <div class="form-group">
@@ -34,12 +41,14 @@
 
                             <div class="form-group">
                                 <label for="" class="form-label">Request Date</label>
-                                <input type="date" name="" id="" class="form-controll" wire:model="request_date">
+                                <input type="date" name="" id="" class="form-controll" wire:model="date">
+                                 <x-form-error field="date"></x-form-error>
                             </div>
 
                             <div class="form-group">
                                 <label for="" class="form-label">Expected Date</label>
                                 <input type="date" name="" id="" class="form-controll"  wire:model="expected_date">
+                                 <x-form-error field="expected_date"></x-form-error>
                             </div>
 
                     </div>
@@ -60,18 +69,25 @@
 
                         </div>
 
+                        <div class="form-group">
+                        <label for="" class="form-label">QTY</label>
+                        <input type="number" name="" id="" class="form-controll" wire:model="qty">
+                         <x-form-error field="qty"></x-form-error>
+
+                    </div>
+
 
                     </div>
 
 
                     <div class="form-group">
                         <label for="" class="form-label">Remark</label>
-                        <textarea name="" id="" cols="30" rows="3" class="form-controll"></textarea>
+                        <textarea name="" id="" cols="30" rows="3" class="form-controll" wire:model="remark"></textarea>
                     </div>
 
                     <div class="flex justify-center gap-2">
                         <x-button class="btn btn-submit" wire:click="formSave">SAVE</x-button>
-                        <x-button class="btn btn-close">close</x-button>
+                        <x-button class="btn btn-close" wire:click="formClose">close</x-button>
                     </div>
 
 

@@ -4,6 +4,8 @@ namespace App\Livewire\Forms;
 
 use App\Livewire\Admin\SpareParts;
 use App\Models\SparePart;
+use App\Models\MaterialRequest;
+use App\Models\MeterialRequest;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
@@ -15,18 +17,45 @@ class NewMaterialRequestForm extends Component
     #[Validate('required')]
     public $sub_cm;
 
+
+    #[Validate('required')]
+    public $date;
+
+     #[Validate('required')]
+    public $expected_date;
+
       #[Validate('required')]
     public $spare_part_id;
 
+
+      #[Validate('required')]
+    public $qty;
+
+
+    public $remark;
 
 
 
      public function formSave()
     {
         $validated = $this->validate();
+
+        $formData = [
+            'cm_number_id' => $this->cm->id,
+            'equipment_id' => $this->cm->equipment_id,
+            'equipment_tag_id' => $this->cm->equipment_tag_id,
+            'status' => null,
+            'remarks'=> null
+        ];
+
+        $data = $validated + $formData;
+
+        MaterialRequest::create($data);
+
+
         // $result= SparePart::create($validated);
-        // $this->resetExcept('cm','equipments');
-        // session()->flash('created', 'New Spare Part has been addedd!!');
+        $this->resetExcept('cm','equipments');
+        session()->flash('created', 'Material Request has been added to CM');
 
         //add the spare parts to spare part table
 
@@ -38,9 +67,9 @@ class NewMaterialRequestForm extends Component
     public function formClose()
     {
 
-    // $this->dispatch('newSparePartModalClose');
-    // $this->resetExcept('cm','equipments');
-    // $this->resetErrorBag();
+    $this->dispatch('newMaterialRequestFormClose');
+    $this->resetExcept('cm','equipments');
+    $this->resetErrorBag();
 
     }
 

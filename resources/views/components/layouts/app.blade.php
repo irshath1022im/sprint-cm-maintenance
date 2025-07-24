@@ -10,17 +10,17 @@
                 { display: none !important; }
             </style>
 
-    <body class="bg-blue-50">
+    <body class="bg-blue-20">
 
-        <main class="container mx-auto flex border p-2">
+        <main class="w-full max-w-[90%] mx-auto  p-2">
 
-            <section class="basis-1/4 p-2">
+            <section class=" p-2 flex">
 
-                    <div class="w-full h-40 bg-slate-400">
+                    {{-- <div class="w-full max-w-[20%] h-40 bg-slate-400">
                         logo
-                    </div>
+                    </div> --}}
 
-                    <div class="mt-2">
+                    <div class="w-full">
                        @component('components.navbar')
 
                        @endcomponent
@@ -28,7 +28,7 @@
 
             </section>
 
-            <section class="basis-3/4 p-2">
+            <section class="p-2">
 
                 <div class="container mx-auto">
                     @yield('content')
@@ -37,6 +37,7 @@
             </section>
 
 
+        </main>
 
 
 

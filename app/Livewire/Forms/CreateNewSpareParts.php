@@ -12,9 +12,7 @@ class CreateNewSpareParts extends Component
 
     public $cm; //getting from cm-show from to card component then this components
 
-    public $equipments;
-    #[Validate('required')]
-    public $equipment_id;
+
 
      #[Validate('required')]
     public $spare_part_name;
@@ -25,8 +23,10 @@ class CreateNewSpareParts extends Component
     public function formSave()
     {
         $validated = $this->validate();
-        $result= SparePart::create($validated);
-        $this->resetExcept('cm','equipments');
+        $coll1 = ['equipment_id' => $this->cm->equipment_id];
+        $data = $validated + $coll1;
+        $result= SparePart::create($data);
+        $this->resetExcept('cm');
         session()->flash('created', 'New Spare Part has been addedd!!');
 
         //add the spare parts to spare part table
@@ -40,14 +40,13 @@ class CreateNewSpareParts extends Component
     {
 
     $this->dispatch('newSparePartModalClose');
-     $this->resetExcept('cm','equipments');
+     $this->resetExcept('cm');
      $this->resetErrorBag();
 
     }
 
     public function mount()
     {
-        $this->equipments = Equipment::get();
     }
 
     public function render()

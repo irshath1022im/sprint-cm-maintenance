@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MeterialRequest extends Model
+class MaterialReceiving extends Model
 {
     //
 }

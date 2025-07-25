@@ -12,7 +12,7 @@ class PartsReplacementCard extends Component
 
     public $materialRequestModal = false;
     public $sparePartsModal = false;
-    public $materialReceivingModal = true;
+    public $materialReceivingModal = false;
 
 
     #[On('newSparePartModalClose')]

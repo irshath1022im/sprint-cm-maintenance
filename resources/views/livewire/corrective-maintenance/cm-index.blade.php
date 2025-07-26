@@ -46,7 +46,7 @@
 
                                 {{-- cm number section --}}
 
-                                    <div class="ml-1  col-span-1">{{ $item->id }}</div>
+                                    <div class="ml-1  col-span-1">{{ $loop->iteration }}</div>
 
                                     <div class=" col-span-1 rounded-full w-16 h-16 bg-zinc-500 flex justify-center items-center text-white">
                                         {{$item->cm_number}}

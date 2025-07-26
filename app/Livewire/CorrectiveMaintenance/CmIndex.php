@@ -28,7 +28,7 @@ class CmIndex extends Component
             return $q->where('status', $this->filterStatus);
                     })
                     ->with(['technician', 'equipment','tag'])
-                    ->orderBy('id', 'desc')
+                    ->orderBy('cm_number', 'desc')
                     ->paginate(8);
 
         return view('livewire.corrective-maintenance.cm-index',['cms' => $result])

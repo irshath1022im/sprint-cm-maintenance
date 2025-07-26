@@ -8,6 +8,8 @@
     x-cloak
 >
 
+<x-success></x-success>
+
 
         <div class="card">
                 <div class="card-header">

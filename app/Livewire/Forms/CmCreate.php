@@ -57,7 +57,7 @@ class CmCreate extends Component
         $this->resetExcept('technicians', 'equipment');
         $this->updated_id = $result->id;
         session()->flash('created', 'CM Created Successfully!');
-        // redirect()->to('cm/'.$result->id.'');
+        redirect()->to('admin/cm/'.$result->id.'');
     }
 
     public function mount()

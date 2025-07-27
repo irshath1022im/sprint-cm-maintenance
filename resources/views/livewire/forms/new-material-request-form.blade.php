@@ -9,29 +9,8 @@
         <x-loading></x-loading>
     </div>
 
-
-                    <div class="flex justify-between">
-
-                        <div class="form-group">
-                            <label for="" class="form-label">CM NO</label>
-                            <input type="text" name="" id="" class="form-controll" disabled value="{{ $cm['cm_number'] }}">
-                            <span class="text-red-400">*disabled</span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="" class="form-label">EQUIPMENT NAME</label>
-                            <input type="text" name="" id="" class="form-controll" disabled value="{{ $cm->equipment->equipment }}">
-                            <span class="text-red-400">*disabled</span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="" class="form-label">EQUIPMENT TAG</label>
-                            <input type="text" name="" id="" class="form-controll" disabled value="{{ $cm->tag->equipment_tag}}">
-                            <span class="text-red-400">*disabled</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group flex justify-between">
+            <form class="text-[12px]">
+                    <div class="form-group flex justify-between ">
 
                             <div class="form-group">
                                 <label for="" class="form-label">SUB CM NO</label>
@@ -53,31 +32,46 @@
 
                     </div>
 
-                    <div class="flex justify-between">
-
-                         <div class="form-group flex-1">
-                            <div class="form-label">Spare Parts</div>
-                            <select name="" id="" class="form-controll" wire:model.live="spare_part_id">
-                                <option value="">Select</option>
-                                    @foreach ($equipmentSpareParts as $item)
-                                        <option value="{{ $item->id }}">{{ $item->spare_part_name  }} / {{ $item->spare_part_number }}</option>
-                                    @endforeach
-
-                            </select>
-
-                        <x-form-error field="spare_part_id"></x-form-error>
-
+                    <div class="card bg-orange-200 text-[12px]">
+                        <div class="card-header">
+                            <div class="card-heading">ADD EQUIPMENT TAG</div>
                         </div>
 
-                        <div class="form-group">
-                        <label for="" class="form-label">QTY</label>
-                        <input type="number" name="" id="" class="form-controll" wire:model="qty">
-                         <x-form-error field="qty"></x-form-error>
+                        <div class="card-body">
 
+
+                                {{-- @livewire('components.show-cm-equipment-tags',['cmEquipmentTags' => $cmEquipmentTags]) --}}
+
+
+
+                                <div class="flex justify-between">
+
+                                    <div class="form-group flex-1">
+                                        <div class="form-label">EQUIPMENT TAG</div>
+                                        <select name="" id="" class="form-controll" wire:model.live="equipment_tag_id">
+                                            <option value="">Select</option>
+
+                                                    @foreach ($equipmentTags as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->equipment_tag  }}</option>
+                                                    @endforeach
+                                        </select>
+
+                                    <x-form-error field="equipment_tag_id"></x-form-error>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                    <label for="" class="form-label">QTY</label>
+                                    <input type="number" name="" id="" class="form-controll" wire:model="qty">
+                                    <x-form-error field="qty"></x-form-error>
+
+                                    </div>
+
+
+                                </div>
+                        </div>
                     </div>
 
-
-                    </div>
 
 
                     <div class="form-group">
@@ -90,5 +84,6 @@
                         <x-button class="btn btn-close" wire:click="formClose">close</x-button>
                     </div>
 
+            </form>
 
 </div>

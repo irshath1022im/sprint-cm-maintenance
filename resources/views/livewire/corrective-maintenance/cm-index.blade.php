@@ -1,12 +1,26 @@
-<div>
+<div
+    x-data="{
+        cmCreateModal : @entangle('cmCreateModal')
+    }"
+
+    x-cloak
+>
+
+
+<div wire:loading>
+        <x-spinner></x-spinner>
+</div>
+
+
+    <x-success></x-success>
 
     <div class="card">
         <div class="card-header">
             <div class="card-heading flex justify-between items-center">
                 <div>CORRECTIVE MAINTENANCE LISTS</div>
-                <a href="{{ route('admin_create_cm') }}">
-                    <x-button class="btn btn-blue">NEW CM</x-button>
-                </a>
+
+                    <x-button class="btn btn-blue" x-on:click="$wire.set('cmCreateModal', true)">NEW CM</x-button>
+
             </div>
         </div>
 
@@ -31,7 +45,6 @@
                             <div class=" col-span-1">REQ DATE</div>
                             {{-- <div class=" col-span-1 text-center">TECHNICIAN</div> --}}
                             <div class=" col-span-3 text-center">EQUIPMENT</div>
-                            <div class=" col-span-3">EQUIPMENT TAG</div>
                             <div class="">STATUS</div>
                             <div class=" col-span-3" ></div>
                         </div>
@@ -65,12 +78,6 @@
                                         {{-- <div>{{ $item->remarks }}</div> --}}
                                     </div>
 
-                                    <div class="col-span-3">
-                                        <a href="{{ route('admin_tag_show', ['id'=> $item->tag->id]) }}" target="_blank">
-                                            {{ $item->tag->equipment_tag }}
-                                        </a>
-                                    </div>
-
                                     <div class="">{{ $item->status }}</div>
 
                                     <section class=" tems-center col-span-1 p-2 flex">
@@ -87,7 +94,7 @@
 
                     @else
 
-                    <x-button class="btn-btn-info">NO CMS CREATED</x-button>
+                    <x-button class="emptyData">NO CM CREATED</x-button>
 
                     @endif
 
@@ -112,8 +119,17 @@
 
 
 
-
-
+<div class="modal"
+    x-show="cmCreateModal"
+>
+    <div class="modal-overlay">
+        <div class="modal-body">
+            <div class="modal-content">
+                @livewire('forms.cm-create')
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

@@ -16,3 +16,12 @@
 </div>
 
 @endif
+
+
+@if (session()->has('Deleted'))
+
+<div class="p-4 mb-4 text-sm text-cyan-600-700 bg-red-100 rounded-lg" role="alert">
+   <span class="font-medium">  {{ session('Deleted') }}</span>
+</div>
+
+@endif

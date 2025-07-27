@@ -26,19 +26,21 @@
                     <td class="table-td">ID</td>
                     <td class="table-td">SPARE PART NAME</td>
                     <td class="table-td">PART NUMBER</td>
+                    <td class="table-td">EQUIPMENT</td>
                 </thead>
 
                 <tbody class="table-body">
 
-                    @if ($spare_parts->count()>1)
+                    @if ($spare_parts->isNotEmpty())
 
                         @foreach ($spare_parts as $item)
 
                             <tr class="table-tr">
                                 <td class="table-td">{{ $item->image }}</td>
                                 <td class="table-td">{{ $item->id }}</td>
-                                <td class="table-td">{{ $item->part_name }}</td>
-                                <td class="table-td">{{ $item->part_number }}</td>
+                                <td class="table-td">{{ $item->spare_part_name }}</td>
+                                <td class="table-td">{{ $item->spare_part_number }}</td>
+                                <td class="table-td">{{ $item->equipment->equipment }}</td>
                                 <td class="table-td flex justify-end">
 
                                     <x-button class="btn btn-blue" wire:click="partEdit({{ $item }})">Edit</x-button>
@@ -73,54 +75,21 @@
 
             <div class="modal-content">
 
-                <x-success></x-success>
-
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-heading">NEW SPARE PARTS CREATION</div>
-                    </div>
-
-                    <div class="card-body">
-
-                        <div class="">
-                            <div class="form-group">
-                                <label for="" class="form-label" >Spare Parts Name</label>
-                                <input type="text" class="form-controll" wire:model="part_name">
-
-                                <x-form-error field="part_name"></x-form-error>
-                            </div>
-
-                             <div class="form-group">
-                                <label for="" class="form-label">Part Number</label>
-                                <input type="text" class="form-controll" wire:model="part_number">
-                                 <x-form-error field="part_number"></x-form-error>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card-body">
-                         @if ($formMode == 'new')
-
-                            <x-button class="btn btn-submit" wire:click="save">SAVE</x-button>
-                        @else
-                        <x-button class="btn btn-submit" wire:click="updatePart">UPDATE</x-button>
-
-                         @endif
-                        <x-button class="btn btn-close" wire:click="closeModal()">close</x-button>
-                    </div>
-
-                </div>
-                {{-- end of card --}}
-
+                @livewire('forms.create-new-spare-parts')
 
 
             </div>
 
 
 
+
         </div>
+
+
+
     </div>
 </div>
+
 
 
 

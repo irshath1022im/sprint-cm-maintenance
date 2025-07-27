@@ -8,7 +8,7 @@
         <div class="card-header">
             <div class="card-heading flex justify-between items-center">
                         <div>
-                            PARTS REPLACEMENT -
+                            PARTS REPLACEMENT REQUEST
                         </div>
 
                         <x-button
@@ -26,20 +26,6 @@
                 x-show="partsReplacementBody"
                 x-transition.duration.500ms
             >
-                {{-- 01. check this cm has assigned parts
-                02. create new sub cm
-                03. create new meterial request
-                04. create parts receiving
-                05. assigne the parts to cm
-                06. open the cm and request the assinged parts to
-                07. close the cm --}}
-
-
-
-
-
-
-
                 {{-- <x-button class="btn btn-blue"
                             >PARTS REPLACEMENT</x-button> --}}
 
@@ -51,7 +37,7 @@
 
                                 {{-- @dump($cm->spareParts) --}}
 
-                                 @isset($cm->spareParts)
+                                 {{-- @isset($cm->spareParts)
                                         <div class="emptyData bg-green-200 P-4 flex justify-between items-center">
 
                                             <div>
@@ -74,7 +60,10 @@
                                                 >ADD SPARE PARTS
                                             </x-button>
                                     </div>
-                                 @endisset
+                                 @endisset --}}
+
+
+                                @livewire('equipment-tags-for-material-request', ['cm' => $cm])
 
 
 
@@ -158,10 +147,10 @@
                                         </div>
 
                                           <div>
-
+{{--
                                                     @component('components.material-receiving-card', ['material_receiving' => $cm->materialReceiving ])
 
-                                                    @endcomponent
+                                                    @endcomponent --}}
                                         </div>
                                  @else
 
@@ -207,17 +196,22 @@
                     <div class="card">
 
                         <div class="card-header">
-                            <div class="card-heading flex justify-between">
-                                <span>MATERIAL REQUEST</span>
-                                <x-button class="btn btn-close"
-                                    x-on:click="$wire.set('materialRequestModal', false)"
-                                >X</x-button>
+                            <div class="card-heading flex justify-between items-center">
+                                <span> MATERIAL REQUEST FOR</span>
+                                <x-button class="btn btn-info">CM NO - {{ $cm->cm_number}}</x-button>
+                                <span>
+                                    <x-button class="btn bg-slate-200 border border-blue-500">
+                                        <a href="{{ route('admin_equipment_show',['id' => $cm->equipment->id]) }}" target="_blank">
+                                            {{$cm->equipment->equipment }}
+                                        </a>
+                                    </x-button>
+                                </span>
                             </div>
                         </div>
 
                         <div class="card-body bg-slate-200">
 
-                        @livewire('forms.new-material-request-form',['cm' =>$cm])
+                            @livewire('forms.new-material-request-form',['cm' =>$cm])
 
                         </div>
 
@@ -248,7 +242,7 @@
 
                         <div class="card-body bg-slate-200">
 
-                        @livewire('forms.create-new-spare-parts', ['cm' => $cm])
+                        {{-- @livewire('forms.create-new-spare-parts', ['cm' => $cm]) --}}
 
                         </div>
 
@@ -295,5 +289,8 @@
             </div>
         </div>
     </div>
+
+
+
 
 </div>

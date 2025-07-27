@@ -20,8 +20,6 @@ class CmCreate extends Component
     #[Validate('required')]
     public $equipment_id;
 
-    #[Validate('required')]
-    public $equipment_tag_id;
 
     #[Validate('required|unique:corrective_maintenances,cm_number')]
     public $cm_number;
@@ -40,14 +38,14 @@ class CmCreate extends Component
 
 
 
-    public function updated($equipment_tag_id)
-    {
-        // $this->equipment_part_id = 2;
+    // public function updated($equipment_tag_id)
+    // {
+    //     // $this->equipment_part_id = 2;
 
-        $this->tags =EquipmentTag::where('equipment_id', $this->equipment_id )->get();
+    //     $this->tags =EquipmentTag::where('equipment_id', $this->equipment_id )->get();
 
 
-    }
+    // }
 
 
     public function formSubmit()
@@ -57,15 +55,19 @@ class CmCreate extends Component
         $this->resetExcept('technicians', 'equipment');
         $this->updated_id = $result->id;
         session()->flash('created', 'CM Created Successfully!');
-        redirect()->to('admin/cm/'.$result->id.'');
+        redirect()->to('/');
+    }
+
+
+    public function formClose()
+    {
+        $this->dispatch('formCloseRequest');
     }
 
     public function mount()
     {
-
-
         $this->technicians = Technician::get();
-        $this->equipment = Equipment::get();
+        $this->equipment = Equipment::orderBy('equipment')->get();
     }
 
 

@@ -1,17 +1,8 @@
 <div class="">
 
-
-   @if (session()->has('created'))
-
-    <div class="p-4 mb-4 text-sm text-green-100 bg-green-600 rounded-lg" role="alert">
-    <span class="font-medium">  {{ session('created') }}</span>
-        <a href={{ route('admin_cm_show',['id' => $updated_id]) }}>
-            <x-button class="btn btn-info">GO TO</x-button>
-        </a>
+    <div wire:loading>
+        <x-spinner></x-spinner>
     </div>
-
-    @endif
-
 
     <div class="card bg-stone-400">
         <div class="card-header">
@@ -55,12 +46,9 @@
 
 
                 <div class="flex justify-between">
-
-
-
                     <div class="form-group flex-auto">
                          <div class="form-label">EQUIPMENT</div>
-                          <select name="" id="" wire:model.live="equipment_id" class="form-controll">
+                          <select name="" id="" wire:model="equipment_id" class="form-controll">
                                 <option value="">Select</option>
                                 {{-- {{ $qty? }} --}}
                                     @foreach ($equipment as $item)
@@ -72,19 +60,7 @@
                               <x-form-error field="equipment_id"></x-form-error>
                     </div>
 
-                    <div class="form-group flex-auto">
-                         <div class="form-label">EQUIPMENT TAG</div>
-                          <select name="" id="" wire:model.live="equipment_tag_id" class="form-controll">
-                                <option value="">Select</option>
-                                {{-- {{ $qty? }} --}}
-                                    @foreach ($tags as $equParts)
-                                            <option value="{{ $equParts->id }}">{{ $equParts->equipment_tag }}</option>
-                                    @endforeach
 
-                            </select>
-
-                              <x-form-error field="equipment_tag_id"></x-form-error>
-                    </div>
 
                      <div class="form-group">
 
@@ -104,12 +80,17 @@
                 </div>
 
                 <div>
-                    <textarea name="" id="" cols="30" rows="5" wire:model="remarks" class="form-controll" placeholder="Remark"></textarea>
+                    <textarea name="" id="" cols="30" rows="5" wire:model="remarks" class="form-controll" placeholder="Remark">
+
+                    </textarea>
+
+                      <x-form-error field="remarks"></x-form-error>
                 </div>
 
 
 
                 <x-button class="btn-submit" wire:click="formSubmit">SUBMIT</x-button>
+                <x-button class="btn-close" wire:click="formClose">CLOSE</x-button>
 
             </div>
             {{-- END OF FORM  --}}

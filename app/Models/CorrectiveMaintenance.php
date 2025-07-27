@@ -15,7 +15,6 @@ class CorrectiveMaintenance extends Model
         'request_date',
         'status',
         'equipment_id',
-        'equipment_tag_id',
         'remarks'
     ];
 
@@ -29,10 +28,7 @@ class CorrectiveMaintenance extends Model
         return $this->belongsTo(Equipment::class);
     }
 
-    public function tag()
-    {
-        return $this->belongsTo(EquipmentTag::class, 'equipment_tag_id');
-    }
+
 
     public function serviceRequest()
     {

@@ -4,14 +4,16 @@ namespace App\Livewire\Forms;
 
 use App\Models\Equipment;
 use App\Models\SparePart;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 
 class CreateNewSpareParts extends Component
 {
 
-    public $cm; //getting from cm-show from to card component then this components
-
+    public $equipment;
+    public $formMode;
+    public $lineId;
 
 
      #[Validate('required')]
@@ -20,33 +22,48 @@ class CreateNewSpareParts extends Component
      #[Validate('required')]
     public $spare_part_number;
 
+      #[Validate('required')]
+    public $equipment_id;
+
     public function formSave()
     {
         $validated = $this->validate();
-        $coll1 = ['equipment_id' => $this->cm->equipment_id];
-        $data = $validated + $coll1;
-        $result= SparePart::create($data);
-        $this->resetExcept('cm');
+        SparePart::create($validated);
+        $this->resetExcept('cm', 'equipment');
         session()->flash('created', 'New Spare Part has been addedd!!');
-
-        //add the spare parts to spare part table
-
-
-        //assign this part to cm for next usage
 
     }
 
     public function formClose()
     {
 
-    $this->dispatch('newSparePartModalClose');
-     $this->resetExcept('cm');
+        $this->dispatch('newSparePartModalClose');
+     $this->resetExcept('cm', 'equipment');
      $this->resetErrorBag();
 
     }
 
+    #[On('editSparePartRequest')]
+    public function editSparePartRequest($line)
+    {
+        $this->formMode = 'edit';
+        $this->lineId = $line['id'];
+        $this->spare_part_name = $line['spare_part_name'];
+        $this->spare_part_number = $line['spare_part_number'];
+        $this->equipment_id = $line['equipment_id'];
+
+    }
+
+    public function formUpdate()
+    {
+       $validated = $this->validate();
+        SparePart::find($this->lineId)->Update($validated);
+          session()->flash('updated', 'New Spare Part has been updated!!');
+    }
+
     public function mount()
     {
+         $this->equipment = Equipment::orderBy('equipment')->get();
     }
 
     public function render()

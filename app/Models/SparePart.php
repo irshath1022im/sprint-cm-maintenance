@@ -8,4 +8,9 @@ class SparePart extends Model
 {
     //
     protected $fillable = ['spare_part_name','spare_part_number','equipment_id'];
+
+    public function equipment()
+    {
+        return $this->belongsTo(Equipment::class);
+    }
 }

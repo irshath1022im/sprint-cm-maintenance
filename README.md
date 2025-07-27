@@ -57,3 +57,19 @@ spare part name, spare part number,qty
 
 recevubg
 batch order, uprice qty total 
+
+
+CM Creation:
+01.	Each CM belongs to one Equipment
+02.	Each CM can have one / more equipment tags
+
+Material Requests:
+01.	MR can have one / more spare parts 
+02.	MR when we have more than 1 spare part, the material request will be number of based on equipment tag
+03.	When the parts are the same for bath tags, there will be one one material request
+04.	
+
+
+$table->unsignedBigInteger('equipment_tag_id');
+$table->foreign('equipment_tag_id')->references('id')->on('equipment_tags');
+

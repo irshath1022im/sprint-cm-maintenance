@@ -32,7 +32,7 @@ class CmShow extends Component
     {
 
         $result = CorrectiveMaintenance::with(
-            ['technician','equipment', 'tag', 'serviceRequest','materialRequest','spareParts','materialReceiving'])->findOrfail($this->id);
+            ['technician','equipment'])->findOrfail($this->id);
         return view('livewire.corrective-maintenance.cm-show',['cm' => $result])
         ->extends('components.layouts.app')
         ;

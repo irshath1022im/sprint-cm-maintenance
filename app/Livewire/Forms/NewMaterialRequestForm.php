@@ -19,7 +19,7 @@ class NewMaterialRequestForm extends Component
 
     public $SelectedEquipmentTags = [];
 
-    #[Validate('required')]
+     #[Validate('required')]
     public $sub_cm;
 
 
@@ -34,14 +34,19 @@ class NewMaterialRequestForm extends Component
 
 
       #[Validate('required')]
+    public $spare_part_id;
+
+
+      #[Validate('required')]
     public $qty;
 
 
     public $remark;
+    public $status;
 
 
 
-    public function updated($equipment_tag_id)
+    public function updatedEquipmentTagId()
     {
         // $this->SelectedEquipmentTags[] = $this->equipmentTags[$this->equipment_tag_id];
         $cmTags= [
@@ -71,7 +76,7 @@ class NewMaterialRequestForm extends Component
 
 
         // $result= SparePart::create($validated);
-        $this->resetExcept('cm','equipments');
+        $this->resetExcept('cm','equipments','sub_cm','date','expected_date');
         session()->flash('created', 'Material Request has been added to CM');
 
         //add the spare parts to spare part table
@@ -90,9 +95,15 @@ class NewMaterialRequestForm extends Component
 
     }
 
+    public function reloadSpareParts()
+    {
+    //    CmEquipmentTag::with('equipmentTag')->where('cm_number_id', $this->cm->id)->get();
+    //  $this->equipmentSpareParts = SparePart::where('equipment_id', $this->cm->equipment_id)->get();
+    }
+
     public function mount($cm)
     {
-        $this->equipmentTags = EquipmentTag::where('equipment_id', $cm->equipment_id)->get();
+
     }
 
     public function render()

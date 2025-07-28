@@ -17,4 +17,9 @@ class Equipment extends Model
     {
         return $this->hasMany(CorrectiveMaintenance::class);
     }
+
+    public function spareParts()
+    {
+        return $this->hasMany(SparePart::class);
+    }
 }

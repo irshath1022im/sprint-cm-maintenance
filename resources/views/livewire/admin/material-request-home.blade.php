@@ -45,7 +45,7 @@
                                         {{ $item->cm->cm_number }}</a>
                                 </td>
                                 <td class="table-td">{{ $item->sub_cm }}</td>
-                                <td class="table-td">{{ $item->equipment->equipment}}</td>
+                                <td class="table-td">{{ $item->equipmentTag->equipment->equipment}}</td>
                                 <td class="table-td">{{ $item->equipmentTag->equipment_tag }}</td>
                                 <td class="table-td">{{ $item->sparePart->spare_part_name }}</td>
                                 <td class="table-td">{{ $item->sparePart->spare_part_number }}</td>
@@ -67,6 +67,8 @@
 
                         </tbody>
                     </table>
+
+                    {{ $material_requests->links() }}
 
             @else
 
@@ -140,7 +142,7 @@
             </div> --}}
 
 {{--
-            
+
         </div>
 
     </div>

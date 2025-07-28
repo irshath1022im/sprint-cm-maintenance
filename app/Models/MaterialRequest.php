@@ -7,12 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class MaterialRequest extends Model
 {
     //
-    protected $fillable = ['date','cm_number_id','sub_cm','equipment_id', 'equipment_tag_id','spare_part_id','status','expected_date','remarks','qty'];
+    protected $fillable = ['date','cm_number_id','sub_cm', 'equipment_tag_id','spare_part_id','status','expected_date','remarks','qty'];
 
-    public function equipment()
-    {
-        return $this->belongsTo(Equipment::class);
-    }
+
 
     public function equipmentTag()
     {

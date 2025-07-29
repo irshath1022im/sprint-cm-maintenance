@@ -1,16 +1,14 @@
 <div class=""
     x-data="{
         showCmNewEquipmentTagModal : @entangle('showCmNewEquipmentTagModal'),
-        cmEquipmentTagsShow : false
+        cmEquipmentTagsShow : true
     }"
 >
-
- <x-success></x-success>
 
 
     {{-- @dump($cmEquipmentTags) --}}
 
-      @if($cmEquipmentTags->isNotEmpty())
+        @if($cmEquipmentTags->isNotEmpty())
 
                         <div class="card bg-blue-200">
                             <div class="card-header">
@@ -74,7 +72,7 @@
                        </x-button>
                 </div>
 
-            @endif
+        @endif
 
 
 

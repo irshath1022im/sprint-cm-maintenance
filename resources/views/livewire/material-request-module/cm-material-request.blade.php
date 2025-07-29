@@ -34,7 +34,8 @@
 
                  @livewire('equipment-tags-for-material-request', ['cm' => $cm])
 
-                {{-- @livewire('material-request-for-cm-show', ['cm' => $cm]) --}}
+                {{-- if there is not assigned equipment tags, we don't need to show any this motal  --}}
+
                 @livewire('material-request-module.sub-cm-card', ['cm' => $cm] )
 
 

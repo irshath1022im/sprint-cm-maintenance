@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('material_receivings', function (Blueprint $table) {
+        Schema::create('batch_orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('material_request_id');
             $table->string('batch_no');
             $table->date('receiving_date');
             $table->unsignedBigInteger('supplier_id');
-            $table->integer('qty');
-            $table->integer('unit_price');
-            $table->integer('total');
-            $table->string('remark')->nullable();
             $table->foreign('material_request_id')->on('material_requests')->references('id');
             $table->foreign('supplier_id')->on('suppliers')->references('id');
+
+
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('material_receivings');
+        Schema::dropIfExists('batch_orders');
     }
 };

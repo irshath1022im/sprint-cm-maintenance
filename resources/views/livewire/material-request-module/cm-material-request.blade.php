@@ -1,4 +1,13 @@
-<div class="card">
+<div>
+
+
+    <div class="card"
+    x-data="{
+            partsReplacementBody : true
+        }"
+
+        x-cloak
+>
         <div class="card-header">
             <div class="card-heading flex justify-between items-center">
                         <div>
@@ -20,24 +29,21 @@
                 x-show="partsReplacementBody"
                 x-transition.duration.500ms
             >
-                {{-- <x-button class="btn btn-blue"
-                            >PARTS REPLACEMENT</x-button> --}}
-
-                <div class="card mt-2">
-                    <div class="card-header">
-                        <div class="card-heading">summary</div>
-                    </div>
-                            <div class="card-body">
 
 
-                                @livewire('equipment-tags-for-material-request', ['cm' => $cm])
 
-                                 @livewire('material-request-for-cm-show', ['cm' => $cm])
+                 @livewire('equipment-tags-for-material-request', ['cm' => $cm])
 
-                            </div>
-                </div>
+                {{-- @livewire('material-request-for-cm-show', ['cm' => $cm]) --}}
+                @livewire('material-request-module.sub-cm-card', ['cm' => $cm] )
+
 
         </div>
+
+
+
+
+</div>
 
 
 

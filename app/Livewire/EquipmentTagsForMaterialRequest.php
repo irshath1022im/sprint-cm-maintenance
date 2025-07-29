@@ -38,10 +38,6 @@ class EquipmentTagsForMaterialRequest extends Component
         // dd($lastUpdate);
     }
 
-    public function mount($cm)
-    {
-        $this->equipmentTags = EquipmentTag::where('equipment_id', $cm->equipment_id)->get();
-    }
 
 
     public function render()

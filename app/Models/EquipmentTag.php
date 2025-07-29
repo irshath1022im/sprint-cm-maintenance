@@ -29,4 +29,10 @@ class EquipmentTag extends Model
         );
     }
 
+
+    public function materialRequestItems()
+    {
+        return $this->hasMany(MaterialRequestItems::class);
+    }
+
 }

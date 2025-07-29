@@ -16,15 +16,6 @@ class CmShow extends Component
     public $requested_date;
     public $status;
 
-    public $serviceRequestModal = false;
-
-    #[On('formCloseRequest')]
-
-    public function formCloseRequest()
-    {
-        $this->serviceRequestModal = false;
-    }
-
 
 
 

@@ -47,10 +47,6 @@
 
 
 
-
-
-
-
 <div class="modal"
         x-show="materialReceivingModal"
         x-transition.duration.500ms

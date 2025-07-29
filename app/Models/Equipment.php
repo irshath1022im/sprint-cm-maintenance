@@ -22,4 +22,15 @@ class Equipment extends Model
     {
         return $this->hasMany(SparePart::class);
     }
+
+    public function materialRequest()
+    {
+        return $this->hasManyThrough(
+            MaterialRequest::class,
+            CorrectiveMaintenance::class,
+            'equipment_id',
+            'cm_number_id',
+            'id'
+        );
+    }
 }

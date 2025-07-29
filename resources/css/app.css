@@ -23,7 +23,25 @@
         @apply bg-slate-50 font-medium px-3 py-2 ;
     }
 
-    .card-footer{
+    .sm-card-group {
+        @apply border rounded-md font-['lato']
+    }
+    .sm-card {
+        @apply bg-slate-50  border rounded-md font-['lato'] text-[12px];
+    }
+
+    .sm-card-header{
+        @apply px-3 py-2  border-b-2;
+    }
+    .sm-card-heading{
+        @apply text-lg font-bold uppercase  text-[12px];
+    }
+
+    .sm-card-body{
+        @apply bg-slate-50 font-medium px-3 py-2  text-[12px] ;
+    }
+
+    .sm-card-footer{
         @apply font-semibold px-3 py-2 border-2 rounded-md;
     }
 

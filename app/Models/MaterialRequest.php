@@ -25,4 +25,14 @@ class MaterialRequest extends Model
     {
         return $this->belongsTo(CorrectiveMaintenance::class,'cm_number_id');
     }
+
+    public function materialReceiving()
+    {
+        return $this->hasMany(MaterialReceiving::class);
+    }
+
+    public function materialRequestItems()
+    {
+        return $this->hasMany(MaterialRequestItems::class);
+    }
 }

@@ -73,3 +73,7 @@ Material Requests:
 $table->unsignedBigInteger('equipment_tag_id');
 $table->foreign('equipment_tag_id')->references('id')->on('equipment_tags');
 
+Conditions:
+
+if any equipment tag having material request, cannot delete the tag 
+

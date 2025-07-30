@@ -26,9 +26,9 @@ class MaterialRequest extends Model
         return $this->belongsTo(CorrectiveMaintenance::class,'cm_number_id');
     }
 
-    public function materialReceiving()
+    public function batchOrder()
     {
-        return $this->hasMany(MaterialReceiving::class);
+        return $this->hasOne(BatchOrder::class, 'material_request_id');
     }
 
     public function materialRequestItems()

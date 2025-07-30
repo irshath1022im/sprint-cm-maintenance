@@ -35,4 +35,9 @@ class EquipmentTag extends Model
         return $this->hasMany(MaterialRequestItems::class);
     }
 
+    public function batchOrderItems()
+    {
+        return $this->hasMany(BatchOrderItems::class);
+    }
+
 }

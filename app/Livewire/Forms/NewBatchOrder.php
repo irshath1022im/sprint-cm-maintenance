@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\BatchOrder;
 use App\Models\MaterialRequest;
 use App\Models\MaterialRequestItems;
 use App\Models\Supplier;
@@ -12,11 +13,12 @@ use Livewire\Component;
 class NewBatchOrder extends Component
 {
 
+    public $materialRequestId;
+    public $materialRequestRetails;
     public $sub_cm;
-    public $materialRequestitems;
     public $suppliers;
 
-    #[Validate('required')]
+    #[Validate('required|unique:batch_orders,batch_no')]
     public $batch_no;
 
     #[Validate('required')]
@@ -25,26 +27,20 @@ class NewBatchOrder extends Component
     #[Validate('required')]
     public $supplier_id;
 
-    #[Validate('required')]
-    public $qty;
-
-    #[Validate('required')]
-    public $unit_price;
-
-    #[Validate('required')]
-    public $total;
 
 
-    #[On('recevingCm')]
-    public function recevingCm($item)
+    #[On('materialRequestDetails')] //receiving materialRequestDetaisl from dispatch method from SubCmCard
+    public function materialRequestDetails($materialRequestDetails)
     {
-        $this->materialRequestitems = MaterialRequestItems::where('material_request_id', $item)->get();
-        $this->sub_cm = $item['sub_cm'];
+        $this->materialRequestRetails = $materialRequestDetails;;
+        // $this->sub_cm = $materialRequestDetails['sub_cm'];
+        $this->materialRequestId = $materialRequestDetails['id'];
     }
 
       public function formClose()
     {
-        $this->dispatch('materialReceivingFormClose');
+        $this->dispatch('batchOrderClosingForm');
+        $this->resetErrorBag();
 
     }
 
@@ -52,20 +48,28 @@ class NewBatchOrder extends Component
     {
         $validated =$this->validate();
         $input = [
-            'material_request_id' => $this->cm->materialRequest->id,
-            'remark' => null,
+            'material_request_id' => $this->materialRequestId,
+            'remarks' => null,
         ];
 
-        // $data=$validated + $input;
+        $data = $validated +$input;
 
-        // MaterialReceiving::create($data);
-        // session()->flash('created', 'Material Request is being submited');
+        BatchOrder::create($data);
+
+        session()->flash('created', 'Material Request is being submited');
+        $this->reset('batch_no','receiving_date','supplier_id');
+
+    }
+
+    public function mount()
+    {
+        $this->suppliers = Supplier::get();
+
     }
 
 
     public function render()
     {
-        $this->suppliers = Supplier::get();
         return view('livewire.forms.new-batch-order');
     }
 }

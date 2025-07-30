@@ -8,21 +8,16 @@
      </div>
 
 
- @isset($materialRequestitems)
+    @isset($materialRequestId)
+ {{-- check first, the materialRequestId is taken to compoennts --}}
 
-    @if ($materialRequestitems->isEmpty())
-
-                <div class="emptyData">Sorry, No Spare Item has been Requested</div>
-
-                <div class="flex justify-center gap-2">
-                    <x-button class="btn btn-close" wire:click="formClose">close</x-button>
-                </div>
-
-        @else
 
                     <div class="sm-card">
                             <div class="sm-card-header">
-                                <div class="sm-card-heading">New Batch Order for Cm <x-button class="btn btn-info"> {{ $sub_cm }}</x-button></div>
+                                <div class="sm-card-heading">New Batch Order for Cm
+                                    <x-button class="btn btn-info"> {{ $materialRequestRetails['sub_cm'] }} </x-button>
+                                    MaterialRequestID <x-button class="btn btn-info">{{ $materialRequestId }}</x-button>
+                                </div>
                             </div>
 
                             <div class="sm-card-body">
@@ -69,8 +64,6 @@
                             <x-button class="btn btn-submit" wire:click="formSave">SAVE</x-button>
                             <x-button class="btn btn-close" wire:click="formClose">close</x-button>
                     </div>
-
-    @endif
 
 
 

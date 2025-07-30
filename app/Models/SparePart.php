@@ -13,4 +13,14 @@ class SparePart extends Model
     {
         return $this->belongsTo(Equipment::class);
     }
+
+    public function materialRequestItems()
+    {
+        return $this->hasMany(MaterialRequest::class);
+    }
+
+      public function batchOrderItems()
+    {
+        return $this->hasMany(BatchOrderItems::class);
+    }
 }

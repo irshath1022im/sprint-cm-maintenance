@@ -14,12 +14,18 @@ return new class extends Migration
         Schema::create('batch_order_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('batch_order_id');
+            $table->unsignedBigInteger('equipment_tag_id');
+            $table->unsignedBigInteger('spare_part_id');
             $table->integer('qty');
             $table->integer('unit_price');
             $table->integer('total');
             $table->string('remark')->nullable();
             $table->timestamps();
             $table->foreign('batch_order_id')->on('batch_orders')->references('id');
+            $table->foreign('equipment_tag_id')->references('id')->on('equipment_tags');
+            $table->foreign('spare_part_id')->references('id')->on('spare_parts');
+
+
         });
     }
 

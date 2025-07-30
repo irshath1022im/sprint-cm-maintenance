@@ -14,7 +14,7 @@ class SubCmCard extends Component
     public $cm;
     public $createNewSubCmModal = false;
     public $requestItemsModal = false;
-    public $materialReceivingModal = false;
+    public $batchOrderModal = false;
     public $materialId;
 
     #[On('createNewSubCmModal')]
@@ -29,10 +29,10 @@ class SubCmCard extends Component
         $this->requestItemsModal = false;
     }
 
-    #[On('materialReceivingFormClose')]
+    #[On('batchOrderClosingForm')]
     public function materialReceivingFormClose()
     {
-        $this->materialReceivingModal = false;
+        $this->batchOrderModal = false;
     }
 
     public function addPartsToRequest($item)
@@ -47,19 +47,21 @@ class SubCmCard extends Component
         // session()->flash('Deleted', 'Spare Parts has been Deleted from Sub Cm');
     }
 
-    public function receivingRequest($item)
+    public function newBatchOrder($item)
     {
 
-        $this->materialId = $item;
-        $this->materialReceivingModal = true;
-         $this->dispatch('recevingCm',$item);
+        $this->batchOrderModal = true;
+        // $this->materialId = $item;
+         $this->dispatch('materialRequestDetails',$item);
 
         // $this->dispatch('materialReceivingModalOpen', $sub_cm);
     }
 
     public function render()
     {
-        $result = MaterialRequest::where('cm_number_id', $this->cm->id)->with('materialRequestItems')->get();
+        $result = MaterialRequest::where('cm_number_id', $this->cm->id)
+                                    ->with('materialRequestItems','batchOrder')
+                                    ->get();
         return view('livewire.material-request-module.sub-cm-card',['materialRequests' => $result]);
     }
 }

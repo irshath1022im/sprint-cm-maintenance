@@ -17,6 +17,7 @@ class BatchOrderItemForm extends Component
 
     public $material_request_items=[];
     public $batch_order_id;
+    public $material_request_item_id;
 
     #[Validate('required')]
     public $equipment_tag_id;
@@ -58,6 +59,7 @@ class BatchOrderItemForm extends Component
         for ($i=0; $i < count($this->material_request_items) ; $i++) {
             if($this->material_request_items[$i]['equipment_tag_id'] == $this->equipment_tag_id){
                 $this->qty = $this->material_request_items[$i]['qty'];
+                $this->material_request_item_id = $this->material_request_items[$i]['id'];
                 $this->spare_part_id = $this->material_request_items[$i]['spare_part_id'];
             }
         }
@@ -69,7 +71,7 @@ class BatchOrderItemForm extends Component
     {
        $validated = $this->validate();
 
-        $data = $validated + ['batch_order_id' => $this->batch_order_id];
+        $data = $validated + ['batch_order_id' => $this->batch_order_id ,'material_request_item_id' => $this->material_request_item_id ];
         BatchOrderItems::create($data);
         session()->flash('created', 'Spare Parts Has been received');
         $this->reset('unit_price','total','qty','spare_part_id');

@@ -13,10 +13,6 @@ class EquipmentTag extends Model
         return $this->belongsTo(Equipment::class);
     }
 
-    public function cmRequests()
-    {
-        return $this->hasMany(CorrectiveMaintenance::class);
-    }
 
     public function serviceRequests()
     {

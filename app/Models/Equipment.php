@@ -33,4 +33,16 @@ class Equipment extends Model
             'id'
         );
     }
+
+    public function materialRequestItems()
+    {
+        return $this->hasManyThrough(
+            MaterialRequestItems::class,
+            EquipmentTag::class,
+            'equipment_id',
+            'equipment_tag_id',
+            'id'
+        );
+    }
+
 }

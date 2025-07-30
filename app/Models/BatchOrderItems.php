@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class BatchOrderItems extends Model
 {
     //
-protected $fillable = ['batch_order_id','qty','unit_price','total','equipment_tag_id','spare_part_id'];
+protected $fillable = ['batch_order_id','qty','unit_price','total','equipment_tag_id','spare_part_id','material_request_item_id'];
 
     public function batchOrder()
     {
@@ -23,4 +23,10 @@ protected $fillable = ['batch_order_id','qty','unit_price','total','equipment_ta
     {
         return $this->belongsTo(SparePart::class);
     }
+
+    public function materialRequestItemLine()
+    {
+        return $this->belongsTo(MaterialRequestItems::class);
+    }
+    
 }

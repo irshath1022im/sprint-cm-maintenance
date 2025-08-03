@@ -23,4 +23,9 @@ class MaterialRequestItems extends Model
         return $this->belongsTo(SparePart::class);
     }
 
+    public function batchOrderItem()
+    {
+        return $this->hasOne(BatchOrderItems::class, 'material_request_item_id');
+    }
+
 }

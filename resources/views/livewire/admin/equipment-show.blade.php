@@ -109,20 +109,16 @@
                 </div>
 
 
-                <div class="card">
-                    <div class="card-header">
-                        <div class="card-heading">MATERIAL REQUEST</div>
-                    </div>
+
 
 
                     {{-- @dump($equipment->materialRequestItems) --}}
                     {{-- @dump($equipment->materialRequestItems->isNotEmpty()) --}}
 
-                      
-                        @livewire('admin.equipment-show.material-request', ['materialRequestItems' => $equipment->materialRequestItems]))
+
+                        @livewire('admin.equipment-show.material-request', ['id' => $id])
 
 
-                </div>
 
         </div>
     </div>

@@ -33,7 +33,7 @@ class EquipmentTag extends Model
 
     public function batchOrderItems()
     {
-        return $this->hasMany(BatchOrderItems::class);
+        return $this->hasMany(BatchOrderItems::class,'equipment_tag_id');
     }
 
 }

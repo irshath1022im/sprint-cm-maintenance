@@ -45,4 +45,17 @@ class Equipment extends Model
         );
     }
 
+
+    public function batchOrderItems()
+    {
+        return $this->hasManyThrough(
+            BatchOrderItems::class,
+            EquipmentTag::class,
+            'equipment_id',
+            'equipment_tag_id',
+            'id'
+
+        );
+    }
+
 }

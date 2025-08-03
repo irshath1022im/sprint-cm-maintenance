@@ -26,6 +26,7 @@
         </div>
 
         <div class="card-body">
+
                  <div class="card">
                     <div class="card-header">
                         <div class="card-heading flex justify-between items-center">
@@ -64,6 +65,11 @@
                         </ul>
                     </div>
                 </div>
+
+
+            @livewire('admin.equipment-tag.material-request-table-equipment-tag-show',)
+
+
         </div>
     </div>
 

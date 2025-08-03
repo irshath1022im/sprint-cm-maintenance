@@ -6,20 +6,29 @@
 
             {{-- {{ $id }} --}}
 
-            @isset($equipment)
+            {{-- @dump($equipmentTag) --}}
+            @isset($equipmentTag)
+
+             @isset($equipmentTag->materialRequestItems)
+                empty data
+             @endisset
 
 
-             @if($equipment->isNotEmpty())
+             @if($equipmentTag->has('materialRequestItems'))
+
+             {{-- @dump($equipmentTag->materialRequestItems) --}}
+
+
 
                 <x-button class="btn btn-info">Total Spent:</x-button>
-                <x-price price="{{ $equipment[0]->totalSpent}}"></x-price>
+                {{-- <x-price price="{{ $equipment[0]->totalSpent}}"></x-price> --}}
 
 
         </div>
 
 
 
-                @if ($equipment[0]->materialRequestItems->isNotEmpty())
+                {{-- @if ($equipment[0]->materialRequestItems->isNotEmpty())
 
                         <div class="card-body">
                             <table class="table text-[12px]">
@@ -78,8 +87,12 @@
 
                     @endif
 
+                    --}}
 
-            @endif
+
+
+
+          @endif
 
             <div class="emptyData">Sorryy!, No Material Request Found </div>
 

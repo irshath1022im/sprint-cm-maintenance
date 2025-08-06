@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="card-body">
+        <div class="card-body text-[12px]">
             <table class="table">
                 <thead class="table-head">
                     <td class="table-td">IMAGE</td>
@@ -29,19 +29,19 @@
                     <td class="table-td">EQUIPMENT</td>
                 </thead>
 
-                <tbody class="table-body">
+                <tbody class="table-body text-[12px]">
 
                     @if ($spare_parts->isNotEmpty())
 
                         @foreach ($spare_parts as $item)
 
-                            <tr class="table-tr">
-                                <td class="table-td">{{ $item->image }}</td>
-                                <td class="table-td">{{ $item->id }}</td>
-                                <td class="table-td">{{ $item->spare_part_name }}</td>
-                                <td class="table-td">{{ $item->spare_part_number }}</td>
-                                <td class="table-td">{{ $item->equipment->equipment }}</td>
-                                <td class="table-td flex justify-end">
+                            <tr class="table-tr text-[12px]">
+                                <td class="table-td text-[13px]">{{ $item->image }}</td>
+                                <td class="table-td text-[13px]">{{ $item->id }}</td>
+                                <td class="table-td text-[13px]">{{ $item->spare_part_name }}</td>
+                                <td class="table-td text-[13px]">{{ $item->spare_part_number }}</td>
+                                <td class="table-td text-[13px]">{{ $item->equipment->equipment }}</td>
+                                <td class="table-td text-[13px] flex justify-end">
 
                                     <x-button class="btn btn-blue" wire:click="partEdit({{ $item }})">Edit</x-button>
                                     <x-button class="btn btn-close">Delete</x-button>

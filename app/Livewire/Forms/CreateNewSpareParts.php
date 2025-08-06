@@ -19,11 +19,12 @@ class CreateNewSpareParts extends Component
      #[Validate('required')]
     public $spare_part_name;
 
-     #[Validate('required')]
+     #[Validate('required|unique:spare_parts,spare_part_number')]
     public $spare_part_number;
 
       #[Validate('required')]
     public $equipment_id;
+
 
     public function formSave()
     {

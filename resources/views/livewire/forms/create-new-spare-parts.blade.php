@@ -21,6 +21,7 @@
 
         </div>
 
+
         <div class="form-group flex-auto">
                          <div class="form-label">EQUIPMENT</div>
                           <select name="" id="" wire:model="equipment_id" class="form-controll">

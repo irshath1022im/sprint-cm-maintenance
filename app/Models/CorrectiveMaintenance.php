@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
@@ -18,6 +19,12 @@ class CorrectiveMaintenance extends Model
         'remarks'
     ];
 
+  protected function casts(): array
+    {
+        return [
+            'cm_number' => 'integer',
+        ];
+    }
     public function technician()
     {
         return $this->belongsTo(Technician::class);

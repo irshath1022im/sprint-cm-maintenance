@@ -1,6 +1,6 @@
 <div>
 
-    <x-success></x-success>
+    {{-- <x-success></x-success> --}}
 
 
         <div class="card bg-slate-300 border border-orange-200">

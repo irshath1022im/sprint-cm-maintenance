@@ -53,9 +53,9 @@ class CmCreate extends Component
         $validated = $this->validate();
         $result = CorrectiveMaintenance::create($validated);
         $this->resetExcept('technicians', 'equipment');
-        $this->updated_id = $result->id;
+        $this->updated_id = $result->id ;
         session()->flash('created', 'CM Created Successfully!');
-        redirect()->to('/');
+        redirect()->to('admin/cm/'.$result->id.'');
     }
 
 

@@ -9,7 +9,7 @@
     x-cloak
 >
 
-<x-success></x-success>
+{{-- <x-success></x-success> --}}
 
     <div class="card text-[12px] bg-green-100 mt-2">
         <div class="card-header">

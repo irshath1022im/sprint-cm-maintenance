@@ -14,7 +14,7 @@ class CmIndex extends Component
     public $filterStatus;
     public $cmCreateModal = false;
 
-    use WithPagination, WithoutUrlPagination;
+    use WithPagination;
 
     #[On('formCloseRequest')]
     public function formCloseRequest()

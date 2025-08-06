@@ -35,7 +35,10 @@
             </div>
 
 
-                    {{-- @dump($cms->count()) --}}
+
+
+             {{-- @dump($cms->links()->paginator) --}}
+
 
                     @if ($cms->count() > 0)
 
@@ -59,7 +62,21 @@
 
                                 {{-- cm number section --}}
 
-                                    <div class="ml-1  col-span-1">{{ $loop->iteration }}</div>
+                                @php
+                                    if($cms->links()->paginator->currentPage() == 1) {
+                                        $pageNumber = 1;
+                                        $goneItems = 0;
+
+                                    } else{
+                                        //  $goneItems = 8*1;
+                                         $pageNumber = $cms->links()->paginator->currentPage();
+                                         $goneItems = $cms->links()->paginator->perPage() * ($cms->links()->paginator->currentPage()-1);
+                                    }
+                                @endphp
+
+                                {{-- @dump($goneItems) --}}
+
+                                    <div class="ml-1  col-span-1">{{ ($loop->index + 1) + $goneItems }}</div>
 
                                     <div class=" col-span-1 rounded-full w-16 h-16 bg-zinc-500 flex justify-center items-center text-white">
                                         {{$item->cm_number}}

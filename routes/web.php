@@ -8,6 +8,7 @@ use App\Livewire\Admin\MaterialRequest;
 use App\Livewire\Admin\MaterialRequestHome;
 use App\Livewire\Admin\SpareParts;
 use App\Livewire\Admin\TechnicianHome;
+use App\Livewire\BatchOrderModule\AdminBatchOrderHome;
 use App\Livewire\BatchOrderModule\BatchOrdersCard;
 use App\Livewire\CorrectiveMaintenance\CmIndex;
 use App\Livewire\CorrectiveMaintenance\CmShow;
@@ -30,5 +31,6 @@ Route::get('admin/spare_parts', SpareParts::class)->name('admin_spare_parts');
 Route::get('admin/cm/{id}', CmShow::class )->name('admin_cm_show');
 Route::get('admin/meterial_request', MaterialRequestHome::class )->name('admin_meterial_request');
 Route::get('admin/batch_order/create', BatchOrdersCard::class )->name('admin_batch_order_create');
+Route::get('admin/batch_orders', AdminBatchOrderHome::class )->name('admin_batch_orders');
 // Route::get('cm_home', CmIndex::class)->name('cm_index');
 //

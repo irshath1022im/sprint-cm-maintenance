@@ -26,9 +26,11 @@
                           <x-button class="btn btn-info">Total Spent: <x-price price="{{ $equipmentTag->batchOrderItems->sum('total')}}"></x-price> </x-button>
 
                                             <div class="card-body">
+
                                                 <table class="table text-[12px]">
                                                     <thead class="thead table-head">
                                                         <th class="table-th">#</th>
+                                                        <th class="table-th">REQ DATE</th>
                                                         <th class="table-th">CM NO</th>
                                                         <th class="table-th">SUB CM NO</th>
                                                         <th class="table-th">EQUIPMENT</th>
@@ -45,7 +47,9 @@
                                                             @foreach ($equipmentTag->materialRequestItems as $item)
 
                                                                 <tr class="table-tr text-[12px]">
+
                                                                     <td class="table-td text-[13px]">{{ $loop->iteration }}</td>
+                                                                    <td class="table-td text-[13px]">{{ $item->materialRequest->date }}</td>
                                                                     <td class="table-td text-[13px]"><a href="{{ route('admin_cm_show',['id'=>$item->materialRequest->cm->id]) }}">
                                                                         {{$item->materialRequest->cm->cm_number}}</a>
                                                                     </td>

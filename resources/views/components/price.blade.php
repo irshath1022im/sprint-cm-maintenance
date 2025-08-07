@@ -1,4 +1,4 @@
- <button {{ $attributes }} class="border border-blue-400 p-2  text-[13px] font-bold">
+ <button {{ $attributes }} class="border-b border-b-blue-400 p-2  text-[13px] font-bold">
                     @php
                     //  echo number_format($price, 2)
                       $formatter = new NumberFormatter('qr_QAR', NumberFormatter::CURRENCY);

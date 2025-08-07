@@ -11,8 +11,8 @@
             <li class="p-2 hover:border hover:border-orange-300  text-white">CM</li></a>
         <a href="{{ route('admin_meterial_request') }}">
             <li class="p-2 hover:border hover:border-orange-300  text-white">MATERIAL REQUEST</li></a>
-        <a href="{{ route('cmHome') }}">
-            <li class="p-2 hover:border hover:border-orange-300    text-white">MATERIAL RECEIVING</li></a>
+        <a href="{{ route('admin_batch_orders') }}">
+            <li class="p-2 hover:border hover:border-orange-300    text-white">BATCH ORDERS</li></a>
         <a href="{{ route('admin_spare_parts') }}">
             <li class="p-2 hover:border hover:border-orange-300  border-b-orange-300  text-white">SPARE PARTS</li></a>
         <a href="">

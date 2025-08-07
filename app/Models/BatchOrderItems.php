@@ -2,12 +2,22 @@
 
 namespace App\Models;
 
+use App\Casts\Money;
 use Illuminate\Database\Eloquent\Model;
 
 class BatchOrderItems extends Model
 {
     //
 protected $fillable = ['batch_order_id','qty','unit_price','total','equipment_tag_id','spare_part_id','material_request_item_id'];
+
+    protected $casts =[
+        'unit_price' => Money::class,
+        'total' => Money::class,
+    //    ['total' => Money::class]
+    ];
+
+
+
 
     public function batchOrder()
     {

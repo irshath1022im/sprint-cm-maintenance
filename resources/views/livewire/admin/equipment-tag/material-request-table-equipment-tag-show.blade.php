@@ -44,6 +44,9 @@
                                                     <tbody class="text-[12px]">
                                                             @foreach ($equipmentTag->materialRequestItems as $item)
 
+                                                        {{ $item->batchOrderItem->unit_price }}
+                                                        {{-- {{ $item->batchOrderItem->unit_price->formatTo('qa_QAR')}} --}}
+
                                                                 <tr class="table-tr text-[12px]">
                                                                     <td class="table-td text-[13px]">{{ $loop->iteration }}</td>
                                                                     <td class="table-td text-[13px]"><a href="{{ route('admin_cm_show',['id'=>$item->materialRequest->cm->id]) }}">
@@ -58,11 +61,27 @@
 
                                                                     @isset($item->batchOrderItem)
 
+
+
                                                                         <td class="table-td text-[13px]" >
                                                                             <x-button class="btn btn-blue">{{ $item->batchOrderItem->batchOrder->batch_no }}</x-button>
                                                                         </td>
-                                                                        <td class="table-td"><x-price price="{{ $item->batchOrderItem->unit_price}}"></x-price></td>
-                                                                        <td class="table-td"><x-price price="{{ $item->batchOrderItem->total}}"></x-price></td>
+                                                                        <td class="table-td">
+                                                                            {{-- <x-price price="{{ $item->batchOrderItem->unit_price}}"></x-price> --}}
+                                                                            {{ $item->batchOrderItem->unit_price->formatTo('qa_QAR')}}
+                                                                            {{ $item->batchOrderItem->total->formatTo('qa_QAR')}}
+                                                                        </td>
+                                                                        {{-- <td class="table-td">
+
+                                                                            @php
+
+
+                                                                               {{ Number::currency(1000, 'GBP') }}
+
+                                                                            @endphp
+
+                                                                            <x-price price="{{ $item->batchOrderItem->total}}"></x-price>
+                                                                        </td> --}}
 
                                                                     @else
                                                                         <td class="table-td"><x-button class="btn btn-info">N/A</x-button></td>

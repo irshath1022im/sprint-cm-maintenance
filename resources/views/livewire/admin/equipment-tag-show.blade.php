@@ -52,6 +52,12 @@
                                                 <x-button class="btn btn-blue">CM# {{ $cmItem->cmNumber->cm_number}}</x-button>
                                            </a>
 
+                                        <x-button class="btn bg-blue-100">SUB CM# {{ $cmItem->cmNumber->materialRequest->sub_cm}}</x-button>
+                                        <x-button class="btn bg-blue-100">STATUS
+                                            <x-button class="btn btn-info">{{ $cmItem->cmNumber->status}}</x-button>
+                                        </x-button>
+
+
                                         </div>
                                     @endforeach
 

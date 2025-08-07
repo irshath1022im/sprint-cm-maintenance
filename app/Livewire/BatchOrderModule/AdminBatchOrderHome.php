@@ -55,6 +55,7 @@ class AdminBatchOrderHome extends Component
                                                     ]);
                                             }
                                         ])
+                                    ->orderBy('receiving_date','desc')
                                   ;
 
                     $result = $batches->get();

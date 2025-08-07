@@ -1,1 +1,9 @@
- <button {{ $attributes }} class="border border-blue-400 p-2  text-[13px] font-bold">{{ $price }}.00 Qr</button>
+ <button {{ $attributes }} class="border border-blue-400 p-2  text-[13px] font-bold">
+                    @php
+                    //  echo number_format($price, 2)
+                      $formatter = new NumberFormatter('qr_QAR', NumberFormatter::CURRENCY);
+                      $formatter->setAttribute(NumberFormatter::FRACTION_DIGITS, 0);
+                      $formattedNumber = $formatter->formatCurrency($price, 'QAR');
+                      print $formattedNumber
+                    @endphp
+        {{-- {{ $price }}.00 Qr</button> --}}

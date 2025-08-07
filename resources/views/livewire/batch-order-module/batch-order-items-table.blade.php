@@ -24,8 +24,8 @@
                     <td class="text-xs p-2">{{ $item->equipmentTag->equipment_tag }}</td>
                     <td class="text-xs p-2">{{ $item->sparePart->spare_part_number }}</td>
                     <td class="text-xs p-2">{{ $item->qty }}</td>
-                    <td class="text-xs p-2">{{ $item->unit_price }}</td>
-                    <td class="text-xs p-2">{{ $item->total }}</td>
+                    <td class="text-xs p-2"><x-price price="{{ $item->unit_price }}"></x-price></td>
+                    <td class="text-xs p-2"><x-price price="{{ $item->total }}"></x-price></td>
                     <td class="text-xs p-2">
                         <x-button type="button" class="btn btn-close"
                             wire:click="deletePartsLine({{ $item->id }})"

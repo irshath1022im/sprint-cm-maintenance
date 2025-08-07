@@ -2,17 +2,24 @@
 
     <div class="card">
         <div class="card-header">
-            <div class="card-heading">MATERIAL REQUEST</div>
+
+            <div class="card-heading flex  justify-between" >
+                <span>MATERIAL REQUEST</span>
+
+                  @isset($equipment)
+
+                     @if($equipment->isNotEmpty())
+
+                        <div>
+
+                            <x-button class="btn btn-info">Total Spent:</x-button>
+                            <x-price price="{{ $equipment[0]->totalSpent}}"></x-price>
+                        </div>
+
+            </div>
 
             {{-- {{ $id }} --}}
 
-            @isset($equipment)
-
-
-             @if($equipment->isNotEmpty())
-
-                <x-button class="btn btn-info">Total Spent:</x-button>
-                <x-price price="{{ $equipment[0]->totalSpent}}"></x-price>
 
 
         </div>
@@ -22,7 +29,7 @@
                 @if ($equipment[0]->materialRequestItems->isNotEmpty())
 
                         <div class="card-body">
-                            <table class="table text-[12px]">
+                            <table class="table text-[13px]">
                                 <thead class="thead table-head">
                                     <th class="table-th">#</th>
                                     <th class="table-th">CM NO</th>
@@ -40,17 +47,17 @@
                                 <tbody class="text-[12px]">
                                         @foreach ($equipment[0]->materialRequestItems as $item)
 
-                                            <tr class="table-tr text-[12px]">
-                                                <td class="table-td">{{ $loop->iteration }}</td>
-                                                <td class="table-td">{{ $item->materialRequest->cm->cm_number}}</td>
-                                                <td class="table-td">{{ $item->materialRequest->sub_cm}}</td>
-                                                <td class="table-td">{{ $item->equipmentTag->equipment->equipment }}</td>
-                                                <td class="table-td">
+                                            <tr class="table-tr text-[13px]">
+                                                <td class="table-td text-[13px]">{{ $loop->iteration }}</td>
+                                                <td class="table-td text-[13px]">{{ $item->materialRequest->cm->cm_number}}</td>
+                                                <td class="table-td text-[13px]">{{ $item->materialRequest->sub_cm}}</td>
+                                                <td class="table-td text-[13px]">{{ $item->equipmentTag->equipment->equipment }}</td>
+                                                <td class="table-td text-[13px]">
                                                     <a href="{{ route('admin_tag_show', ['id'=> $item->equipmentTag->id]) }}" target="_blank">
                                                             {{ $item->equipmentTag->equipment_tag }}</a></td>
-                                                <td class="table-td">{{ $item->sparePart->spare_part_name }}</td>
-                                                <td class="table-td">{{ $item->sparePart->spare_part_number }}</td>
-                                                <td class="table-td">{{ $item->qty }}</td>
+                                                <td class="table-td text-[13px]">{{ $item->sparePart->spare_part_name }}</td>
+                                                <td class="table-td text-[13px]">{{ $item->sparePart->spare_part_number }}</td>
+                                                <td class="table-td text-[13px]">{{ $item->qty }}</td>
 
                                                 @isset($item->batchOrderItem)
 

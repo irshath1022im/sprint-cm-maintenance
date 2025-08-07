@@ -28,11 +28,6 @@
 
         <div class="card-body">
 
-            @php
-
-               print number_format(10)
-            @endphp
-
                  <div class="card">
                     <div class="card-header">
                         <div class="card-heading flex justify-between items-center">

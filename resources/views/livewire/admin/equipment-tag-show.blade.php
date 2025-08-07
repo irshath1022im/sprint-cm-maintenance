@@ -7,16 +7,17 @@
     x-cloak
 >
 
+
+{{-- @use(`Illuminate\Support\Number`) --}}
 {{-- @dump($tag->cmRequests[0]->serviceRequest) --}}
 
     <div class="card">
         <div class="card-header">
             <div class="card-heading flex justify-between">
-                <span>EQUIPMENT TAG / <x-button class="btn btn-info">{{ $id }} /{{$tag->equipment_tag}}</x-button></span>
-                        {{-- @if ($tag->equipcmRequests->isNotEmpty())
+                <span>EQUIPMENT TAG / <x-button class="btn btn-info">{{$tag->equipment_tag}}</x-button></span>
 
-                            <x-button class="btn btn-close">Total Expenses => {{ $tag->serviceRequests->sum('total') }} Qr</x-button>
-                        @endif --}}
+                            {{-- <x-button class="btn btn-close">Total Expenses => {{ $tag->serviceRequests->sum('total') }} Qr</x-button> --}}
+
 
                 <x-button class="btn btn-info">
                     <a href="{{ route('admin_equipment_show',['id' => $tag->equipment->id]) }}" target="_blank">
@@ -27,10 +28,15 @@
 
         <div class="card-body">
 
+            @php
+
+               print number_format(10)
+            @endphp
+
                  <div class="card">
                     <div class="card-header">
                         <div class="card-heading flex justify-between items-center">
-                            <span>CM/ {{ $tag->equipment->cmRequests->count() }}</span>
+                            <span>CM/ {{ $tag->cmEquipmentTags->count() }}</span>
                             <x-button class="btn btn-blue"
                                 x-on:click="showCM = !showCM"
                             >EXPAND/CLOSE</x-button>
@@ -43,12 +49,12 @@
                     >
                         <ul class="">
 
-                            @if ($tag->equipment->cmRequests->isNotEmpty())
+                            @if ( $tag->cmEquipmentTags->isNotEmpty())
 
-                                    @foreach ($tag->equipment->cmRequests  as $cmItem)
+                                    @foreach ( $tag->cmEquipmentTags  as $cmItem)
                                         <div>
                                            <a href="{{ route('admin_cm_show', ['id' => $cmItem->id])}}">
-                                                <x-button class="btn btn-blue">CM# {{ $cmItem->cm_number }}</x-button>
+                                                <x-button class="btn btn-blue">CM# {{ $cmItem->cmNumber->cm_number}}</x-button>
                                            </a>
 
                                         </div>
@@ -67,7 +73,7 @@
                 </div>
 
 
-            @livewire('admin.equipment-tag.material-request-table-equipment-tag-show',)
+            @livewire('admin.equipment-tag.material-request-table-equipment-tag-show', ['tag' => $id])
 
 
         </div>

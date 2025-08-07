@@ -22,15 +22,15 @@
                     <table class="table">
                         <thead class="table-head">
                             <th class="table-th p-2">#</th>
-                            <th class="table-th p-2">REQ DATE</th>
+                            {{-- <th class="table-th p-2">REQ DATE</th> --}}
                             <th class="table-th p-2">CM#</th>
                             <th class="table-th p-2">SUB CM #</th>
-                            {{-- <th class="table-th p-2">EQUIPMENT</th>
+                            <th class="table-th p-2">EQUIPMENT</th>
                             <th class="table-th p-2">EQUIPMENT TAG</th>
                             <th class="table-th p-2">SPARE P NAME</th>
-                            <th class="table-th p-2">SPARE P NUM</th>
-                            <th class="table-th p-2">QTY</th> --}}
-                            <th class="table-th p-2">EXPECTED DATE</th>
+                            <th class="table-th p-2">SPARE PART NUM</th>
+                            <th class="table-th p-2">QTY</th>
+                            {{-- <th class="table-th p-2">EXPECTED DATE</th> --}}
                             <th class="table-th p-2">REMAINING DAYS</th>
                         </thead>
 
@@ -45,18 +45,30 @@
 
 
                             <tr class="table-tr">
-                                <td class="table-td">{{ $item->id }}</td>
-                                <td class="table-td">{{ $item->date }}</td>
-                                <td class="table-td">
+                                <td class="table-td text-[13px]" >{{ $item->id }}</td>
+                                {{-- <td class="table-td">{{ $item->date }}</td> --}}
+                                <td class="table-td text-[13px]">
                                     <a href="{{ route('admin_cm_show', ['id' => $item->cm->id])}}" target="_blank">
                                         {{ $item->cm->cm_number }}</a>
                                 </td>
-                                <td class="table-td">{{ $item->sub_cm }}</td>
+                                <td class="table-td text-[13px]" >{{ $item->sub_cm }}</td>
+                                <td class="table-td text-[13px]" >
+                                    <a href="{{ route('admin_equipment_show',['id' => $item->cm->equipment->id]) }}" target="_blank" >
+                                        {{ $item->cm->equipment->equipment }}</a>
+                                </td>
+                                <td class="table-td text-[13px]"  >
+                                    <a href="{{ route('admin_tag_show', ['id'=> $item->materialRequestItems[0]->equipmentTag->id]) }}" target="_blank">
+                                            {{ $item->materialRequestItems[0]->equipmentTag->equipment_tag}}</a>
+                                </td>
+                                <td class="table-td text-[13px]" >{{ $item->materialRequestItems[0]->sparePart->spare_part_name}}</td>
+                                <td class="table-td text-[13px]" >{{ $item->materialRequestItems[0]->sparePart->spare_part_number}}</td>
+                                <td class="table-td text-[13px]" >{{ $item->materialRequestItems[0]->qty}}</td>
+
                                 {{-- <td class="table-td">{{ $item->equipmentTag->equipment_tag }}</td> --}}
                                 {{-- <td class="table-td">{{ $item->sparePart->spare_part_name }}</td> --}}
                                 {{-- <td class="table-td">{{ $item->sparePart->spare_part_number }}</td> --}}
                                 {{-- <td class="table-td">{{ $item->qty }}</td> --}}
-                                <td class="table-td">{{ $expectedDate}}</td>
+                                {{-- <td class="table-td">{{ $expectedDate}}</td> --}}
                                 {{-- <td class="table-td">{{Carbon\Carbon::parse($remaingDays)->diffForHumans()}}</td> --}}
                                 <td class="table-td">
 

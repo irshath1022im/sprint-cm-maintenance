@@ -36,4 +36,9 @@ class EquipmentTag extends Model
         return $this->hasMany(BatchOrderItems::class,'equipment_tag_id');
     }
 
+    public function cmEquipmentTags()
+    {
+        return $this->hasMany(CmEquipmentTag::class);
+    }
+
 }

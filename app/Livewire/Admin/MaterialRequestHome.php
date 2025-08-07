@@ -27,7 +27,12 @@ class MaterialRequestHome extends Component
     public function render()
     {
 
-        $result = MaterialRequest::with(['cm','equipmentTag','sparePart'])->paginate(10);
+        $result = MaterialRequest::with(['materialRequestItems' => function($q){
+            return $q->with('equipmentTag','sparePart');
+        },'cm' => function($q){
+                                            return $q->with('equipment');
+                                         }])
+                                     ->paginate(10);
         return view('livewire.admin.material-request-home',['material_requests' => $result])
             ->extends('components.layouts.app');
     }

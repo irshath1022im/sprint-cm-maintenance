@@ -16,7 +16,7 @@ protected $fillable = ['batch_order_id','qty','unit_price','total','equipment_ta
 
     public function equipmentTag()
     {
-        return $this->belongsTo(EquipmentTag::class, 'id');
+        return $this->belongsTo(EquipmentTag::class);
     }
 
     public function sparePart()

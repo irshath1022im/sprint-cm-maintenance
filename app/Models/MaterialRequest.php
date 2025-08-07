@@ -35,4 +35,6 @@ class MaterialRequest extends Model
     {
         return $this->hasMany(MaterialRequestItems::class);
     }
+
+
 }

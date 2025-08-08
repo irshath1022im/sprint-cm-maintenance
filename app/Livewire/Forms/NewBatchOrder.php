@@ -3,6 +3,7 @@
 namespace App\Livewire\Forms;
 
 use App\Models\BatchOrder;
+use App\Models\CmTaskStatus;
 use App\Models\MaterialRequest;
 use App\Models\MaterialRequestItems;
 use App\Models\Supplier;
@@ -17,6 +18,7 @@ class NewBatchOrder extends Component
     public $materialRequestRetails;
     public $sub_cm;
     public $suppliers;
+    public $cmId;
 
     #[Validate('required|unique:batch_orders,batch_no')]
     public $batch_no;
@@ -35,6 +37,7 @@ class NewBatchOrder extends Component
         $this->materialRequestRetails = $materialRequestDetails;;
         // $this->sub_cm = $materialRequestDetails['sub_cm'];
         $this->materialRequestId = $materialRequestDetails['id'];
+        $this->cmId = $materialRequestDetails['cm_number_id'];
     }
 
       public function formClose()
@@ -46,6 +49,7 @@ class NewBatchOrder extends Component
 
       public function formSave()
     {
+
         $validated =$this->validate();
         $input = [
             'material_request_id' => $this->materialRequestId,
@@ -55,6 +59,8 @@ class NewBatchOrder extends Component
         $data = $validated +$input;
 
         BatchOrder::create($data);
+// once batch order is issued
+        CmTaskStatus::where('cm_number_id', $this->cmId)->update(['task_status_id' => 3] );
 
         session()->flash('created', 'Material Request is being submited');
         $this->reset('batch_no','receiving_date','supplier_id');

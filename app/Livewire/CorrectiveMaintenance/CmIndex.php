@@ -35,7 +35,7 @@ class CmIndex extends Component
         $result = CorrectiveMaintenance::when($this->filterStatus, function($q){
             return $q->where('status', $this->filterStatus);
                     })
-                    ->with(['technician', 'equipment'])
+                    ->with(['technician', 'equipment','cmStatus'])
                     ->orderBy('cm_number', 'desc')
                     ->paginate(8);
 

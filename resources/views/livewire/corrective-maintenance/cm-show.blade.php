@@ -3,13 +3,19 @@
     {{-- <x-success></x-success> --}}
 
 
+    {{-- @dump($cmStatus) --}}
         <div class="card bg-slate-300 border border-orange-200">
                 <div class="card-header">
                     <div class="card-heading flex justify-between">
-                        <div>
 
+                        <div>
                             CM NO <x-button class="btn btn-info">{{ $cm->cm_number}}</x-button>
                         </div>
+
+
+                    @livewire('forms.task-status-change-form',['cm_number_id' => $cm->id])
+
+
                         <div>
                              <span>
                                 <x-button class="btn border-orange-400">{{ $cm->request_date }}</x-button>

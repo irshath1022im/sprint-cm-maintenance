@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\CmTaskStatus;
 use App\Models\MaterialRequest;
 use Livewire\Attributes\Validate;
 
@@ -25,6 +26,9 @@ class CreateNewSubCm extends Component
 
      public function formSave()
     {
+
+        // CmTaskStatus::where('cm_number_id', $this->cm->id)->update(['task_status_id' => 2] );
+
         $validated = $this->validate();
 
         $formData = [
@@ -37,6 +41,10 @@ class CreateNewSubCm extends Component
         $data = $validated + $formData;
 
         MaterialRequest::create($data);
+
+        // once sub task / material request is done, updte the cmStatus
+
+        CmTaskStatus::where('cm_number_id', $this->cm->id)->update(['task_status_id' => 2] );
 
 
         // $result= SparePart::create($validated);

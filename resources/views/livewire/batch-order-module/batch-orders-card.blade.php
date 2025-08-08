@@ -4,6 +4,7 @@
     }"
 >
 
+{{-- @dump($cm) --}}
 <x-success></x-success>
 
     {{-- @dump($batch->isEmpty()) --}}
@@ -77,7 +78,7 @@
             <div class="modal-body">
                 <div class="modal-content">
 
-                    @livewire('forms.batch-order-item-form')
+                    @livewire('forms.batch-order-item-form',['cm' => $cm])
 
                 </div>
             </div>

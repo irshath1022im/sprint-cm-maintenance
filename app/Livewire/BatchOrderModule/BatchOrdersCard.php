@@ -3,13 +3,12 @@
 namespace App\Livewire\BatchOrderModule;
 
 use App\Models\BatchOrder;
-use Illuminate\Http\Request;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
 class BatchOrdersCard extends Component
 {
-
+    public $cm;
     public $batch; //getting data from SubCmCard
     public $material_request_id;
     public $material_request_items;
@@ -40,9 +39,11 @@ class BatchOrdersCard extends Component
 
 
 
-    public function mount(Request $request)
+    public function mount()
     {
     //    $this->material_request_id = $request->materialRequestId;
+
+    // dd($request);
     }
 
     public function render()

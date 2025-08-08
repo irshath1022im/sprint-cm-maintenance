@@ -136,7 +136,7 @@
 
                     @isset($met_request->batchOrder)
 
-                        @livewire('batch-order-module.batch-orders-card', ['batch'=>$met_request->batchOrder])
+                        @livewire('batch-order-module.batch-orders-card', ['batch'=>$met_request->batchOrder, 'cm' => $cm])
 
                     @else
 
@@ -208,7 +208,7 @@
                         {{-- @dump($cm->has('materialRequest')) --}}
 
                                     {{-- @livewire('forms.material-receiving-form',['materialId' => $materialId]) --}}
-                                    @livewire('forms.new-batch-order')
+                                    @livewire('forms.new-batch-order',['cm' => $cm])
                                 {{-- {{ $materialId }} --}}
 
 

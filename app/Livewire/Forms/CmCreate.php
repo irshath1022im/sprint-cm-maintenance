@@ -2,9 +2,11 @@
 
 namespace App\Livewire\Forms;
 
+use App\Models\CmTaskStatus;
 use App\Models\CorrectiveMaintenance;
 use App\Models\Equipment;
 use App\Models\EquipmentTag;
+use App\Models\TaskStatus;
 use App\Models\Technician;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -52,6 +54,8 @@ class CmCreate extends Component
     {
         $validated = $this->validate();
         $result = CorrectiveMaintenance::create($validated);
+        // once cm created update the status
+        CmTaskStatus::create(['cm_number_id' =>$result->id, 'task_status_id' => 1 ]);
         $this->resetExcept('technicians', 'equipment');
         $this->updated_id = $result->id ;
         session()->flash('created', 'CM Created Successfully!');

@@ -53,6 +53,7 @@ class SubCmCard extends Component
         $this->batchOrderModal = true;
         // $this->materialId = $item;
          $this->dispatch('materialRequestDetails',$item);
+         $this->dispatch('cm',$this->cm);
 
         // $this->dispatch('materialReceivingModalOpen', $sub_cm);
     }

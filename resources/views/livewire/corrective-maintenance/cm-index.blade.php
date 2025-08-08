@@ -49,6 +49,7 @@
                             {{-- <div class=" col-span-1 text-center">TECHNICIAN</div> --}}
                             <div class=" col-span-3 text-center">EQUIPMENT</div>
                             <div class="">STATUS</div>
+                            <div class="">TASK STATUS</div>
                             <div class=" col-span-3" ></div>
                         </div>
 
@@ -95,15 +96,25 @@
                                         {{-- <div>{{ $item->remarks }}</div> --}}
                                     </div>
 
-                                    <div class="">{{ $item->status }}</div>
+                                    <div class="col-span-1">{{ $item->status }}</div>
 
-                                    <section class=" tems-center col-span-1 p-2 flex">
+                                    @isset($item->cmStatus)
+
+                                        <div class=" col-span-3">{{ $item->cmStatus->taskStatus->task_status }}</div>
+
+                                        @else
+                                          <div class=" col-span-3">NA</div>
+
+                                    @endisset
+
+                                    <section class="items-center p-2 flex">
 
                                         <a href="{{ route('admin_cm_show', ['id' => $item->id])}}">
                                             <x-button class="btn btn-blue">VIEW</x-button>
                                         </a>
                                         <x-button class="btn btn-close">Edit</x-button>
                                         {{-- <x-button class="btn btn-close">DELETE</x-button> --}}
+
                                     </section>
                             </div>
 

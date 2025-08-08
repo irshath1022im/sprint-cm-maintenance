@@ -35,8 +35,6 @@ class CorrectiveMaintenance extends Model
         return $this->belongsTo(Equipment::class);
     }
 
-
-
     public function serviceRequest()
     {
         return $this->hasMany(ServiceRequest::class,'cm_number_id');
@@ -68,6 +66,11 @@ class CorrectiveMaintenance extends Model
             'material_request_id', //material receiving table and material request table...have relation ship using material_request_id
             'id' // we need to find using this id from cm table filter the data from material request table and material reques table
         );
+    }
+
+    public function cmStatus()
+    {
+        return $this->hasOne(CmTaskStatus::class, 'cm_number_id');
     }
 
 }

@@ -11,9 +11,7 @@
 
                                             <div>
                                                MATERIAL RECEIVING
-                                                <span class="material-symbols-outlined">
-                                                    done_outline
-                                                    </span>
+                                                <span class="material-symbols-outlined"> done_outline</span>
                                             </div>
 
 

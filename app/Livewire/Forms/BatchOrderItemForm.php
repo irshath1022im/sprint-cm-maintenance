@@ -3,7 +3,9 @@
 namespace App\Livewire\Forms;
 
 use App\Models\BatchOrderItems;
+use App\Models\CmTaskStatus;
 use App\Models\MaterialRequestItems;
+use Illuminate\Http\Client\Request as ClientRequest;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -15,9 +17,11 @@ class BatchOrderItemForm extends Component
     //     ['batch_order_id' => 1, 'equipment_tag_id' => 1640, 'qty' => 3 ]
     // ];
 
+    public $cm;
     public $material_request_items=[];
     public $batch_order_id;
     public $material_request_item_id;
+    public $cmId; //getting from request url
 
     #[Validate('required')]
     public $equipment_tag_id;
@@ -69,10 +73,15 @@ class BatchOrderItemForm extends Component
 
     public function addItems()
     {
+         CmTaskStatus::where('cm_number_id', $this->cm->id)->update(['task_status_id' => 4] );
        $validated = $this->validate();
 
         $data = $validated + ['batch_order_id' => $this->batch_order_id ,'material_request_item_id' => $this->material_request_item_id ];
         BatchOrderItems::create($data);
+
+        CmTaskStatus::where('cm_number_id', $this->id)->update(['task_status_id' => 4] );
+
+
         session()->flash('created', 'Spare Parts Has been received');
         $this->reset('unit_price','total','qty','spare_part_id');
     }
@@ -81,6 +90,11 @@ class BatchOrderItemForm extends Component
     {
         $this->dispatch('jobOrderItemFormClose');
         $this->reset('unit_price','total','qty');
+    }
+
+    public function mount()
+    {
+
     }
 
     public function render()

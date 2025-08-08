@@ -11,6 +11,10 @@ class MaterialRequestHome extends Component
 
     public $materialRequestPopup = false;
 
+    public function batchOrderRequest()
+    {
+
+    }
 
     public function openRequestItems($requestId)
     {
@@ -28,8 +32,8 @@ class MaterialRequestHome extends Component
     {
 
         $result = MaterialRequest::with(['materialRequestItems' => function($q){
-            return $q->with('equipmentTag','sparePart');
-        },'cm' => function($q){
+                                                return $q->with('equipmentTag','sparePart');
+                                            },'cm' => function($q){
                                             return $q->with('equipment');
                                          }])
                                      ->paginate(10);

@@ -13,7 +13,7 @@ class MaterialRequestTableEquipmentTagShow extends Component
 
     public function render()
     {
-        $result = EquipmentTag::find($this->tag);
+        $result = EquipmentTag::with(['materialRequestItems','batchOrderItems'])->find($this->tag);
         return view('livewire.admin.equipment-tag.material-request-table-equipment-tag-show',['equipmentTag' => $result]);
     }
 }

@@ -79,11 +79,16 @@
                                 @endif
                             </td>
 
-                            <td>
-                                <x-button class="btn btn-blue"
-                                    {{-- x-on:click="materialRequestPopup = ! materialRequestPopup" --}}
+                           <td>
+                                {{-- <x-button class="btn btn-blue"
                                     wire:click="openRequestItems({{ $item->id}})"
                                 >ITEMS</x-button>
+                            </td> --}}
+
+                              <td>
+                                <x-button class="btn btn-blue"
+                                    wire:click="batchOrderRequest({{ $item->id}})"
+                                >B ORDER</x-button>
                             </td>
 
                             </tr>

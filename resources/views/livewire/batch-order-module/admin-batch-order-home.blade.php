@@ -51,7 +51,10 @@
                                     <td class="table-td text-[13px]"> {{ $item->receiving_date }}</td>
                                     <td class="table-td text-[13px]">{{ $item->batch_no }}</td>
                                     <td class="table-td text-[13px]"> {{ $item->materialRequest->sub_cm}}</td>
-                                    <td class="table-td text-[13px]"> {{ $item->materialRequest->cm->equipment->equipment}}</td>
+                                    <td class="table-td text-[13px] ">
+                                        <a href="{{ route('admin_equipment_show',['id' => $item->materialRequest->cm->equipment->id]) }}" target="_blank" class="hover:border-b hover:border-b-blue-500" >
+                                            {{ $item->materialRequest->cm->equipment->equipment}}</a>
+                                    </td>
                                     <td class="table-td text-[13px]"> {{ $item->batchOrderItems[0]->equipmentTag->equipment_tag}}</td>
                                     <td class="table-td text-[13px]"> {{ $item->batchOrderItems[0]->sparePart->spare_part_name}}</td>
                                     <td class="table-td text-[13px]"> {{ $item->batchOrderItems[0]->sparePart->spare_part_number}}</td>

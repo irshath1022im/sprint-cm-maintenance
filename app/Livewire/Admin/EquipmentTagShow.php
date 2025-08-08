@@ -13,7 +13,12 @@ class EquipmentTagShow extends Component
     public function render()
     {
 
-        $result = EquipmentTag::with(['equipment','cmEquipmentTags','materialRequestItems','batchOrderItems'])
+        $result = EquipmentTag::with([
+                        'equipment',
+                        'cmEquipmentTags' => function ($q){return $q->with('cmNumber');},
+                        'materialRequestItems',
+                        'batchOrderItems'
+                        ])
                                 ->findOrFail($this->id);
         return view('livewire.admin.equipment-tag-show',['tag' => $result])
             ->extends('components.layouts.app');

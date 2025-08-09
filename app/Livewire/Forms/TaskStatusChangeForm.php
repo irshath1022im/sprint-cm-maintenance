@@ -5,8 +5,7 @@ namespace App\Livewire\Forms;
 use Livewire\Component;
 use App\Models\TaskStatus;
 use App\Models\CmTaskStatus;
-
-
+use Livewire\Attributes\On;
 
 class TaskStatusChangeForm extends Component
 {
@@ -16,6 +15,12 @@ class TaskStatusChangeForm extends Component
     public $cmStatus; //select method from view
     public $lineIdForCmTaskStatus;
 
+
+#[On('taskStatusChangeRequest')]
+public function taskStatusChangeRequest()
+{
+
+}
 
    public function taskChange()
     {
@@ -34,37 +39,12 @@ class TaskStatusChangeForm extends Component
             ]);
         }
 
-
-        // if($this->lineIdForCmTaskStatus != null)
-        // {
-        //      CmTaskStatus::find($this->lineIdForCmTaskStatus)->update(['task_status_id' => $this->cmStatus] );
-        // }
-        // else{
-
-        // }
-
-        // $this->lineIdForCmTaskStatus;
-        //   CmTaskStatus::find($this->cmStatusLineId)->update(['task_status_id' => $this->cmStatus] );
-        // CmTaskStatus::updateOrInsert(
-        //     ['cm_number_id' => $this->cm_number_id,
-        //        'task_status_id' => $this->cmStatus
-        //     ]
-        // );
     }
 
 
      public function mount($cm)
     {
         $this->taskStatus = TaskStatus::get();
-        // $query2=CmTaskStatus::where('cm_number_id', $this->cm_number_id)->get();
-        // // $this->cmStatus = $query2[0]['task_status_id'];
-        // if($query2->count() > 0){
-        //     $this->cmStatus = $query2[0]['task_status_id'];
-        //     $this->lineIdForCmTaskStatus = $query2[0]['id'];
-
-        // }else{
-        //     $this->cmStatus = '';
-        // }
 
          $this->cmId = $cm['id'];
 
@@ -78,30 +58,11 @@ class TaskStatusChangeForm extends Component
                $this->cmStatus = '';
             }
         }
-
-
-
-        // $this->cm
-
     }
 
 
-    //    $query2= CmTaskStatus::where('cm_number_id', $result->id)->get();
-    //     $this->lineIdForCmTaskStatus = $query2[0]['id'];
-    //     $this->cmStatus = $query2[0]['task_status_id'];
-
     public function render()
     {
-        // $query2=CmTaskStatus::where('cm_number_id', $this->cm_number_id)->get();
-
-        //this can be return null value...
-        // if(empty($query2) || $query2 == null){
-
-
-        // }else{
-        //         $this->cmStatusLineId = $query2[0]['id'];
-        //     }
-
 
         return view('livewire.forms.task-status-change-form');
     }

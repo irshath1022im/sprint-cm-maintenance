@@ -10,6 +10,13 @@ class MaterialReceivingForCmShow extends Component
 {
 
 
+#[On('refreshCmShow')]
+public function refreshCmShow()
+{
+
+}
+
+
 
     public function render()
     {

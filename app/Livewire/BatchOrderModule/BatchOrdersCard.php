@@ -14,6 +14,13 @@ class BatchOrdersCard extends Component
     public $material_request_items;
     public $addBatchItemsModal = false;
 
+#[On('refreshCmShow')]
+public function refreshCmShow()
+{
+
+}
+
+
      #[On('batchOrderClosingForm')]
     public function materialReceivingFormClose()
     {

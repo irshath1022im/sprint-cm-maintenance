@@ -43,11 +43,12 @@ class BatchOrderItemForm extends Component
     #[On('addBatchItems')]
     public function addBatchItems($batch)
     {
+        $this->batch_order_id = $batch['id']; //getting batch infor from Batch Order Card using dispatch method
+
         $this->material_request_items = MaterialRequestItems::where('material_request_id', $batch['material_request_id'])
                                              ->with('equipmentTag')
                                             ->get();
 
-        $this->batch_order_id = $batch['id']; //getting batch infor from Batch Order Card using dispatch method
     }
 
     public function updatedUnitPrice()
@@ -73,22 +74,24 @@ class BatchOrderItemForm extends Component
 
     public function addItems()
     {
-         CmTaskStatus::where('cm_number_id', $this->cm->id)->update(['task_status_id' => 4] );
+
        $validated = $this->validate();
 
         $data = $validated + ['batch_order_id' => $this->batch_order_id ,'material_request_item_id' => $this->material_request_item_id ];
         BatchOrderItems::create($data);
 
-        CmTaskStatus::where('cm_number_id', $this->id)->update(['task_status_id' => 4] );
+        CmTaskStatus::where('cm_number_id', $this->cm['id'])->update(['task_status_id' => 4] );
 
 
         session()->flash('created', 'Spare Parts Has been received');
         $this->reset('unit_price','total','qty','spare_part_id');
+        $this->dispatch('refreshCmShow');
     }
 
     public function formClose()
     {
         $this->dispatch('jobOrderItemFormClose');
+        $this->dispatch('refreshCmShow');
         $this->reset('unit_price','total','qty');
     }
 

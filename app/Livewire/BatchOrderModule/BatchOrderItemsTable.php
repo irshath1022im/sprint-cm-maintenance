@@ -3,12 +3,13 @@
 namespace App\Livewire\BatchOrderModule;
 
 use App\Models\BatchOrderItems;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 class BatchOrderItemsTable extends Component
 {
 
-    public $batchOrderItems; //getting from batch-orders.card with compoment
+public $batchOrderItems; //getting from batch-orders.card with compoment
 
 
     public function deletePartsLine($lineId)

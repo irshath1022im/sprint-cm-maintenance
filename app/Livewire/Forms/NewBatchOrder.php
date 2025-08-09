@@ -61,6 +61,7 @@ class NewBatchOrder extends Component
         BatchOrder::create($data);
 // once batch order is issued
         CmTaskStatus::where('cm_number_id', $this->cmId)->update(['task_status_id' => 3] );
+        $this->dispatch('taskStatusChangeRequest');
 
         session()->flash('created', 'Material Request is being submited');
         $this->reset('batch_no','receiving_date','supplier_id');

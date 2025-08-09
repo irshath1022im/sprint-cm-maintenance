@@ -45,6 +45,7 @@ class CreateNewSubCm extends Component
         // once sub task / material request is done, updte the cmStatus
 
         CmTaskStatus::where('cm_number_id', $this->cm->id)->update(['task_status_id' => 2] );
+            $this->dispatch('taskStatusChangeRequest');
 
 
         // $result= SparePart::create($validated);

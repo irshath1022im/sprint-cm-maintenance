@@ -18,4 +18,6 @@ class CmTaskStatus extends Model
     {
         return $this->belongsTo(TaskStatus::class);
     }
+
+
 }

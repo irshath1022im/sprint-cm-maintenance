@@ -13,7 +13,7 @@
                         </div>
 
 
-                    @livewire('forms.task-status-change-form',['cm_number_id' => $cm->id])
+                    @livewire('forms.task-status-change-form',['cm' => $cm])
 
 
                         <div>

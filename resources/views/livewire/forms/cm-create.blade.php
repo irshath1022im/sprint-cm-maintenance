@@ -61,22 +61,6 @@
                     </div>
 
 
-
-                     <div class="form-group">
-
-                        <label for="" class="form-label">STATUS</label>
-                        <select name="" id="" class="form-controll" wire:model="status">
-                                <option value="" class="form-controll">Select</option>
-
-                                    <option value="active">Active</option>
-                                    <option value="completed">Completed</option>
-
-                            </select>
-
-                         <x-form-error field="status"></x-form-error>
-
-                    </div>
-
                 </div>
 
                 <div>

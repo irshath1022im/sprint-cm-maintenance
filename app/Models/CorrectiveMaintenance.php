@@ -14,7 +14,6 @@ class CorrectiveMaintenance extends Model
         'cm_number',
         'technician_id',
         'request_date',
-        'status',
         'equipment_id',
         'remarks'
     ];

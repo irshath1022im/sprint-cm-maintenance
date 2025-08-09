@@ -26,13 +26,13 @@
 
         <div class="card-body">
 
-            <div class="form-group">
+            {{-- <div class="form-group">
                 <select type="" class="form-controll" wire:model.live="filterStatus">
                     <option value="">Status</option>
                     <option value="active">Active</option>
                     <option value="completed">Completed</option>
                 </select>
-            </div>
+            </div> --}}
 
 
 
@@ -48,7 +48,6 @@
                             <div class=" col-span-1">REQ DATE</div>
                             {{-- <div class=" col-span-1 text-center">TECHNICIAN</div> --}}
                             <div class=" col-span-3 text-center">EQUIPMENT</div>
-                            <div class="">STATUS</div>
                             <div class="">TASK STATUS</div>
                             <div class=" col-span-3" ></div>
                         </div>
@@ -96,7 +95,7 @@
                                         {{-- <div>{{ $item->remarks }}</div> --}}
                                     </div>
 
-                                    <div class="col-span-1">{{ $item->status }}</div>
+
 
                                     @isset($item->cmStatus)
 

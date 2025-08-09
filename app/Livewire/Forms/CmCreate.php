@@ -32,8 +32,6 @@ class CmCreate extends Component
      #[Validate('required')]
     public $request_date;
 
-     #[Validate('required')]
-    public $status;
 
     #[Validate('required')]
     public $remarks;

@@ -22,9 +22,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('cm', function (Blueprint $table) {
+        Schema::table('corrective_maintenances', function (Blueprint $table) {
             //
-            $table->addColumn('string','status')->nullable();
+            $table->string('status')->default('active');
         });
     }
 };

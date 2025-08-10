@@ -18,4 +18,6 @@ class BatchOrder extends Model
     {
         return $this->hasMany(BatchOrderItems::class);
     }
+
+
 }

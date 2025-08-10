@@ -23,23 +23,28 @@ class AdminBatchOrderHome extends Component
 
 
                     $batches = BatchOrder::query()
-                                    ->when($this->searchType=='tag', function($q){
+                                        ->when($this->searchValue != '' && $this->searchType=='sub_cm', function($q){
+                                        return $q->withWhereHas('materialRequest', function($query){
+                                            return $query->where('sub_cm', 'LIKE' , $this->searchValue.'%');
+                                        });
+                                    })
+                                    ->when($this->searchValue != '' && $this->searchType=='tag', function($q){
                                         return $q->withWhereHas('batchOrderItems.equipmentTag', function($query){
                                             return $query->where('equipment_tag', 'LIKE' , $this->searchValue.'%');
                                         });
                                     })
-                                    ->when($this->searchType=='equipment', function($q){
+                                    ->when($this->searchValue != '' && $this->searchType=='equipment', function($q){
                                         return $q->withWhereHas('materialRequest.cm.equipment', function($query){
                                             return $query->where('equipment', 'LIKE' , $this->searchValue.'%');
                                         });
                                     })
 
-                                     ->when($this->searchType=='sparePartName', function($q){
+                                     ->when($this->searchValue != '' && $this->searchType=='sparePartName', function($q){
                                         return $q->withWhereHas('batchOrderItems.sparePart', function($query){
                                             return $query->where('spare_part_name', 'LIKE' , $this->searchValue.'%');
                                         });
                                     })
-                                     ->when($this->searchType=='sparePartNumber', function($q){
+                                     ->when($this->searchValue != '' && $this->searchType=='sparePartNumber', function($q){
                                         return $q->withWhereHas('batchOrderItems.sparePart', function($query){
                                             return $query->where('spare_part_number', 'LIKE' , $this->searchValue.'%');
                                         });
@@ -55,7 +60,7 @@ class AdminBatchOrderHome extends Component
                                                     ]);
                                             }
                                         ])
-                                    ->orderBy('receiving_date','desc')
+                                    ->orderBy('id','desc')
                                   ;
 
                     $result = $batches->get();

@@ -73,8 +73,6 @@
 
                         <div class="grid grid-cols-12 gap-2 p-4 bg-red-200  text-black my-2 rounded-md uppercase text-[14px]">
 
-                            {{-- <div class="">{{ $item->id }}</div> --}}
-                            {{-- <div class="">{{ $item->cm->cm_number }}</div> --}}
                             <div class="flex items-center  hover:underline">
                                 <a href="{{ route('admin_cm_show', ['id' => $item->cm->id])}}" target="_blank">
                                     {{ $item->sub_cm }}</a>

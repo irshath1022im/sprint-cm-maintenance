@@ -1,10 +1,4 @@
-<div
-    x-data="{
-        materialRequestPopup: @entangle('materialRequestPopup')
-    }"
-
-    x-cloak
->
+<div>
 
     @inject('carbon', 'Carbon\Carbon')
 
@@ -17,26 +11,59 @@
 
         <div class="card-body">
 
-            @if ($material_requests->isNotEmpty())
+            {{-- @livewire('material-request-module.material-request-list-for-home') --}}
 
-                    <table class="table">
-                        <thead class="table-head">
-                            <th class="table-th p-2">#</th>
-                            {{-- <th class="table-th p-2">REQ DATE</th> --}}
-                            <th class="table-th p-2">CM#</th>
-                            <th class="table-th p-2">SUB CM #</th>
-                            <th class="table-th p-2">EQUIPMENT</th>
-                            <th class="table-th p-2">EQUIPMENT TAG</th>
-                            <th class="table-th p-2">SPARE P NAME</th>
-                            <th class="table-th p-2">SPARE PART NUM</th>
-                            <th class="table-th p-2">QTY</th>
-                            {{-- <th class="table-th p-2">EXPECTED DATE</th> --}}
-                            <th class="table-th p-2">REMAINING DAYS</th>
-                        </thead>
+                @isset($material_requests)
 
-                        <tbody class="table-body">
+                        <form action="">
+                            <div class="form-group flex">
+                                <select name="" id="" class="form-controll uppercase" wire:model.change = "searchType">
+                                    <option value="">Search By</option>
+                                    <option value="sub_cm">sub cm</option>
+                                    <option value="equipment">Equipment</option>
+                                    <option value="tag">Tag</option>
+                                    <option value="sparePartName">Spare Part Name</option>
+                                    <option value="sparePartNumber">Spare Part Number</option>
+                                </select>
+                                <input type="text" name="" id="" class="form-controll" placeholder="Input" wire:model.live="searchValue">
+                            </div>
+                        </form>
 
-                            @foreach ($material_requests as $item)
+
+
+                    <div class="grid grid-cols-12 gap-2 p-4 bg-red-500 text-white  font-bold my-2 rounded-sm uppercase">
+                        {{-- <div>mr#</div> --}}
+                        {{-- <div>cm</div> --}}
+                        <div class="flex items-center">sub cm </div>
+                        <div class="flex items-center">equipment</div>
+                        <div class="col-span-6">
+                            <div class="flex justify-between  bg-blue-100 p-3 my-1 rounded-md text-black">
+
+                                <div class="mx-2">equipment tag</div>
+                                <div class="mx-2">s p number</div>
+                                <div class="mx-2">s p name</div>
+                                <div class="mx-2">qty</div>
+                            </div>
+                        </div>
+
+                        <div class="col-span-2 flex justify-between space-x-24">
+
+                            <div class="">
+                                request date
+                            </div>
+
+                             <div class="">
+                                expected date
+                            </div>
+                        </div>
+
+                    </div>
+
+                    @if ($material_requests->isNotEmpty())
+
+
+
+                        @foreach ($material_requests as $item)
 
                             @php $expectedDate = Carbon\Carbon::parse($item->expected_date)->toDateString() @endphp
                             @php $today = Carbon\Carbon::parse(now())->toDateString() @endphp
@@ -44,71 +71,83 @@
                             @php $remaingDays1 = Carbon\Carbon::parse($expectedDate)->diffForHumans(Carbon\Carbon::now()) @endphp
 
 
-                            <tr class="table-tr">
-                                <td class="table-td text-[13px]" >{{ $item->id }}</td>
-                                {{-- <td class="table-td">{{ $item->date }}</td> --}}
-                                <td class="table-td text-[13px]">
-                                    <a href="{{ route('admin_cm_show', ['id' => $item->cm->id])}}" target="_blank">
-                                        {{ $item->cm->cm_number }}</a>
-                                </td>
-                                <td class="table-td text-[13px]" >{{ $item->sub_cm }}</td>
-                                <td class="table-td text-[13px]" >
-                                    <a href="{{ route('admin_equipment_show',['id' => $item->cm->equipment->id]) }}" target="_blank" >
-                                        {{ $item->cm->equipment->equipment }}</a>
-                                </td>
-                                <td class="table-td text-[13px]"  >
-                                    <a href="{{ route('admin_tag_show', ['id'=> $item->materialRequestItems[0]->equipmentTag->id]) }}" target="_blank">
-                                            {{ $item->materialRequestItems[0]->equipmentTag->equipment_tag}}</a>
-                                </td>
-                                <td class="table-td text-[13px]" >{{ $item->materialRequestItems[0]->sparePart->spare_part_name}}</td>
-                                <td class="table-td text-[13px]" >{{ $item->materialRequestItems[0]->sparePart->spare_part_number}}</td>
-                                <td class="table-td text-[13px]" >{{ $item->materialRequestItems[0]->qty}}</td>
+                        <div class="grid grid-cols-12 gap-2 p-4 bg-red-200  text-black my-2 rounded-md uppercase text-[14px]">
 
-                                {{-- <td class="table-td">{{ $item->equipmentTag->equipment_tag }}</td> --}}
-                                {{-- <td class="table-td">{{ $item->sparePart->spare_part_name }}</td> --}}
-                                {{-- <td class="table-td">{{ $item->sparePart->spare_part_number }}</td> --}}
-                                {{-- <td class="table-td">{{ $item->qty }}</td> --}}
-                                {{-- <td class="table-td">{{ $expectedDate}}</td> --}}
-                                {{-- <td class="table-td">{{Carbon\Carbon::parse($remaingDays)->diffForHumans()}}</td> --}}
-                                <td class="table-td">
+                            {{-- <div class="">{{ $item->id }}</div> --}}
+                            {{-- <div class="">{{ $item->cm->cm_number }}</div> --}}
+                            <div class="flex items-center  hover:underline">
+                                <a href="{{ route('admin_cm_show', ['id' => $item->cm->id])}}" target="_blank">
+                                    {{ $item->sub_cm }}</a>
+                            </div>
+                            <div class="flex items-center hover:underline">
+                                <a href="{{ route('admin_equipment_show',['id' => $item->cm->equipment->id]) }}" target="_blank" >
+                                    {{ $item->cm->equipment->equipment }}</a>
+                                </div>
 
-                                @if ($expectedDate < $today )
-                                    <x-button class="btn btn-close">Expired</x-button>
-                                @else
-                                    <x-button class="btn btn-submit">{{ $remaingDays }}</x-button>
-                                @endif
-                            </td>
+                                    @isset($item->materialRequestItems)
 
-                           <td>
-                                {{-- <x-button class="btn btn-blue"
-                                    wire:click="openRequestItems({{ $item->id}})"
-                                >ITEMS</x-button>
-                            </td> --}}
+                                        @if ($item->materialRequestItems->isNotEmpty())
 
-                              <td>
-                                <x-button class="btn btn-blue"
-                                    wire:click="batchOrderRequest({{ $item->id}})"
-                                >B ORDER</x-button>
-                            </td>
+                                            <div class="col-span-6">
+                                                @foreach ($item->materialRequestItems as $mritems)
+                                                    <div class="flex items-center bg-blue-100 p-3 my-1 rounded-md">
 
-                            </tr>
+                                                        <div class="basis-2/6 hover:underline">
+                                                            <a href="{{ route('admin_tag_show', ['id'=> $mritems->equipmentTag->id]) }}" target="_blank">
+                                                                {{ $mritems->equipmentTag->equipment_tag }}</a>
+                                                            </div>
+                                                            <div class="basis-2/6">{{ $mritems->sparePart->spare_part_number }}</div>
+                                                        <div class="basis-2/6">{{ $mritems->sparePart->spare_part_name }}</div>
+                                                        <div class="rounded-full border border-blue-400 p-3">{{ $mritems->qty }}</div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
 
-                            @endforeach
+                                            @else
+                                            <div class="col-span-6">
+                                                <div class="flex justify-between items-center bg-blue-100 p-3 my-1 rounded-md">
 
-                        </tbody>
-                    </table>
+                                                        <div class="emptyData">NA</div>
+                                                        <div class="emptyData">NA</div>
+                                                        <div class="emptyData">NA</div>
+                                                        <div class="emptyData">NA</div>
+                                                </div>
+                                            </div>
 
-                    {{ $material_requests->links() }}
+                                        @endif
 
-            @else
+                                    @endisset
 
-                    <div class="emptyData">no Material Request Found</div>
-
-            @endif
+                            <div class="col-span-2 flex justify-between mx-2">
+                                <div class="flex items-center">{{ $item->date }}</div>
+                                <div class="flex items-center mx-2  p-2">{{ $expectedDate}}</div>
+                            </div>
 
 
+                                        @if ($expectedDate < $today )
+                                            <x-button class="btn btn-close col-span-2">Expired</x-button>
+                                        @else
+                                            <x-button class="btn btn-submit col-span-2" >{{ $remaingDays }}</x-button>
+                                        @endif
 
-{{--
+
+                        </div>
+
+                        @endforeach
+
+                         {{-- {{ $material_requests->links() }} --}}
+
+
+
+                    @else
+
+                    <div class="emptyData">Sorry!, No Material Requests are found!!!</div>
+
+                    @endif
+
+                @endisset
+
+
 
         </div>
 
@@ -117,18 +156,6 @@
 
     {{-- For Reminder --}}
 
-
-    <div class="modal"
-        x-show="materialRequestPopup"
-    >
-        <div class="modal-overlay">
-            <div class="modal-body">
-                <div class="modal-content">
-                        @livewire('material-request-module.admin-material-request-items-table')
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 

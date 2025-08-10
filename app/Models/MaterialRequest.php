@@ -16,10 +16,10 @@ class MaterialRequest extends Model
         return $this->belongsTo(EquipmentTag::class);
     }
 
-    public function SparePart()
-    {
-        return $this->belongsTo(SparePart::class);
-    }
+    // public function SparePart()
+    // {
+    //     return $this->belongsTo(SparePart::class);
+    // }
 
     public function cm()
     {

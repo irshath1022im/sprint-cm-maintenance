@@ -56,8 +56,8 @@
                                             {{ $item->materialRequest->cm->equipment->equipment}}</a>
                                     </td>
                                     <td class="table-td text-[13px]"> {{ $item->batchOrderItems[0]->equipmentTag->equipment_tag}}</td>
-                                    <td class="table-td text-[13px]"> {{ $item->batchOrderItems[0]->sparePart->spare_part_name}}</td>
                                     <td class="table-td text-[13px]"> {{ $item->batchOrderItems[0]->sparePart->spare_part_number}}</td>
+                                    <td class="table-td text-[13px]"> {{ $item->batchOrderItems[0]->sparePart->spare_part_name}}</td>
                                     <td class="table-td text-[13px]"> {{ $item->materialRequest->materialRequestItems[0]->qty}}</td>
                                     <td class="table-td text-[13px]">
                                         <x-price price="{{ $item->batchOrderItems[0]->unit_price}}"></x-price>

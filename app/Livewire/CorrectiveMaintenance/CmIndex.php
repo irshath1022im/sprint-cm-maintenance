@@ -3,6 +3,8 @@
 namespace App\Livewire\CorrectiveMaintenance;
 
 use App\Models\CorrectiveMaintenance;
+use App\Models\TaskStatus;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithoutUrlPagination;
@@ -27,13 +29,22 @@ class CmIndex extends Component
         $this->resetPage();
     }
 
+    #[Computed()]
+    public function cmStatus()
+    {
+        return TaskStatus::get();
+    }
 
 
     public function render()
     {
 
-        $result = CorrectiveMaintenance::when($this->filterStatus, function($q){
-            return $q->where('status', $this->filterStatus);
+        $result = CorrectiveMaintenance::query()
+
+                ->when($this->filterStatus, function($q){
+                        return $q->withWhereHas('cmStatus', function($query){
+                            return $query->where('task_status_id', $this->filterStatus);
+                        });
                     })
                     ->with([
                         'technician',

@@ -26,13 +26,15 @@
 
         <div class="card-body">
 
-            {{-- <div class="form-group">
-                <select type="" class="form-controll" wire:model.live="filterStatus">
+            <div class="form-group">
+                <select type="" class="form-controll" wire:model.change="filterStatus">
                     <option value="">Status</option>
-                    <option value="active">Active</option>
-                    <option value="completed">Completed</option>
+                    @foreach ($this->cmStatus as $item)
+                     <option value="{{ $item->id }}">{{ $item->task_status }}</option>
+
+                    @endforeach
                 </select>
-            </div> --}}
+            </div>
 
 
 

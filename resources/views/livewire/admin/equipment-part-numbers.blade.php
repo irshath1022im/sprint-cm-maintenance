@@ -30,7 +30,7 @@
 
                                 <td class="table-td flex justify-end">
                                     <x-button class="btn btn-blue">Edit</x-button>
-                                    <x-button class="btn btn-close">Delete</x-button>
+                                    {{-- <x-button class="btn btn-close">Delete</x-button> --}}
                                 </td>
                             </tr>
 

@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class MaterialRequestItems extends Component
 {
-    public $cm;
+    public $cm; //received from sub-cm-card.blade.php
     public $equipmentSpareParts;
     public $material_request_id;
 
@@ -64,6 +64,8 @@ class MaterialRequestItems extends Component
     public function formClose()
     {
         $this->dispatch('requestItemsModalClose');
+        $this->resetExcept('cm','material_request_id');
+
     }
 
     public function render()

@@ -3,6 +3,8 @@
 namespace App\Livewire\BatchOrderModule;
 
 use App\Models\BatchOrder;
+use App\Models\BatchOrderItems;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -53,11 +55,22 @@ public function refreshCmShow()
     // dd($request);
     }
 
-    public function render()
+    #[Computed()]
+    public function batchItems()
     {
+        return BatchOrderItems::where('batch_order_id', $this->batch->id)
+                                        ->with('batchOrder','equipmentTag','sparePart','materialRequestItemLine')
+                                        ->get();
+    }
+
+     public function render()
+     {
         // $result = BatchOrder::where('material_request_id', $this->material_request_id)
         //                         ->with('batchOrderitems','materialRequest')
         //                         ->get();
+            // $result = BatchOrderItems::where('batch_order_id', $this->batch->id)
+            //                             ->with('batchOrder','equipmentTag','sparePart','materialRequestItemLine')
+            //                             ->get();
         return view('livewire.batch-order-module.batch-orders-card');
     }
 }

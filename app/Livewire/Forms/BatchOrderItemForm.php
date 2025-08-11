@@ -6,6 +6,7 @@ use App\Models\BatchOrderItems;
 use App\Models\CmTaskStatus;
 use App\Models\MaterialRequestItems;
 use Illuminate\Http\Client\Request as ClientRequest;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -18,10 +19,15 @@ class BatchOrderItemForm extends Component
     // ];
 
     public $cm;
-    public $material_request_items=[];
+    public $batch;
+    // public $material_request_items=[];
     public $batch_order_id;
     public $material_request_item_id;
+    public $barthOrderItems=[];
     public $cmId; //getting from request url
+    public $spare_part_name;
+    public $materialRequestLineId;
+    public $spare_part_number;
 
     #[Validate('required')]
     public $equipment_tag_id;
@@ -43,11 +49,12 @@ class BatchOrderItemForm extends Component
     #[On('addBatchItems')]
     public function addBatchItems($batch)
     {
+        $this->batch = $batch;
         $this->batch_order_id = $batch['id']; //getting batch infor from Batch Order Card using dispatch method
 
-        $this->material_request_items = MaterialRequestItems::where('material_request_id', $batch['material_request_id'])
-                                             ->with('equipmentTag')
-                                            ->get();
+        // $this->material_request_items = MaterialRequestItems::where('material_request_id', $batch['material_request_id'])
+        //                                      ->with('equipmentTag')
+        //                                     ->get();
 
     }
 
@@ -56,18 +63,35 @@ class BatchOrderItemForm extends Component
         $this->total = $this->unit_price*$this->qty;
     }
 
-    public function updatedEquipmentTagId()
+
+
+    public function updatedMaterialRequestLineId()
     {
 
-        $this->reset('unit_price','total','qty');
+        //get the line id from form input
 
-        for ($i=0; $i < count($this->material_request_items) ; $i++) {
-            if($this->material_request_items[$i]['equipment_tag_id'] == $this->equipment_tag_id){
-                $this->qty = $this->material_request_items[$i]['qty'];
-                $this->material_request_item_id = $this->material_request_items[$i]['id'];
-                $this->spare_part_id = $this->material_request_items[$i]['spare_part_id'];
+        $this->reset('spare_part_id','spare_part_name','unit_price','total','qty');
+
+        if($this->materialRequestLineId != '')
+            {
+
+                    $query = MaterialRequestItems::find($this->materialRequestLineId);
+                    $this->equipment_tag_id = $query->equipment_tag_id;
+                    $this->spare_part_id = $query->spare_part_id;
+                    $this->spare_part_name = $query->sparePart->spare_part_name;
+                    $this->qty = $query->qty;
+                    $this->spare_part_number = $query->sparePart->spare_part_number;
+
             }
-        }
+
+
+        // for ($i=0; $i < count($this->material_request_items) ; $i++) {
+        //     if($this->material_request_items->id['equipment_tag_id'] == $this->equipment_tag_id){
+        //         $this->qty = $this->material_request_items[$i]['qty'];
+        //         $this->material_request_item_id = $this->material_request_items[$i]['id'];
+        //         $this->spare_part_id = $this->material_request_items[$i]['spare_part_id'];
+        //     }
+        // }
     }
 
 
@@ -77,33 +101,44 @@ class BatchOrderItemForm extends Component
 
        $validated = $this->validate();
 
-        $data = $validated + ['batch_order_id' => $this->batch_order_id ,'material_request_item_id' => $this->material_request_item_id ];
-        BatchOrderItems::create($data);
+        $data = $validated + [
+            'batch_order_id' => $this->batch_order_id,
+            'material_request_item_id' => $this->materialRequestLineId
+         ];
+        BatchOrderItems::updateOrCreate(
+           ['material_request_item_id' => $this->materialRequestLineId], //atributes to check the line id is exist or not
+           $data  //values to update or insert
+
+        );
 
         CmTaskStatus::where('cm_number_id', $this->cm['id'])->update(['task_status_id' => 4] );
 
 
         session()->flash('created', 'Spare Parts Has been received');
-        $this->reset('unit_price','total','qty','spare_part_id');
-        $this->dispatch('refreshCmShow');
+         $this->reset('spare_part_id','spare_part_name','spare_part_number','unit_price','total','qty');
+        $this->dispatch('refreshBatchOrderItemsCard');
     }
 
     public function formClose()
     {
         $this->dispatch('jobOrderItemFormClose');
-        $this->dispatch('refreshCmShow');
+        // $this->dispatch('refreshCmShow');
         $this->reset('unit_price','total','qty');
     }
 
-    public function mount()
+    public function mount($batch)
     {
-
+        $this->batch = $batch;
     }
 
-    public function render()
+    #[Computed()]
+    public function materialRequestItems()
     {
-        // $this->material_request_items = MaterialRequestItems::where('material_request_id', 3)->with('equipmentTag')->get();
-        return view('livewire.forms.batch-order-item-form');
+        return MaterialRequestItems::where('material_request_id', $this->batch['material_request_id'])
+                                             ->with('equipmentTag')
+                                            ->get();
     }
+
+
 
 }

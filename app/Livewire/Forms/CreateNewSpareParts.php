@@ -19,7 +19,7 @@ class CreateNewSpareParts extends Component
      #[Validate('required')]
     public $spare_part_name;
 
-     #[Validate('required|unique:spare_parts,spare_part_number')]
+     #[Validate('required|unique:spare_parts,spare_part_number',onUpdate: false)]
     public $spare_part_number;
 
       #[Validate('required')]

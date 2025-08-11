@@ -2,6 +2,7 @@
 
 namespace App\Livewire\MaterialRequestModule;
 
+use App\Models\BatchOrderItems;
 use App\Models\CmEquipmentTag;
 use App\Models\MaterialRequest;
 use App\Models\MaterialRequestItems;
@@ -43,7 +44,17 @@ class SubCmCard extends Component
 
     public function deletePartsLine($lineId)
     {
-        MaterialRequestItems::find($lineId)->Delete();
+        //before delete, check the this item has batch Order or not
+
+        $batchOrderItems = BatchOrderItems::where('material_request_item_id', $lineId)->get();
+
+        if($batchOrderItems->count() > 0)
+        {
+                $this->js('mrDeleteStatus');
+        }else{
+
+            MaterialRequestItems::find($lineId)->Delete();
+        }
         // session()->flash('Deleted', 'Spare Parts has been Deleted from Sub Cm');
     }
 

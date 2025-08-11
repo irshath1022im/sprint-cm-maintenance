@@ -44,7 +44,7 @@
                                 <td class="table-td text-[13px] flex justify-end">
 
                                     <x-button class="btn btn-blue" wire:click="partEdit({{ $item }})">Edit</x-button>
-                                    <x-button class="btn btn-close">Delete</x-button>
+                                    {{-- <x-button class="btn btn-close">Delete</x-button> --}}
                                 </td>
                             </tr>
 

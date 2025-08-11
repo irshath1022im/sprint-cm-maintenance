@@ -9,18 +9,27 @@ use Livewire\Component;
 class BatchOrderItemsTable extends Component
 {
 
-public $batchOrderItems; //getting from batch-orders.card with compoment
+public $batch_id; //getting from batch-orders.card with compoment
 
 
     public function deletePartsLine($lineId)
     {
         BatchOrderItems::find($lineId)->delete();
         session()->flash('Deleted', 'Receiving Item has been deleted');
-        $this->dispatch('DeletedFromBatchOrderItems');
+        // $this->dispatch('DeletedFromBatchOrderItems');
+    }
+
+    #[On('refreshBatchOrderItemsCard')]
+    public function refreshBatchOrderItemsCard()
+    {
+
     }
 
     public function render()
     {
-        return view('livewire.batch-order-module.batch-order-items-table');
+        $result = BatchOrderItems::where('batch_order_id', $this->batch_id)
+                                        ->with('batchOrder','equipmentTag','sparePart','materialRequestItemLine')
+                                        ->get();
+        return view('livewire.batch-order-module.batch-order-items-table',['batchOrderItems' => $result]);
     }
 }

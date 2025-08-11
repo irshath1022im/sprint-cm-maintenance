@@ -4,7 +4,7 @@
 
     <table class="table">
             <thead class="table-head">
-                <th class="table-th">#</th>
+                <th class="table-th">MRL #</th>
                 <th class="table-th">BATCH NO</th>
                 <th class="table-th">EQU TAG</th>
                 <th class="table-th">SPARE PART NO</th>
@@ -19,7 +19,7 @@
                 @foreach ($batchOrderItems as $item)
 
                 <tr class="table-tr text-sm">
-                    <td class="text-xs p-2">{{ $item->id }}</td>
+                    <td class="text-xs p-2">{{ $item->material_request_item_id }}</td>
                     <td class="text-xs p-2">{{ $item->batchOrder->batch_no }}</td>
                     <td class="text-xs p-2">{{ $item->equipmentTag->equipment_tag }}</td>
                     <td class="text-xs p-2">{{ $item->sparePart->spare_part_number }}</td>

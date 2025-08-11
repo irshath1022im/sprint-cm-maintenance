@@ -2,9 +2,11 @@
     x-data="{
         addBatchItemsModal : @entangle('addBatchItemsModal')
     }"
+
+    x-cloak
 >
 
-{{-- @dump($cm) --}}
+{{-- @dump($this->batchItems) --}}
 <x-success></x-success>
 
     {{-- @dump($batch->isEmpty()) --}}
@@ -50,10 +52,10 @@
                                             {{-- @dump($batch->batchOrderItems) --}}
 
 
-                                           @if ($batch->batchOrderItems->isNotEmpty())
+                                           @if ($this->batchItems)
 
 
-                                                @livewire('batch-order-module.batch-order-items-table', ['batchOrderItems' => $batch->batchOrderItems])
+                                                @livewire('batch-order-module.batch-order-items-table', ['batch_id' => $batch->id])
                                                 {{-- this is livewire component, don't forget to add as a public property in class  --}}
 
                                             @else
@@ -78,7 +80,11 @@
             <div class="modal-body">
                 <div class="modal-content">
 
-                    @livewire('forms.batch-order-item-form',['cm' => $cm])
+                    @isset($batch)
+
+                        @livewire('forms.batch-order-item-form',['cm' => $cm, 'batch' => $batch])
+                    @endisset
+
 
                 </div>
             </div>

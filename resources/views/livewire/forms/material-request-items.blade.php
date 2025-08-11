@@ -35,15 +35,15 @@
 
                                 </div>
 
-                            @else
+                     @else
 
                             <div class="flex justify-between">
 
-                                <div class="form-group flex-1">
+                                <div class="form-group">
 
                                     <div class="form-label flex justify-between items-center align-middle">
 
-                                        <span>Spare Part</span>
+                                        <span>Spare Part Number</span>
                                         <a href="{{ route('admin_spare_parts') }}" target="_blank">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 ">
                                                 <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25ZM12.75 9a.75.75 0 0 0-1.5 0v2.25H9a.75.75 0 0 0 0 1.5h2.25V15a.75.75 0 0 0 1.5 0v-2.25H15a.75.75 0 0 0 0-1.5h-2.25V9Z" clip-rule="evenodd" />
@@ -51,12 +51,13 @@
                                         </a>
 
                                     </div>
+
                                     <select name="" id="" class="form-controll" wire:model.live="spare_part_id">
                                         <option value="">Select</option>
 
                                         @foreach ($equipmentSpareParts as $item)
 
-                                         <option value="{{ $item->id }}">{{ $item->spare_part_name }}</option>
+                                         <option class="p-3 form-controll" value="{{ $item->id }}">{{ $item->spare_part_number }} / {{ $item->spare_part_name }}</option>
 
                                         @endforeach
                                     </select>

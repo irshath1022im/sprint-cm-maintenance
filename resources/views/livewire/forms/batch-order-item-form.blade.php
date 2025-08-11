@@ -17,36 +17,43 @@
 
                 <div class="sm-card-body">
 
-                        @isset($material_request_items)
+                @isset($this->materialRequestItems)
 
-                    @if ($material_request_items)
+                    @if ($this->materialRequestItems->isNotEmpty())
 
-                                        <div>
+
+
+                                       <form>
 
 
                                             <div class="form-group">
 
-                                                <select name="" id="" wire:model.live="equipment_tag_id" class="form-controll">
+                                                <select name="" id="" wire:model.change="materialRequestLineId" class="form-controll">
                                                      <option value="">Select Item</option>
-                                                        @foreach ($material_request_items as $item)
-                                                            <option value={{ $item->equipmentTag['id'] }}>{{ $item->equipmentTag['equipment_tag'] }}</option>
+                                                        @foreach ($this->materialRequestItems as $item)
+
+                                                        {{-- get the line id of material request items as a value --}}
+                                                            <option value={{ $item->id }}>{{ $item->equipmentTag->equipment_tag }}</option>
                                                         @endforeach
 
                                                 </select>
-                                                <x-form-error field="equipment_tag_id"></x-form-error>
+                                                <x-form-error field="materialRequestLineId"></x-form-error>
                                             </div>
 
                                             <div class="form-group flex justify-between">
 
                                                   <div>
-                                                        <div class="form-label">Spare Part</div>
-                                                        <input type="number" name="" id="" wire:model="spare_part_id"  class="form-controll">
-                                                        <x-form-error  field="spare_part_id"></x-form-error>
+                                                        <div class="form-label">Spare Part Number</div>
+                                                        <input type="text" name="" id="" wire:model="spare_part_number"  class="form-controll" disabled>
+                                                    </div>
+                                                    <div>
+                                                        <div class="form-label">S P Name</div>
+                                                        <input type="text" name="" id="" wire:model="spare_part_name"  class="form-controll" disabled>
                                                     </div>
 
                                                     <div>
                                                         <div class="form-label">Qty</div>
-                                                        <input type="number" name="" id="" wire:model="qty"  class="form-controll">
+                                                        <input type="number" name="" id="" wire:model="qty"  class="form-controll" disabled>
                                                         <x-form-error  field="qty"></x-form-error>
                                                     </div>
 
@@ -65,16 +72,45 @@
                                             </div>
 
 
-                                            <div>
-                                                <x-button class="btn btn-submit" wire:click="addItems">Add</x-button>
+                                            <div wire:loading.remove>
+                                                <x-button type="button" class="btn btn-submit" wire:click="addItems">Add</x-button>
                                                 <x-button class="btn btn-close" wire:click="formClose">close</x-button>
                                             </div>
 
-                                        </div>
+                                        </form>
+                        {{-- <form action="">
+
+                            <div class="form-group grid grid-cols-12 gap-2" >
+                                <label for="" class="form-label col-span-3">Equipment Tag</label>
+                                <label for="" class="form-label col-span-2">Spare Part Number</label>
+                                <label for="" class="form-label col-span-1">Spare Part Name</label>
+                                <label for="" class="form-label  col-span-1">Qty</label>
+                                <label for="" class="form-label  col-span-2">Unit Price</label>
+                                <label for="" class="form-label  col-span-2">Total</label>
+                                <label for="" class="form-label  col-span-1">ACTION</label>
+                            </div>
+
+                            @foreach ($material_request_items as $item)
+
+                            {{-- @dump($item) --}}
+
+                                {{-- <div class="form-group grid grid-cols-12 gap-2 text-[12px]" >
+                                    <input type="text" name="" id="" class="form-controll col-span-3"  wire:model="equipmen_tag_id" placeholder="{{ $item->equipmentTag->equipment_tag }}" wire:model.fill={{ $item->equipment_tag_id }}>
+                                    <input type="text" name="" id="" class="form-controll col-span-2" placeholder="Spare Part Number">
+                                    <input type="text" name="" id="" class="form-controll col-span-1" placeholder="Spare Part Name">
+                                    <input type="number" name="" id="" class="form-controll col-span-1" placeholder="Qty">
+                                    <input type="number" name="" id="" class="form-controll col-span-2" placeholder="Unit Price">
+                                    <input type="number" name="" id="" class="form-controll col-span-2" placeholder="Total">
+                            </input>
+                            @endforeach
+
+                        </form> --}}
 
 
 
+                    @else
 
+                        <div class="emptyData">Sorry!, No Material Request Items has been added</div>
                     @endif
 
                 @endisset

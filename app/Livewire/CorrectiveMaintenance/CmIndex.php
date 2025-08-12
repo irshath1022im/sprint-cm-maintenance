@@ -33,6 +33,7 @@ class CmIndex extends Component
     public function cmStatus()
     {
         return TaskStatus::get();
+
     }
 
 

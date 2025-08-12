@@ -236,7 +236,6 @@
     })
 
 
-    // console.log(document.documentElement.clientHeight)
 </script>
 
 @endscript

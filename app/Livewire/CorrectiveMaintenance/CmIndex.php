@@ -16,6 +16,7 @@ class CmIndex extends Component
 
     public $filterStatus;
     public $cmCreateModal = false;
+    public $searchByCmNumber;
 
     use WithPagination;
 
@@ -25,9 +26,15 @@ class CmIndex extends Component
         $this->cmCreateModal = false;
     }
 
-    public function updated($filterStatus)
+    public function updatedFilterStatus()
     {
         $this->resetPage();
+         $this->reset('searchByCmNumber');
+    }
+
+    public function updatedSearchByCmNumber()
+    {
+        $this->reset('filterStatus');
     }
 
     #[Computed()]
@@ -53,6 +60,9 @@ class CmIndex extends Component
                             return $query->where('task_status_id', $this->filterStatus);
                         });
                     })
+                ->when($this->searchByCmNumber, function($query){
+                    return $query->where('cm_number', 'LIKE', '%'.$this->searchByCmNumber.'%');
+                })
                     ->with([
                         'technician',
                         'equipment',

@@ -1,7 +1,21 @@
 <div>
 
+    <div class="flex">
 
-    @livewire('dash-board.task-bar-module')
-    {{-- @livewire('dash-board.recent-cm-module') --}}
+        <div class="p-2 w-[70%]">
+
+            @livewire('dash-board.task-bar-module')
+        </div>
+
+        <div class="p-2 w-[30%]">
+            @livewire('dash-board.equipment-cost-module')
+        </div>
+    </div>
+
+
+    <div class="p-2">
+
+        @livewire('dash-board.recent-cm-module')
+    </div>
 
 </div>

@@ -29,15 +29,26 @@
 
         <div class="card-body">
 
-            <div class="form-group">
-                <select type="" class="form-controll" wire:model.change="filterStatus">
-                    <option value="">Status</option>
-                    @foreach ($this->cmStatus as $item)
-                     <option value="{{ $item->id }}">{{ $item->task_status }}</option>
+            <div class="flex items-center justify-between">
 
-                    @endforeach
-                </select>
+                <div class="form-group">
+                    <select type="" class="form-controll" wire:model.change="filterStatus">
+                        <option value="">Status</option>
+                        @foreach ($this->cmStatus as $item)
+                         <option value="{{ $item->id }}">{{ $item->task_status }}</option>
+
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="flex items-center p-2">
+                             <input type="text" name="" id="" class="form-controll" placeholder="Search By CM Number" wire:model.live.debounce.500ms="searchByCmNumber">
+
+                </div>
+
             </div>
+
+
 
 
 

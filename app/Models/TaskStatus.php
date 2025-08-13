@@ -8,4 +8,9 @@ class TaskStatus extends Model
 {
     //
 
+    public function cmTaskStatus()
+    {
+        return $this->hasMany(CmTaskStatus::class,'task_status_id');
+    }
+
 }

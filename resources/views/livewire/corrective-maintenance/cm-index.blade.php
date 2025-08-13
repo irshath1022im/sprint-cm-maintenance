@@ -7,6 +7,7 @@
 >
 
 
+{{-- @dump(Request::all()) --}}
 <div wire:loading>
         <x-spinner></x-spinner>
 </div>

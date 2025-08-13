@@ -4,6 +4,7 @@ namespace App\Livewire\CorrectiveMaintenance;
 
 use App\Models\CorrectiveMaintenance;
 use App\Models\TaskStatus;
+use Illuminate\Http\Request;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -36,6 +37,11 @@ class CmIndex extends Component
 
     }
 
+    public function mount(Request $request)
+    {
+        $this->filterStatus = $request->task_status_id;
+        // dd($request->task_status_id);
+    }
 
     public function render()
     {

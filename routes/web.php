@@ -12,6 +12,7 @@ use App\Livewire\BatchOrderModule\AdminBatchOrderHome;
 use App\Livewire\BatchOrderModule\BatchOrdersCard;
 use App\Livewire\CorrectiveMaintenance\CmIndex;
 use App\Livewire\CorrectiveMaintenance\CmShow;
+use App\Livewire\DashBoard\DashBoardHome;
 use App\Livewire\Forms\CmCreate;
 use Illuminate\Support\Facades\Route;
 
@@ -20,7 +21,8 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::get('/', CmIndex::class)->name('cmHome');
+Route::get('/', DashBoardHome::class)->name('dashBoard');
+Route::get('/cmHome', CmIndex::class)->name('cmHome');
 Route::get('admin/technician', TechnicianHome::class)->name('admin_technician');
 Route::get('admin/equipment', EquipmentHome::class)->name('admin_equipment');
 Route::get('admin/equipment/{id}', EquipmentShow::class)->name('admin_equipment_show');

@@ -26,6 +26,8 @@
         </div>
         @endforeach
 
+        {{$equipment->links() }}
+
     </div>
 
 

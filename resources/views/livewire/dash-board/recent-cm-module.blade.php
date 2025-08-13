@@ -1,11 +1,11 @@
-<div class="">
+<div class="w-[65%]">
 
-   <div class="card basis-2/4">
-    <div class="card-header">
-        <div class="card-heading">RECENT CM</div>
+    <div class="p-4 bg-blue-500 rounded-md w-[100%]">
+        <div class="font-bold uppercase text-lg font-p">recent cm</div>
     </div>
 
-    <div class="card-body divide-y-2">
+    <div class="divide-y-2">
+
         @foreach ($latestCm as $item)
 
             <div class="flex p-3 w-full">
@@ -29,24 +29,6 @@
                             </div>
 
                  @endisset
-
-                 {{-- @if($item->has('materialRequest'))
-
-                    @if ($item->materialRequest)
-
-                        <div class="basis-2/6">
-                                SUB CM{{ $item->materialRequest->sub_cm}}
-                            </div>
-
-                        @else
-                                <div class="basis-2/6">
-                                NA
-                            </div>
-                    @endif
-
-
-                 @endisset --}}
-
 
 
                 <div class="basis-2/6">
@@ -76,16 +58,13 @@
 
         @endforeach
 
-          {{ $latestCm->links() }}
+          {{-- {{ $latestCm->links() }} --}}
 
 
     </div>
-   </div>
-
-
-   
-
 
 
 
 </div>
+
+

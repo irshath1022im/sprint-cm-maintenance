@@ -6,21 +6,21 @@
 @layer components {
 
     .card-group {
-        @apply border rounded-md font-['lato']
+        @apply border rounded-md font-['poppins']
     }
     .card {
-        @apply bg-slate-50  border rounded-md;
+        @apply bg-slate-50  border rounded-md font-['poppins'];
     }
 
     .card-header{
         @apply px-3 py-2  border-b-2;
     }
     .card-heading{
-        @apply text-lg font-bold uppercase;
+        @apply text-lg  uppercase;
     }
 
     .card-body{
-        @apply bg-slate-50 font-medium px-3 py-2 ;
+        @apply bg-slate-50 font-medium px-3 py-2 font-['poppins'] ;
     }
 
     .sm-card-group {

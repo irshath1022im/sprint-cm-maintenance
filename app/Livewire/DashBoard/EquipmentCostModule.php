@@ -17,7 +17,8 @@ class EquipmentCostModule extends Component
         $result = Equipment::has('batchOrderItems')
                     ->withSum('batchOrderItems', 'total')
                     ->orderByDesc('batch_order_items_sum_total')
-                    ->paginate(3);
+                    ->limit(3)
+                    ->get();
         // $result2 = $result->sortByDesc('batch_order_items_sum_total');
         return view('livewire.dash-board.equipment-cost-module',['equipment' => $result]);
     }

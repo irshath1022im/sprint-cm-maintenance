@@ -6,7 +6,11 @@ export default {
     "./resources/**/*.vue",
   ],
   theme: {
-    extend: { },
+    extend: {
+          fontFamily: {
+            display: 'Oswald, ui-serif',
+         },
+     },
   },
   plugins: [
     require('@tailwindcss/forms')

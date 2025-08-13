@@ -1,6 +1,6 @@
 <div>
 
-    <div class="flex">
+    <div class="flex text-[13px]">
 
         <div class="p-2 w-[70%]">
 
@@ -13,7 +13,7 @@
     </div>
 
 
-    <div class="p-2">
+    <div class="p-2 text-[13px]">
 
         @livewire('dash-board.recent-cm-module')
     </div>

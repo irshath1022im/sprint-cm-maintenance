@@ -21,7 +21,8 @@ class MaterialRequest extends Component
                         'cmRequests' => function($q) {
                             return $q->with([
                                 'materialRequest' => function($q){ return $q->with([
-                                                        'materialRequestItems' => function($q){ return $q->with(['equipmentTag','sparePart']);}
+                                                        'materialRequestItems' => function($q){ return $q->with(['equipmentTag','sparePart']);},
+                                                        'batchOrder'=> function($q){ return $q->with(['batchOrderItems']);}
                                                     ]);},
                                 'equipment']);
                         }

@@ -15,7 +15,9 @@
 
                             <div>
 
-                                {{-- <x-button class="btn btn-info">Total Spent:</x-button> --}}
+                                <x-button class="btn btn-info">Total Spent:
+                                    {{ $equipment->batchOrderitems->sum('total') }}
+                                </x-button>
                                 {{-- <x-price price="{{ $equipment[0]->totalSpent}}"></x-price> --}}
                             </div>
 
@@ -38,9 +40,9 @@
                                 <div class="col-span-4">
                                     <div class="flex justify-between  bg-blue-100 p-3 my-1 rounded-md text-black">
 
-                                        <div class="mx-2">equipment tag</div>
-                                        <div class="mx-2">s p number</div>
-                                        <div class="mx-2">s p name</div>
+                                        <div class="basis-[40%] mx-2">equipment tag</div>
+                                        <div class="basis-[20%] mx-2">s p number</div>
+                                        <div class="basis-[20%] mx-2">s p name</div>
                                         <div class="mx-2">qty</div>
                                     </div>
                                 </div>
@@ -49,7 +51,7 @@
 
                                         <div class="mx-2 basis-1/4">RECEIVING DATE</div>
                                         <div class="mx-2 basis-1/4">BADGE NO</div>
-                                        <div class="mx-2 basis-1/4">U PRICE</div>
+                                        <div class="mx-2 basis-1/4 text-right">U PRICE</div>
                                         <div class="mx-2 basis-1/4 text-right">TOTAL</div>
 
                                 </div>
@@ -99,15 +101,17 @@
 
                                                                     @if ($cmRequest->materialRequest->materialRequestItems->isNotEmpty())
 
+                                                                            <div class="">
                                                                                 @foreach ($cmRequest->materialRequest->materialRequestItems as $item)
-                                                                                        <div class="flex justify-between  bg-blue-100 p-3 my-1 rounded-md text-black">
-                                                                                            <div class="mx-2">{{ $item->equipmentTag->equipment_tag }}</div>
-                                                                                            <div class="mx-2">{{ $item->sparePart->spare_part_number }}</div>
-                                                                                            <div class="mx-2">{{ $item->sparePart->spare_part_name }}</div>
+                                                                                        <div class="flex justify-between  bg-blue-100 p-3 my-1 rounded-md text-black items-center">
+                                                                                            <div class="basis-[40%]">{{ $item->equipmentTag->equipment_tag }}</div>
+                                                                                            <div class="basis-[20%]">{{ $item->sparePart->spare_part_number }}</div>
+                                                                                            <div class="basis-[30%]">{{ $item->sparePart->spare_part_name }}</div>
                                                                                             <div class="mx-2">{{ $item->qty }}</div>
                                                                                         </div>
 
                                                                                 @endforeach
+                                                                            </div>
 
 
                                                                     @else
@@ -131,18 +135,21 @@
                                                         @isset ($cmRequest->materialRequest->batchOrder)
 
                                                         <div class="basis-1/4 mx-2">{{ $cmRequest->materialRequest->batchOrder->receiving_date }}</div>
-                                                                <div class="basis-1/4 mx-2">{{ $cmRequest->materialRequest->batchOrder->batch_no }}</div>
+                                                        <div class="basis-1/4 mx-2">{{ $cmRequest->materialRequest->batchOrder->batch_no }}</div>
 
                                                                     @if ($cmRequest->materialRequest->batchOrder->batchOrderitems->isNotEmpty())
+                                                                            <div class="basis-1/4 mx-2">
 
-                                                                            @foreach ($cmRequest->materialRequest->batchOrder->batchOrderitems as $item)
+                                                                                    @foreach ($cmRequest->materialRequest->batchOrder->batchOrderitems as $item)
+                                                                                        <div class="flex justify-between  bg-blue-100  my-1 rounded-md text-black">
+                                                                                            <div class=""><x-price price="{{ $item->unit_price }}"></x-price></div>
+                                                                                            <div class=""><x-price price="{{ $item->total }}"></x-price></div>
+                                                                                        </div>
 
-                                                                               <div class="basis-1/4 mx-2"><x-price price="{{ $item->unit_price }}"></x-price></div>
+                                                                                        {{-- <div>  <x-price price="{{ $item->total }}" /></div> --}}
 
-                                                                               <div class="basis-1/4 mx-2 text-right"><x-price price="{{ $item->total }}"></x-price></div>
-                                                                                {{-- <div>  <x-price price="{{ $item->total }}" /></div> --}}
-
-                                                                            @endforeach
+                                                                                    @endforeach
+                                                                            </div>
 
 
                                                                         @else

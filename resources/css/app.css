@@ -29,7 +29,7 @@
         @apply border rounded-md font-['lato']
     }
     .sm-card {
-        @apply bg-slate-50  border rounded-md font-['lato'] text-[12px];
+        @apply bg-slate-50  border rounded-md font-['poppins']  text-[12px];
     }
 
     .sm-card-header{
@@ -79,7 +79,7 @@
     }
 
     .form-label{
-        @apply p-2 bg-slate-300 font-['lato'] rounded-md font-bold
+        @apply p-2 bg-slate-300 font-['poppins']  rounded-md font-bold
     }
 
     .btn-close {

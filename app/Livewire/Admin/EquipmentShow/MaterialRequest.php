@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class MaterialRequest extends Component
 {
-    public $id; //equipmet id is from equipment-show
+    public $equipment_id; //equipmet id is from equipment-show
 
 
 
@@ -17,12 +17,24 @@ class MaterialRequest extends Component
     //         return $q->with('batchOrderItems');
     //     }])->find(2);
     {
-        $result = Equipment::where('id', $this->id)->has('batchOrderItems')
-                            ->with(['materialRequestItems' => function($q){
-                                return $q->with('equipmentTag','materialRequest');
-                            }])
-                            ->withSum('batchOrderItems as totalSpent', 'total')
-                        ->get();
+        $result = Equipment::with([
+                        'cmRequests' => function($q) {
+                            return $q->with([
+                                'materialRequest' => function($q){ return $q->with([
+                                                        'materialRequestItems' => function($q){ return $q->with(['equipmentTag','sparePart']);}
+                                                    ]);},
+                                'equipment']);
+                        }
+                        ])
+                            ->find($this->equipment_id);
+
+
         return view('livewire.admin.equipment-show.material-request',['equipment' => $result]);
     }
 }
+
+
+// ->with(['materialRequestItems' => function($q){
+//                                 return $q->with('equipmentTag','materialRequest');
+//                             }])
+//                             ->withSum('batchOrderItems as totalSpent', 'total')

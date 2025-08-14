@@ -88,7 +88,9 @@
 
 
                                                 <a href="">
-                                                    <x-button class="btn btn-info">STATUS# {{ $cmItem->status }}</x-button>
+                                                    <x-button class="btn btn-info">STATUS- {{ $cmItem->cmStatus->taskStatus->task_status }}
+
+                                                    </x-button>
                                             </a>
 
                                             </div>
@@ -108,15 +110,9 @@
                     </div>
                 </div>
 
+                    {{-- @dump($equipment->materialRequest) --}}
 
-
-
-
-                    {{-- @dump($equipment->materialRequestItems) --}}
-                    {{-- @dump($equipment->materialRequestItems->isNotEmpty()) --}}
-
-
-                        @livewire('admin.equipment-show.material-request', ['id' => $id])
+            @livewire('admin.equipment-show.material-request', ['equipment_id' => $id])
 
 
 

@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
           fontFamily: {
-            display: 'Oswald, ui-serif',
+            display: 'poppins',
          },
      },
   },

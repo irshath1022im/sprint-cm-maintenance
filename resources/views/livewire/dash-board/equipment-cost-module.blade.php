@@ -12,14 +12,14 @@
         @foreach ($equipment as $item)
 
             <div class=" h-[105px] bg-[linear-gradient(to_right,#9AFFD3,#03C463)] rounded-md flex flex-col items-center justify-center">
-                <div class="uppercase font-bold text-[20px] text-[2D4A00]">
+                <div class="uppercase font-bold text-[18px]">
                       <a href="{{ route('admin_equipment_show', ['id'=>$item->id]) }}" target="_blank">
                         {{ $item->equipment }}
                       </a>
                 </div>
 
-                <div class="text-[5702FF] font-bold text-[20px]" >
-                       <x-price class="text-lg" price="
+                <div class="font-display font-bold  " >
+                       <x-price class="text-[15px]" price="
                        {{$item->batch_order_items_sum_total }}"></x-price>
                 </div>
 

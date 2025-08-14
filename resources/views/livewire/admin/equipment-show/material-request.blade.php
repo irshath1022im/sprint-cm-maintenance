@@ -4,91 +4,186 @@
         <div class="card-header">
 
             <div class="card-heading flex  justify-between" >
+
                 <span>MATERIAL REQUEST</span>
 
-                  @isset($equipment)
+         {{-- @dump($equipment) --}}
 
-                     @if($equipment->isNotEmpty())
+                @isset($equipment)
 
-                        <div>
+                    @if($equipment->cmRequests->isNotEmpty())
 
-                            <x-button class="btn btn-info">Total Spent:</x-button>
-                            <x-price price="{{ $equipment[0]->totalSpent}}"></x-price>
+                            <div>
+
+                                {{-- <x-button class="btn btn-info">Total Spent:</x-button> --}}
+                                {{-- <x-price price="{{ $equipment[0]->totalSpent}}"></x-price> --}}
+                            </div>
+
                         </div>
 
-            </div>
+                    </div>
+                     {{-- header --}}
 
-            {{-- {{ $id }} --}}
+                        <div class="grid grid-cols-12 gap-2 p-4 bg-red-500 text-white  font-bold my-2 rounded-sm uppercase text-[13px]">
+                                {{-- <div>mr#</div> --}}
+                                {{-- <div>cm</div> --}}
+                                <div class="flex space-x-2 col-span-4 justify-between">
+                                    <div class="flex items-center">CM DATE</div>
+                                    <div class="flex items-center ">CM NUMBER</div>
+                                    <div class="flex items-center ">SUB CM</div>
+                                    <div class="flex items-center ">MR DATE</div>
+                                    <div class="flex items-center ">EXPECTED DATE</div>
+                                </div>
+
+                                <div class="col-span-4">
+                                    <div class="flex justify-between  bg-blue-100 p-3 my-1 rounded-md text-black">
+
+                                        <div class="mx-2">equipment tag</div>
+                                        <div class="mx-2">s p number</div>
+                                        <div class="mx-2">s p name</div>
+                                        <div class="mx-2">qty</div>
+                                    </div>
+                                </div>
+
+                                 <div class="col-span-4 flex justify-between  bg-blue-100  my-1 rounded-md text-black items-center">
+
+                                        <div class="mx-2 basis-1/4">RECEIVING DATE</div>
+                                        <div class="mx-2 basis-1/4">BADGE NO</div>
+                                        <div class="mx-2 basis-1/4">U PRICE</div>
+                                        <div class="mx-2 basis-1/4 text-right">TOTAL</div>
+
+                                </div>
 
 
 
-        </div>
+                        </div>
+
+                        {{-- result --}}
+
+                        <div class="divide-y-2">
+
+                            @foreach ($equipment->cmRequests as $cmRequest)
+
+                                <div class="grid grid-cols-12 gap-2 p-4 rounded-sm uppercase text-[13px]">
+
+                                    <div class="col-span-4 flex space-x-2  justify-between  items-center">
+
+                                        <div class="">{{ $cmRequest->request_date }}</div>
+                                        <div class="">{{ $cmRequest->cm_number }}</div>
 
 
+                                                @isset($cmRequest->materialRequest)
+                                                            {{-- the materialRequest is hasOne relationship --}}
 
-                @if ($equipment[0]->materialRequestItems->isNotEmpty())
+                                                            <div class="">{{ $cmRequest->materialRequest->sub_cm }}</div>
+                                                            <div class="">{{ $cmRequest->materialRequest->date }}</div>
+                                                            <div class="">{{ $cmRequest->materialRequest->expected_date }}</div>
 
-                        <div class="card-body">
-                            <table class="table text-[13px]">
-                                <thead class="thead table-head">
-                                    <th class="table-th">#</th>
-                                    <th class="table-th">CM NO</th>
-                                    <th class="table-th">SUB CM NO</th>
-                                    <th class="table-th">EQUIPMENT</th>
-                                    <th class="table-th">EQU TAG</th>
-                                    <th class="table-th">S P NAME</th>
-                                    <th class="table-th">S P NUMBER</th>
-                                    <th class="table-th">QTY</th>
-                                    <th class="table-th">BATCH ORDER NO</th>
-                                    <th class="table-th">UNIT PRICE</th>
-                                    <th class="table-th">TOTAL</th>
-                                </thead>
+                                                            @else
+                                                                {{-- materialRequest is empty --}}
 
-                                <tbody class="text-[12px]">
-                                        @foreach ($equipment[0]->materialRequestItems as $item)
+                                                        <div class="">NA</div>
+                                                        <div class="">NA</div>
+                                                        <div class=" ">NA</div>
 
-                                            <tr class="table-tr text-[13px]">
-                                                <td class="table-td text-[13px]">{{ $loop->iteration }}</td>
-                                                <td class="table-td text-[13px]">{{ $item->materialRequest->cm->cm_number}}</td>
-                                                <td class="table-td text-[13px]">{{ $item->materialRequest->sub_cm}}</td>
-                                                <td class="table-td text-[13px]">{{ $item->equipmentTag->equipment->equipment }}</td>
-                                                <td class="table-td text-[13px]">
-                                                    <a href="{{ route('admin_tag_show', ['id'=> $item->equipmentTag->id]) }}" target="_blank">
-                                                            {{ $item->equipmentTag->equipment_tag }}</a></td>
-                                                <td class="table-td text-[13px]">{{ $item->sparePart->spare_part_name }}</td>
-                                                <td class="table-td text-[13px]">{{ $item->sparePart->spare_part_number }}</td>
-                                                <td class="table-td text-[13px]">{{ $item->qty }}</td>
 
-                                                @isset($item->batchOrderItem)
-
-                                                    <td class="table-td text-[12px]" >
-                                                        <x-button class="btn btn-blue">{{ $item->batchOrderItem->batchOrder->batch_no }}</x-button>
-                                                    </td>
-                                                    <td class="table-td"><x-price price="{{ $item->batchOrderItem->unit_price}}"></x-price></td>
-                                                    <td class="table-td"><x-price price="{{ $item->batchOrderItem->total}}"></x-price></td>
-
-                                                @else
-                                                    <td class="table-td"><x-button class="btn btn-info">N/A</x-button></td>
                                                 @endisset
 
-                                            </tr>
-                                        @endforeach
+                                    </div>
 
-                                </tbody>
 
-                            </table>
+                                    <div class="col-span-4">
+
+                                                @isset($cmRequest->materialRequest)
+
+
+                                                                    @if ($cmRequest->materialRequest->materialRequestItems->isNotEmpty())
+
+                                                                                @foreach ($cmRequest->materialRequest->materialRequestItems as $item)
+                                                                                        <div class="flex justify-between  bg-blue-100 p-3 my-1 rounded-md text-black">
+                                                                                            <div class="mx-2">{{ $item->equipmentTag->equipment_tag }}</div>
+                                                                                            <div class="mx-2">{{ $item->sparePart->spare_part_number }}</div>
+                                                                                            <div class="mx-2">{{ $item->sparePart->spare_part_name }}</div>
+                                                                                            <div class="mx-2">{{ $item->qty }}</div>
+                                                                                        </div>
+
+                                                                                @endforeach
+
+
+                                                                    @else
+
+                                                                        <div class="emptyData">MATERIAL REQUEST ITEMS NOT FOUND</div>
+
+                                                                    @endif
+
+                                                    @else
+
+                                                    <div class="emptyData">MATERIAL REQUEST  NOT FOUND</div>
+
+                                                    @endisset
+
+                                    </div>
+
+                                    <div class="col-span-4 flex justify-between  bg-blue-100  my-1 rounded-md text-black items-center ">
+
+                                            @isset($cmRequest->materialRequest)
+
+                                                        @isset ($cmRequest->materialRequest->batchOrder)
+
+                                                        <div class="basis-1/4 mx-2">{{ $cmRequest->materialRequest->batchOrder->receiving_date }}</div>
+                                                                <div class="basis-1/4 mx-2">{{ $cmRequest->materialRequest->batchOrder->batch_no }}</div>
+
+                                                                    @if ($cmRequest->materialRequest->batchOrder->batchOrderitems->isNotEmpty())
+
+                                                                            @foreach ($cmRequest->materialRequest->batchOrder->batchOrderitems as $item)
+
+                                                                               <div class="basis-1/4 mx-2"><x-price price="{{ $item->unit_price }}"></x-price></div>
+
+                                                                               <div class="basis-1/4 mx-2 text-right"><x-price price="{{ $item->total }}"></x-price></div>
+                                                                                {{-- <div>  <x-price price="{{ $item->total }}" /></div> --}}
+
+                                                                            @endforeach
+
+
+                                                                        @else
+
+                                                                        <div class=" flex items-center">NA</div>
+                                                                        <div class=" flex items-center">NA</div>
+
+                                                                    @endif
+
+                                                            @else
+
+                                                             <div class=" flex items-center">No Batch Order issued</div>
+
+                                                        @endisset
+
+                                                @else
+
+                                                    <div class="flex items-center">No Material Request issued</div>
+
+                                            @endisset
+
+
+
+                                    </div>
+
+
+
+                                    {{-- end of grid --}}
+                                </div>
+
+                            @endforeach
                         </div>
+
 
                     @else
 
-                        <div class="emptyData">Sorry!, Material Request Not found</div>
+                        {{-- this will show when there is no material request --}}
+                        <div class="emptyData w-full">Sorryy!, No CM has been issued </div>
 
                     @endif
 
-
-            @endif
-
-            <div class="emptyData">Sorryy!, No Material Request Found </div>
 
         @endisset
 

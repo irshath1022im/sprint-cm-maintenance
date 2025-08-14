@@ -14,7 +14,7 @@ class EquipmentShow extends Component
     public function render()
     {
 
-        $result = Equipment::with(['tags','materialRequest'])
+        $result = Equipment::with(['tags','materialRequest','cmRequests'])
                             ->findOrfail($this->id);
         return view('livewire.admin.equipment-show',['equipment' => $result])
                 ->extends('components.layouts.app');

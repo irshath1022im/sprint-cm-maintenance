@@ -31,7 +31,7 @@
                         logo
                     </div> --}}
 
-                    <div class="w-full">
+                    <div class="w-full ">
                        @component('components.navbar')
 
                        @endcomponent
@@ -39,7 +39,7 @@
 
             </section>
 
-            <section class="p-2">
+            <section class="p-2 relative">
 
                 <div class="w-[95%] mx-auto">
                     @yield('content')

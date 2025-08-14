@@ -15,18 +15,18 @@
     }
 
     .card-header{
-        @apply px-3 py-2  border-b-2;
+        @apply px-2 py-2  border-b-2;
     }
     .card-heading{
-        @apply text-lg  uppercase;
+        @apply   uppercase;
     }
 
     .card-body{
-        @apply bg-slate-50 font-medium px-3 py-2 font-['poppins'] ;
+        @apply bg-slate-50  px-3 py-2 font-['poppins'] ;
     }
 
     .sm-card-group {
-        @apply border rounded-md font-['lato']
+        @apply border rounded-md font-['poppins']
     }
     .sm-card {
         @apply bg-slate-50  border rounded-md font-['poppins']  text-[12px];
@@ -36,7 +36,7 @@
         @apply px-3 py-2  border-b-2;
     }
     .sm-card-heading{
-        @apply text-lg font-bold uppercase  text-[12px];
+        @apply  uppercase  text-[12px];
     }
 
     .sm-card-body{

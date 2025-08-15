@@ -3,12 +3,16 @@
     <div class="card">
         <div class="card-header">
             <div class="card-heading flex justify-between items-center">
-                <span>EQUIPMENT <x-button class="btn btn-info">{{ $equipment->total() }}</x-button></span>
+                {{-- <span>EQUIPMENT <x-button class="btn btn-info">{{ $equipment->total() }}</x-button></span> --}}
                 <x-button class="btn btn-blue">NEW EQUIPMENT</x-button>
             </div>
         </div>
 
         <div class="card-body">
+            <form action="" class="w-[50%] flex justify-center mx-auto sticky top-0">
+                <input type="text" name="" id="" class="form-controll" placeholder="Equipment Name" wire:model.live ="equipmentSearch">
+            </form>
+
             <table class="table">
                 <thead class="table-head">
                     <td class="table-td">IMAGE</td>
@@ -44,8 +48,5 @@
         </div>
     </div>
 
-        <div>
-            {{ $equipment->links() }}
-        </div>
 
 </div>

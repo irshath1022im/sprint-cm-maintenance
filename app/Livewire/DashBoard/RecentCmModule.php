@@ -13,13 +13,12 @@ class RecentCmModule extends Component
 
     public function render()
     {
-        $result = CorrectiveMaintenance::latest('cm_number')
+        $result = CorrectiveMaintenance::latest('id')
                             ->with([
                                     'equipment',
                                     'cmStatus' => function($q){return $q->with('taskStatus');},
                                     'materialRequest'])
-                            ->orderByDesc('id')
-                            ->limit(5)
+                            ->take(5)
                             ->get();
         return view('livewire.dash-board.recent-cm-module',['latestCm' => $result]);
     }

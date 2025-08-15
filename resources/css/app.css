@@ -36,11 +36,11 @@
         @apply px-3 py-2  border-b-2;
     }
     .sm-card-heading{
-        @apply  uppercase  text-[12px];
+        @apply  uppercase;
     }
 
     .sm-card-body{
-        @apply bg-slate-50 font-medium px-3 py-2  text-[12px] ;
+        @apply bg-slate-50 font-medium px-3 py-2 ;
     }
 
     .sm-card-footer{

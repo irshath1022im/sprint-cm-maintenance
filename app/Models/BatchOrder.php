@@ -19,5 +19,9 @@ class BatchOrder extends Model
         return $this->hasMany(BatchOrderItems::class);
     }
 
+    public function batchOrderDocument()
+    {
+        return $this->hasOne(BatchOrderDocument::class);
+    }
 
 }

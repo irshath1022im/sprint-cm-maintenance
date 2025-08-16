@@ -44,6 +44,21 @@
                                                     >ADD ITEMS
                                                 </x-button>
 
+                                                <div>
+
+                                                    <a href="{{ route('uploadBatchOrder.create', ['batch_order_id' => $batch->id, 'cm_id' => $batch->materialRequest->cm_number_id ]) }}" target="_blank">
+                                                       <x-button class="btn btn-blue">upload documetns</x-button>
+                                                    </a>
+
+                                                    @isset($batch->batchOrderDocument)
+
+                                                    <a href="{{Storage::url($batch->batchOrderDocument->path)}}" target="_blank">
+                                                       <x-button class="btn btn-submit">View</x-button> </a>
+                                                    @endisset
+
+                                                </div>
+
+
                                             </div>
                                         </div>
 

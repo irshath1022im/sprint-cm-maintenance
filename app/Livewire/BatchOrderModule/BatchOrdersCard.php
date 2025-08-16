@@ -3,6 +3,7 @@
 namespace App\Livewire\BatchOrderModule;
 
 use App\Models\BatchOrder;
+use App\Models\BatchOrderDocument;
 use App\Models\BatchOrderItems;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
@@ -62,6 +63,8 @@ public function refreshCmShow()
                                         ->with('batchOrder','equipmentTag','sparePart','materialRequestItemLine')
                                         ->get();
     }
+
+
 
      public function render()
      {

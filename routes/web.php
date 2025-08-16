@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BatchOrderReferenceController;
 use App\Livewire\Admin\EquipmentHome;
 use App\Livewire\Admin\EquipmentShow;
 use App\Livewire\Admin\EquipmentTags;
@@ -34,5 +35,6 @@ Route::get('admin/cm/{id}', CmShow::class )->name('admin_cm_show');
 Route::get('admin/meterial_request', MaterialRequestHome::class )->name('admin_meterial_request');
 Route::get('admin/batch_order/create', BatchOrdersCard::class )->name('admin_batch_order_create');
 Route::get('admin/batch_orders', AdminBatchOrderHome::class )->name('admin_batch_orders');
+Route::resource('admin/uploadBatchOrder', BatchOrderReferenceController::class )->names(['upload_batch_order']);
 // Route::get('cm_home', CmIndex::class)->name('cm_index');
 //

@@ -73,7 +73,20 @@
 
 
 
-                <x-button class="btn-submit" wire:click="formSubmit">SUBMIT</x-button>
+
+
+                @if ($formMode == 'edit')
+
+                    <x-button class="btn-submit" wire:click="formEdit">UPDATE</x-button>
+
+                 @else
+
+                  <x-button class="btn-submit" wire:click="formSubmit">SUBMIT</x-button>
+
+                @endif
+
+
+
                 <x-button class="btn-close" wire:click="formClose">CLOSE</x-button>
 
             </div>

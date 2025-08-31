@@ -37,6 +37,12 @@ class CmIndex extends Component
         $this->reset('filterStatus');
     }
 
+    public function cmEditRequest($item)
+    {
+        $this->cmCreateModal = true;
+        $this->dispatch('cmEdit', $item);
+    }
+
     #[Computed()]
     public function cmStatus()
     {

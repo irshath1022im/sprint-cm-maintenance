@@ -50,30 +50,34 @@
 
 
 
-
-
-
              {{-- @dump($cms->links()->paginator) --}}
 
 
                     @if ($cms->count() > 0)
 
                         <div class="grid grid-cols-12 gap-1 w-full border-b uppercase bg-slate-200 p-2 rounded-t-md">
-                            <div class="">#</div>
-                            <div class="">CM NO</div>
-                            <div class=" col-span-1">REQ DATE</div>
+                            <div class="col-span-1">#</div>
+                            <div class="col-span-1">CM NO</div>
+                            <div class="col-span-1">REQ DATE</div>
                             {{-- <div class=" col-span-1 text-center">TECHNICIAN</div> --}}
-                            <div class=" col-span-3 text-center">EQUIPMENT</div>
-                            <div class="">TASK STATUS</div>
-                            <div class=" col-span-3" ></div>
+                            <div class="col-span-3">EQUIPMENT</div>
+                            <div class="col-span-1">TASK STATUS</div>
+                            <div class="col-span-3" ></div>
                         </div>
 
                             @foreach ($cms as $item)
 
+                            {{-- @dump($item->cmStatus) --}}
+
                             <div class="grid grid-cols-12 gap-1 items-center space-y-2 mt-2 uppercase text-sm
-                                @if ( $item->status == 'completed')
-                                        bg-green-200
+                                @isset( $item->cmStatus->task_status_id)
+
+                                    @if ( $item->cmStatus->task_status_id == 6 )
+                                            bg-green-200
                                     @endif
+
+                                @endisset
+
                              ">
 
                                 {{-- cm number section --}}
@@ -99,15 +103,15 @@
                                     </div>
 
 
-                                    <div class=" col-span-1">{{ $item->request_date }}</div>
+                                    <div class="col-span-1">{{ $item->request_date }}</div>
                                     {{-- <div class=" col-span-1 ">{{ $item->technician->name }}</div> --}}
 
 
-                                    <div class=" col-span-3 flex flex-col">
+                                    <div class="col-span-3">
                                         <span class="">
                                             <a href="{{ route('admin_equipment_show',['id' => $item->equipment->id]) }}" target="_blank">
                                                 {{ $item->equipment->equipment}}</a>
-                                            </span>
+                                        </span>
                                         {{-- <div>{{ $item->remarks }}</div> --}}
                                     </div>
 
@@ -127,7 +131,10 @@
                                         <a href="{{ route('admin_cm_show', ['id' => $item->id])}}">
                                             <x-button class="btn btn-blue">VIEW</x-button>
                                         </a>
-                                        <x-button class="btn btn-close">Edit</x-button>
+                                        <x-button
+                                            class="btn btn-close"
+                                            wire:click="cmEditRequest({{ $item }})"
+                                        >Edit</x-button>
                                         {{-- <x-button class="btn btn-close">DELETE</x-button> --}}
 
                                     </section>
@@ -137,7 +144,7 @@
 
                     @else
 
-                    <x-button class="emptyData">NO CM CREATED</x-button>
+                     <x-button class="emptyData">NO CM CREATED</x-button>
 
                     @endif
 

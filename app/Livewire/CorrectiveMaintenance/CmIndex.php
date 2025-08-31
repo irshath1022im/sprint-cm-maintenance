@@ -34,6 +34,7 @@ class CmIndex extends Component
 
     public function updatedSearchByCmNumber()
     {
+         $this->resetPage();
         $this->reset('filterStatus');
     }
 

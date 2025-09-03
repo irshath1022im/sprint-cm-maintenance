@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class CmTaskStatus extends Model
 {
     //
-    protected $fillable = ['cm_number_id','task_status_id'];
+    protected $fillable = ['cm_number_id','task_status_id','date'];
 
     public function cmNumber()
     {

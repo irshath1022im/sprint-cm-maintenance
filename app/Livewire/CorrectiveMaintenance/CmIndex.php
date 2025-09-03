@@ -4,6 +4,7 @@ namespace App\Livewire\CorrectiveMaintenance;
 
 use App\Models\CorrectiveMaintenance;
 use App\Models\TaskStatus;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\On;
@@ -17,6 +18,8 @@ class CmIndex extends Component
     public $filterStatus;
     public $cmCreateModal = false;
     public $searchByCmNumber;
+    public $date1 = '2025-07-01';
+    public $date2;
 
     use WithPagination;
 
@@ -70,13 +73,17 @@ class CmIndex extends Component
                 ->when($this->searchByCmNumber, function($query){
                     return $query->where('cm_number', 'LIKE', '%'.$this->searchByCmNumber.'%');
                 })
-                    ->with([
+                ->when($this->date1, function($query){
+                    return $query->where('request_date','>', $this->date1)
+                                ->orWhere('request_date','<', $this->date2);
+                })
+                ->with([
                         'technician',
                         'equipment',
                         'cmStatus' => function($q){return $q->with('taskStatus');}
                         ])
-                    ->orderBy('cm_number', 'desc')
-                    ->paginate(8);
+                ->orderBy('cm_number', 'desc')
+                ->paginate(8);
 
         return view('livewire.corrective-maintenance.cm-index',['cms' => $result])
                 ->extends('components.layouts.app');

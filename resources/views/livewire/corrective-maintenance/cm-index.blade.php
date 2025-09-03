@@ -61,7 +61,8 @@
                             <div class="col-span-1">REQ DATE</div>
                             {{-- <div class=" col-span-1 text-center">TECHNICIAN</div> --}}
                             <div class="col-span-3">EQUIPMENT</div>
-                            <div class="col-span-1">TASK STATUS</div>
+                            <div class="col-span-3">TASK STATUS</div>
+                            <div class="col-span-1">Days Taken</div>
                             <div class="col-span-3" ></div>
                         </div>
 
@@ -119,16 +120,26 @@
 
                                     @isset($item->cmStatus)
 
-                                        <div class=" col-span-3">{{ $item->cmStatus->taskStatus->task_status }}</div>
+                                    @php
+
+
+                                        $requestDate = Carbon\Carbon::parse($item->request_date);
+                                        $completionDate = Carbon\Carbon::parse($item->cmStatus->date);
+                                    @endphp
+
+                                        <div class="col-span-3">{{ $item->cmStatus->taskStatus->task_status }}</div>
+                                        <div class="col-span-1">{{ $requestDate->diffInDays($completionDate) }}</div>
 
                                         @else
-                                          <div class=" col-span-3">NA</div>
+                                          <div class="col-span-3">NA</div>
 
                                     @endisset
 
+
+
                                     <section class="items-center p-2 flex">
 
-                                        <a href="{{ route('admin_cm_show', ['id' => $item->id])}}">
+                                        <a href="{{ route('admin_cm_show', ['id' => $item->id])}}" target="_blank">
                                             <x-button class="btn btn-blue">VIEW</x-button>
                                         </a>
                                         <x-button

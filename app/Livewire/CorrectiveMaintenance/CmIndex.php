@@ -18,8 +18,6 @@ class CmIndex extends Component
     public $filterStatus;
     public $cmCreateModal = false;
     public $searchByCmNumber;
-    public $date1 = '2025-07-01';
-    public $date2;
 
     use WithPagination;
 
@@ -73,10 +71,7 @@ class CmIndex extends Component
                 ->when($this->searchByCmNumber, function($query){
                     return $query->where('cm_number', 'LIKE', '%'.$this->searchByCmNumber.'%');
                 })
-                ->when($this->date1, function($query){
-                    return $query->where('request_date','>', $this->date1)
-                                ->orWhere('request_date','<', $this->date2);
-                })
+
                 ->with([
                         'technician',
                         'equipment',

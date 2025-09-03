@@ -53,7 +53,7 @@
              {{-- @dump($cms->links()->paginator) --}}
 
 
-                    @if ($cms->count() > 0)
+                    @if ($this->CmCollections->count() > 0)
 
                         <div class="grid grid-cols-12 gap-1 w-full border-b uppercase bg-slate-200 p-2 rounded-t-md">
                             <div class="col-span-1">#</div>
@@ -66,7 +66,7 @@
                             <div class="col-span-3" ></div>
                         </div>
 
-                            @foreach ($cms as $item)
+                            @foreach ($this->CmCollections as $item)
 
                             {{-- @dump($item->cmStatus) --}}
 
@@ -84,14 +84,14 @@
                                 {{-- cm number section --}}
 
                                 @php
-                                    if($cms->links()->paginator->currentPage() == 1) {
+                                    if($this->CmCollections->links()->paginator->currentPage() == 1) {
                                         $pageNumber = 1;
                                         $goneItems = 0;
 
                                     } else{
                                         //  $goneItems = 8*1;
-                                         $pageNumber = $cms->links()->paginator->currentPage();
-                                         $goneItems = $cms->links()->paginator->perPage() * ($cms->links()->paginator->currentPage()-1);
+                                         $pageNumber = $this->CmCollections->links()->paginator->currentPage();
+                                         $goneItems = $this->CmCollections->links()->paginator->perPage() * ($this->CmCollections->links()->paginator->currentPage()-1);
                                     }
                                 @endphp
 
@@ -137,7 +137,7 @@
 
 
 
-                                    <section class="items-center p-2 flex">
+                                    <section class="items-center p-2 flex print:hidden">
 
                                         <a href="{{ route('admin_cm_show', ['id' => $item->id])}}" target="_blank">
                                             <x-button class="btn btn-blue">VIEW</x-button>
@@ -161,10 +161,9 @@
 
             </ul>
 
-            <div class="mt-2">
-                {{ $cms->links() }}
+         <div class="mt-2">
+                {{ $this->CmCollections->links() }}
             </div>
-
 
 
         </div>

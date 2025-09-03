@@ -25,7 +25,7 @@
 
         <main class="w-full max-w-full mx-auto  p-2">
 
-            <section class=" p-2 flex">
+            <section class=" p-2 flex print:hidden">
 
                     {{-- <div class="w-full max-w-[20%] h-40 bg-slate-400">
                         logo

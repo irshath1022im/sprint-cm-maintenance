@@ -58,10 +58,10 @@ class CmIndex extends Component
         // dd($request->task_status_id);
     }
 
-    public function render()
+    #[Computed]
+    public function CmCollections()
     {
-
-        $result = CorrectiveMaintenance::query()
+        return CorrectiveMaintenance::query()
 
                 ->when($this->filterStatus, function($q){
                         return $q->withWhereHas('cmStatus', function($query){
@@ -78,9 +78,14 @@ class CmIndex extends Component
                         'cmStatus' => function($q){return $q->with('taskStatus');}
                         ])
                 ->orderBy('cm_number', 'desc')
-                ->paginate(8);
+                ->paginate(20);
 
-        return view('livewire.corrective-maintenance.cm-index',['cms' => $result])
+    }
+
+    public function render()
+    {
+
+        return view('livewire.corrective-maintenance.cm-index')
                 ->extends('components.layouts.app');
     }
 }

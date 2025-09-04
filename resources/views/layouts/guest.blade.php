@@ -15,11 +15,11 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex sm:justify-center items-center pt-6 sm:pt-0">
-            <div>
+        <div class="min-h-screen md:flex md:justify-center items-center mx-auto ">
+            <div class="p-2">
 
                     {{-- <x-application-logo class="w-20 h-20 fill-current text-gray-500" /> --}}
-                    <img src="/images/logo.jpg" class="w-[75%]" />
+                    <img src="/images/logo.jpg" class="w-[70%] text-center mx-auto" />
 
 
             </div>

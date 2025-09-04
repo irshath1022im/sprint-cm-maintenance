@@ -34,6 +34,11 @@ class CorrectiveMaintenance extends Model
         return $this->belongsTo(Equipment::class);
     }
 
+    public function cmRelatedAssets()
+    {
+        return $this->hasMany(CmEquipmentTag::class,'cm_number_id');
+    }
+
     public function serviceRequest()
     {
         return $this->hasMany(ServiceRequest::class,'cm_number_id');

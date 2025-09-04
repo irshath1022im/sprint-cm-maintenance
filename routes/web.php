@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\BatchOrderReferenceController;
+use App\Http\Controllers\CmExports;
+use App\Http\Controllers\ConvertReport;
 use App\Livewire\Admin\EquipmentHome;
 use App\Livewire\Admin\EquipmentShow;
 use App\Livewire\Admin\EquipmentTags;
@@ -15,7 +17,10 @@ use App\Livewire\CorrectiveMaintenance\CmIndex;
 use App\Livewire\CorrectiveMaintenance\CmShow;
 use App\Livewire\DashBoard\DashBoardHome;
 use App\Livewire\Forms\CmCreate;
+use ConversionTools\ConversionClient;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Maatwebsite\Excel\Excel;
 
 // Route::get('/', function () {
 //     return view('home');
@@ -38,3 +43,19 @@ Route::get('admin/batch_orders', AdminBatchOrderHome::class )->name('admin_batch
 Route::resource('admin/uploadBatchOrder', BatchOrderReferenceController::class )->names(['upload_batch_order']);
 // Route::get('cm_home', CmIndex::class)->name('cm_index');
 //
+
+
+
+Route::get('reports', [CmExports::class, 'view']);
+Route::get('reports/export', [CmExports::class, 'export']);
+
+Route::resource('convert', ConvertReport::class)->names('convertReport');
+
+
+// Route::post('convertResult', function(Request $request){
+
+//     return $request;
+
+// }
+// )->name('convertResult');
+

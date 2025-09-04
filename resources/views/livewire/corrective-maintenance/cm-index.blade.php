@@ -22,7 +22,10 @@
             <div class="card-heading flex justify-between items-center">
                 <div>CORRECTIVE MAINTENANCE LISTS</div>
 
-                    <x-button class="btn btn-blue" x-on:click="$wire.set('cmCreateModal', true)">NEW CM</x-button>
+                @auth
+
+                <x-button class="btn btn-blue" x-on:click="$wire.set('cmCreateModal', true)">NEW CM</x-button>
+                @endauth
 
             </div>
         </div>
@@ -142,10 +145,14 @@
                                         <a href="{{ route('admin_cm_show', ['id' => $item->id])}}" target="_blank">
                                             <x-button class="btn btn-blue">VIEW</x-button>
                                         </a>
+
+                                        @auth
+
                                         <x-button
                                             class="btn btn-close"
                                             wire:click="cmEditRequest({{ $item }})"
                                         >Edit</x-button>
+                                        @endauth
                                         {{-- <x-button class="btn btn-close">DELETE</x-button> --}}
 
                                     </section>

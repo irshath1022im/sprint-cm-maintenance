@@ -32,8 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/', DashBoardHome::class)->middleware(['auth', 'verified'])->name('dashBoard');
-    Route::get('/cmHome', CmIndex::class)->name('cmHome');
+    Route::get('/dashBoard', DashBoardHome::class)->name('dashBoard');
+    // Route::get('/cmHome', CmIndex::class)->name('cmHome');
     Route::get('admin/technician', TechnicianHome::class)->name('admin_technician');
     Route::get('admin/equipment', EquipmentHome::class)->name('admin_equipment');
     Route::get('admin/equipment/{id}', EquipmentShow::class)->name('admin_equipment_show');
@@ -50,3 +50,5 @@ Route::middleware('auth')->group(function () {
 // Route::get('cm_home', CmIndex::class)->name('cm_index');
 //
 require __DIR__.'/auth.php';
+
+ Route::get('/', CmIndex::class)->name('cmHome');

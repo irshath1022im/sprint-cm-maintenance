@@ -3,6 +3,7 @@
         <title>SPRINT TRADING</title>
           @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+
     </head>
 
       <style>
@@ -26,18 +27,12 @@
 
             <section class=" p-2 flex print:hidden">
 
-                    {{-- <div class="w-full max-w-[20%] h-40 bg-slate-400">
-                        logo
-                    </div> --}}
-
-
 
                     <div class="w-full ">
                        @component('components.navbar')
 
                        @endcomponent
 
-                         {{-- @include('layouts.navigation') --}}
                     </div>
 
             </section>
@@ -52,7 +47,6 @@
 
 
         </main>
-
 
 
     </body>

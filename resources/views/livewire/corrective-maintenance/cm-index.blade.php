@@ -24,13 +24,21 @@
 
                 @auth
 
-                <x-button class="btn btn-blue" x-on:click="$wire.set('cmCreateModal', true)">NEW CM</x-button>
+                @can('create', App\Models\CorrectiveMaintenance::class)
+
+                    <x-button class="btn btn-blue" x-on:click="$wire.set('cmCreateModal', true)">NEW CM</x-button>
+
+                @endcan
+
+
                 @endauth
 
             </div>
         </div>
 
         <div class="card-body">
+
+
 
             <div class="flex items-center justify-between">
 
@@ -58,7 +66,7 @@
 
                     @if ($this->CmCollections->count() > 0)
 
-                        <div class="grid grid-cols-12 gap-1 w-full border-b uppercase bg-slate-200 p-2 rounded-t-md">
+                        <div class="grid grid-cols-12 gap-1 w-full border-b uppercase bg-slate-200 p-2 rounded-t-md xs:text-[10px] md:text-base">
                             <div class="col-span-1">#</div>
                             <div class="col-span-1">CM NO</div>
                             <div class="col-span-1">REQ DATE</div>
@@ -73,7 +81,7 @@
 
                             {{-- @dump($item->cmStatus) --}}
 
-                            <div class="grid grid-cols-12 gap-1 items-center space-y-2 mt-2 uppercase text-sm
+                            <div class="grid grid-cols-12 gap-1 items-center space-y-2 mt-2 uppercase xs:text-[10px] sm:text-sm  md:text-base
                                 @isset( $item->cmStatus->task_status_id)
 
                                     @if ( $item->cmStatus->task_status_id == 6 )
@@ -140,22 +148,33 @@
 
 
 
-                                    <section class="items-center p-2 flex print:hidden">
 
-                                        <a href="{{ route('admin_cm_show', ['id' => $item->id])}}" target="_blank">
-                                            <x-button class="btn btn-blue">VIEW</x-button>
-                                        </a>
+                                        <section class="items-center p-2 flex print:hidden">
 
-                                        @auth
+                                            <a href="{{ route('admin_cm_show', ['id' => $item->id])}}" target="_blank">
+                                                <x-button class="btn btn-blue">VIEW</x-button>
+                                            </a>
 
-                                        <x-button
-                                            class="btn btn-close"
-                                            wire:click="cmEditRequest({{ $item }})"
-                                        >Edit</x-button>
-                                        @endauth
-                                        {{-- <x-button class="btn btn-close">DELETE</x-button> --}}
+                                     @auth
 
-                                    </section>
+
+                                            @can('update', $item)
+
+                                                <x-button
+                                                    class="btn btn-close"
+                                                    wire:click="cmEditRequest({{ $item }})"
+                                                >Edit</x-button>
+                                            @endcan
+
+
+
+
+                                    @endauth
+                                            {{-- <x-button class="btn btn-close">DELETE</x-button> --}}
+
+                                        </section>
+
+
                             </div>
 
                             @endforeach
@@ -180,19 +199,26 @@
 
 
 
-
-
-
-
-
-
 <div class="modal"
     x-show="cmCreateModal"
 >
     <div class="modal-overlay">
         <div class="modal-body">
             <div class="modal-content">
-                @livewire('forms.cm-create')
+                @can('create',App\Models\CorrectiveMaintenance::class)
+
+                    @livewire('forms.cm-create')
+
+                    @else
+
+                    <div class="emptyData">Sorry!, You Don't have Permission to Edit</div>
+                @endcan
+
+                {{-- @else
+
+
+
+                @endif --}}
             </div>
         </div>
     </div>

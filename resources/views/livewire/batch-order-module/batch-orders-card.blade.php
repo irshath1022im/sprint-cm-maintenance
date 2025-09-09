@@ -38,17 +38,25 @@
                                                     @endisset
                                                 </div>
 
-                                                 <x-button class="btn btn-blue"
+                                                @can('create', App\Models\BatchOrderItems::class)
+
+                                                    <x-button class="btn btn-blue"
                                                         x-on:click="$wire.addBatchItemsModal=true"
                                                         wire:click="batchOrderMaterialRequest({{ $batch }})"
                                                     >ADD ITEMS
                                                 </x-button>
+                                                @endcan
+
 
                                                 <div>
 
-                                                    <a href="{{ route('uploadBatchOrder.create', ['batch_order_id' => $batch->id, 'cm_id' => $batch->materialRequest->cm_number_id ]) }}" target="_blank">
-                                                       <x-button class="btn btn-blue">upload documetns</x-button>
-                                                    </a>
+                                                      @can('create', App\Models\BatchOrderItems::class)
+
+
+                                                        <a href="{{ route('uploadBatchOrder.create', ['batch_order_id' => $batch->id, 'cm_id' => $batch->materialRequest->cm_number_id ]) }}" target="_blank">
+                                                        <x-button class="btn btn-blue">upload documetns</x-button>
+                                                        </a>
+                                                    @endcan
 
                                                     @isset($batch->batchOrderDocument)
 

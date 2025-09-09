@@ -7,6 +7,7 @@
         <x-spinner></x-spinner>
     </div>
 
+
     <div class="flex justify-center ">
 
         <div class="form-group">
@@ -31,10 +32,16 @@
             <x-form-error field="date"></x-form-error>
         </div>
 
-        <div class="form-group">
 
-            <x-button class="btn btn-submit" wire:click="taskChange">UPDATE</x-button>
-        </div>
+        @can('create', App\Models\CorrectiveMaintenance::class )
+
+            <div class="form-group">
+
+                <x-button class="btn btn-submit" wire:click="taskChange">UPDATE</x-button>
+            </div>
+
+        @endcan
+
     </div>
 
 

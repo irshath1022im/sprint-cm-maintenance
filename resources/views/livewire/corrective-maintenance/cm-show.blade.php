@@ -6,17 +6,19 @@
     {{-- @dump($cmStatus) --}}
         <div class="card bg-slate-300 border border-orange-200">
                 <div class="card-header">
-                    <div class="card-heading flex justify-between">
+                    <div class="card-heading flex xs:flex-col sm:flex-row sm:justify-between">
 
-                        <div>
+                        <div class="">
                             CM NO <x-button class="btn btn-info">{{ $cm->cm_number}}</x-button>
                         </div>
 
+                        <div class="">
 
-                    @livewire('forms.task-status-change-form',['cm' => $cm])
+                            @livewire('forms.task-status-change-form',['cm' => $cm])
+                        </div>
 
 
-                        <div>
+                        <div class="">
                              <span>
                                 <x-button class="btn border-orange-400">{{ $cm->request_date }}</x-button>
                             </span>

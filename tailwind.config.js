@@ -1,4 +1,3 @@
-import defaultTheme from 'tailwindcss/defaultTheme';
 import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
@@ -14,6 +13,10 @@ export default {
 
     theme: {
         extend: {
+              screens: {
+                         'xs' : '200px' // => @media (min-width: 200px) { ... }
+                    },
+
                fontFamily: {
                 display: 'poppins',
             },

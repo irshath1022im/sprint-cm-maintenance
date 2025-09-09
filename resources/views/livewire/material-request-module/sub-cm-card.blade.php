@@ -14,9 +14,12 @@
     <div class="card text-[12px] bg-green-100 mt-2">
         <div class="card-header">
             <div class="card-heading">SUB CMS
-                <x-button class="btn btn-blue"
-                    x-on:click="$wire.createNewSubCmModal=true"
-                >NEW SUB CM</x-button>
+
+                @can('create', App\Models\MaterialRequest::class )
+                    <x-button class="btn btn-blue"
+                        x-on:click="$wire.createNewSubCmModal=true"
+                    >NEW SUB CM</x-button>
+                @endcan
             </div>
         </div>
 
@@ -60,10 +63,12 @@
                                             </div>
 
                                             <div>
-                                                <x-button class="btn btn-blue"
 
-                                                wire:click="addPartsToRequest({{ $met_request }})"
-                                                >ADD SPARE PARTS</x-button>
+                                                @can('create', App\Models\MaterialRequestItems::class)
+
+                                                 <x-button class="btn btn-blue"  wire:click="addPartsToRequest({{ $met_request }})">ADD SPARE PARTS</x-button>
+
+                                                @endcan
                                             </div>
 
                                         </div>
@@ -85,8 +90,8 @@
 
                                                 <div class="w-full">
 
-                                                    <div class="w-full">
-                                                        <table class=" w-full ml-12 text-[13px]">
+                                                    <div class="w-full table-overflow">
+                                                        <table class=" w-full text-[13px]">
                                                             <thead class="table-head">
                                                                 <th class="table-th">#</th>
                                                                 <th class="table-th">EQUIPMENT NAME</th>
@@ -107,12 +112,16 @@
                                                                         <td class="text-xs p-2">{{ $item->sparePart->spare_part_number }}</td>
                                                                         <td class="text-xs p-2">{{ $item->sparePart->spare_part_name }}</td>
                                                                         <td class="text-xs p-2">{{ $item->qty }}</td>
-                                                                        <td class="text-xs p-2">
-                                                                            <x-button type="button" class="btn btn-close"
-                                                                                wire:click="deletePartsLine({{ $item->id }})"
-                                                                                wire:confirm
-                                                                            >Delete</x-button>
-                                                                        </td>
+
+                                                                        @can('delete', $item)
+
+                                                                            <td class="text-xs p-2">
+                                                                                <x-button type="button" class="btn btn-close"
+                                                                                    wire:click="deletePartsLine({{ $item->id }})"
+                                                                                    wire:confirm
+                                                                                >Delete</x-button>
+                                                                            </td>
+                                                                        @endcan
                                                                     </tr>
                                                                 @endforeach
 
@@ -140,11 +149,17 @@
 
                     @else
 
-                        <div class="emptyData">Sorry!, Batch Order Not Received Yet <div>
-                                                    <x-button class="btn btn-blue"
-                                                        wire:click="newBatchOrder({{ $met_request }})"
-                                                    >Creat BatchOrder</x-button>
-                                            </div></div>
+
+
+                        <div class="emptyData">Please Issue the Batch Order<div>
+
+                    @can('create', App\Models\BatchOrder::class )
+
+                        <x-button class="btn btn-blue"
+                            wire:click="newBatchOrder({{ $met_request }})"
+                        >Creat BatchOrder</x-button>
+                    @endcan
+                           </div>
 
                     @endisset
 

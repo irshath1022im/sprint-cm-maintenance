@@ -22,7 +22,7 @@
     }
 
     .card-body{
-        @apply bg-slate-50  px-3 py-2 font-['poppins'] ;
+        @apply bg-slate-50  px-3 py-2 font-['poppins'] xs:text-[10px] sm:text-sm md:text-base
     }
 
     .sm-card-group {
@@ -55,19 +55,19 @@
 @layer components {
 
     .modal {
-        @apply fixed inset-0 overflow-y-auto;
+        @apply fixed inset-0 overflow-y-auto xs:text-[10px] sm:text-sm md:text-base
     }
 
     .modal-overlay{
-        @apply fixed inset-0 bg-black bg-opacity-50;
+        @apply fixed inset-0 bg-black bg-opacity-50 xs:text-[10px] sm:text-sm md:text-base
     }
 
     .modal-body{
-        @apply relative flex  items-center justify-center p-4 ;
+        @apply relative flex  items-center justify-center p-4 xs:text-[10px] sm:text-sm md:text-base
     }
 
     .modal-content{
-        @apply relative w-full max-w-6xl overflow-y-auto rounded-xl bg-white p-12 shadow-lg mt-16;
+        @apply relative w-full max-w-6xl overflow-y-auto rounded-xl bg-white p-12 shadow-lg mt-16 xs:text-[10px] sm:text-sm md:text-base
     }
 
 }
@@ -75,35 +75,35 @@
 
 @layer components{
     .form-controll{
-        @apply w-full my-2 rounded-md shadow-sm border border-gray-200 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50;
+        @apply w-full my-2 rounded-md shadow-sm border border-gray-200 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 xs:text-[10px] sm:text-sm md:text-base
     }
 
     .form-label{
-        @apply p-2 bg-slate-300 font-['poppins']  rounded-md font-bold
+        @apply p-2 bg-slate-300 font-['poppins']  rounded-md font-bold xs:text-[10px] sm:text-sm md:text-base
     }
 
     .btn-close {
-        @apply  bg-red-700 hover:bg-red-900 hover:text-white text-white
+        @apply  bg-red-700 hover:bg-red-900 hover:text-white text-white xs:text-[10px] sm:text-sm md:text-base
     }
 
     .btn-submit {
-        @apply  bg-green-500 hover:bg-green-900 hover:text-white text-white
+        @apply  bg-green-500 hover:bg-green-900 hover:text-white text-white xs:text-[10px] sm:text-sm md:text-base
     }
 
     .btn-update {
-        @apply bg-orange-500 hover:bg-orange-800 hover:text-white text-white
+        @apply bg-orange-500 hover:bg-orange-800 hover:text-white text-white  xs:text-[10px] sm:text-sm md:text-base
     }
     .btn-info {
-        @apply bg-orange-600 hover:bg-orange-900 text-white hover:text-white
+        @apply bg-orange-600 hover:bg-orange-900 text-white hover:text-white xs:text-[10px] sm:text-sm md:text-base
     }
     .btn-blue {
-        @apply bg-blue-600 hover:bg-blue-900 text-white hover:text-white
+        @apply bg-blue-600 hover:bg-blue-900 text-white hover:text-white xs:text-[10px] sm:text-sm md:text-base
     }
      .btn-date {
-        @apply bg-blue-600 hover:bg-blue-900 text-white hover:text-white
+        @apply bg-blue-600 hover:bg-blue-900 text-white hover:text-white xs:text-[10px] sm:text-sm md:text-base
     }
     .form-group {
-        @apply p-3
+        @apply p-3 xs:text-[10px] sm:text-sm md:text-base
     }
 
 }
@@ -116,25 +116,25 @@
     }
 
     .table {
-        @apply w-full font-['poppins']
+        @apply w-full font-['poppins'] text-[10px] xs:text-[10px] sm:text-sm md:text-base
     }
 
     .table-md {
         @apply w-[80%]
     }
     .table-head{
-        @apply bg-gray-50 border-b-2 border-gray-200 font-['poppins']
+        @apply bg-gray-50 border-b-2 border-gray-200 font-['poppins'] xs:text-[10px] sm:text-sm md:text-base
     }
 
     .table-th{
-        @apply text-left tracking-wide whitespace-nowrap font-['poppins']
+        @apply text-left tracking-wide whitespace-nowrap font-['poppins'] xs:text-[10px] sm:text-sm md:text-base
     }
 
     .table-tr{
-        @apply uppercase divide-y font-['poppins']
+        @apply uppercase divide-y font-['poppins'] xs:text-[10px] sm:text-sm md:text-base
     }
 
     .table-td{
-        @apply px-2 py-3 tracking-wide bg-slate-50 font-['poppins'] whitespace-nowrap sm:text-xs md:text-base
+        @apply px-2 py-3 tracking-wide bg-slate-50 font-['poppins'] whitespace-nowrap xs:text-[10px] sm:text-sm md:text-base
     }
 }

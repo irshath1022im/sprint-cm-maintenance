@@ -1,6 +1,7 @@
 <html>
     <head>
         <title>SPRINT TRADING</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 
@@ -37,9 +38,9 @@
 
             </section>
 
-            <section class="p-2 relative">
+            <section class="relative sm:p-2">
 
-                <div class="w-[95%] mx-auto">
+                <div class="w-full mx-auto sm:w-full text-[12px] sm:text-sm md:text-base">
                     @yield('content')
                  </div>
 

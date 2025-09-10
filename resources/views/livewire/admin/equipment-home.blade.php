@@ -33,10 +33,14 @@
                                 <td class="table-td"><a href="{{ route('admin_equipment_show',['id'=>$item->id]) }}">{{ $item->equipment }}</a></td>
                                 <td class="table-td">{{ $item->tags->count() }}</td>
                                 <td class="table-td">{{ $item->remark }}</td>
-                                <td class="table-td flex justify-end">
-                                    <x-button class="btn btn-blue">Edit</x-button>
-                                    <x-button class="btn btn-close">Delete</x-button>
-                                </td>
+
+                                @can('update', $item)
+
+                                    <td class="table-td flex justify-end">
+                                        <x-button class="btn btn-blue">Edit</x-button>
+                                        <x-button class="btn btn-close">Delete</x-button>
+                                    </td>
+                                @endcan
                             </tr>
 
                         @endforeach

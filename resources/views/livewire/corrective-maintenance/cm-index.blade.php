@@ -14,7 +14,7 @@
 
 {{-- @dump($this->cmStatus) --}}
 
-    <x-success></x-success>
+    {{-- <x-success></x-success> --}}
 
 
     <div class="card">
@@ -66,7 +66,7 @@
 
                     @if ($this->CmCollections->count() > 0)
 
-                        <div class="grid grid-cols-12 gap-1 w-full border-b uppercase bg-slate-200 p-2 rounded-t-md xs:text-[10px] md:text-base">
+                        <div class="grid grid-cols-12 gap-1 w-full border-b uppercase bg-slate-200 p-2 rounded-t-md xs:text-[10px] md:text-[14px]">
                             <div class="col-span-1">#</div>
                             <div class="col-span-1">CM NO</div>
                             <div class="col-span-1">REQ DATE</div>
@@ -81,7 +81,7 @@
 
                             {{-- @dump($item->cmStatus) --}}
 
-                            <div class="grid grid-cols-12 gap-1 items-center space-y-2 mt-2 uppercase xs:text-[10px] sm:text-sm  md:text-base
+                            <div class="grid grid-cols-12 gap-1 items-center space-y-2 mt-2 uppercase xs:text-[10px] sm:text-sm  md:text-[14px]
                                 @isset( $item->cmStatus->task_status_id)
 
                                     @if ( $item->cmStatus->task_status_id == 6 )

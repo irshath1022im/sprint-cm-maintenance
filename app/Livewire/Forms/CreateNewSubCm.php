@@ -2,8 +2,11 @@
 
 namespace App\Livewire\Forms;
 
+use App\Livewire\MaterialRequestModule\SubCmCard;
 use App\Models\CmTaskStatus;
 use App\Models\MaterialRequest;
+use Illuminate\Support\Facades\Validator;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Validate;
 
 use Livewire\Component;
@@ -12,57 +15,104 @@ class CreateNewSubCm extends Component
 {
 
     public $cm;
+    public $editMode = false;
+    public $editSubCm;
 
-     #[Validate('required|unique:material_requests,sub_cm')]
     public $sub_cm;
-
-
-    #[Validate('required')]
     public $date;
-
-     #[Validate('required')]
     public $expected_date;
+
+    #[On('subCmEditRequestDispatch')]
+    public function subCmEditRequestDispatch($item)
+    {
+        $this->sub_cm = $item['sub_cm'];
+        $this->date = $item['date'];
+        $this->expected_date = $item['expected_date'];
+        $this->editMode = true;
+        $this->editSubCm = $item['id'];
+    }
 
 
      public function formSave()
     {
 
-        // CmTaskStatus::where('cm_number_id', $this->cm->id)->update(['task_status_id' => 2] );
+       $this->resetErrorBag();
 
-        $validated = $this->validate();
+        $validated = Validator::make(
+            // Data to validate...
+            [
+                'sub_cm' => $this->sub_cm,
+                'date' => $this->date,
+                'expected_date' =>  $this->expected_date,
+                'cm_number_id' => $this->cm->id,
+                'status' => null,
+                 'remarks'=> null
 
-        $formData = [
-            'cm_number_id' => $this->cm->id,
-            // 'equipment_tag_id' => $this->cm->equipment_tag_id,
-            'status' => null,
-            'remarks'=> null
-        ];
+            ],
 
-        $data = $validated + $formData;
+            // Validation rules to apply...
+            [
+                'sub_cm' => 'required|unique:material_requests,sub_cm,'.$this->editSubCm.'',
+                'date' => 'required|date|before:'.$this->expected_date.'',
+                'expected_date' => 'required|date|after:'.$this->date.'',
+                'cm_number_id' =>'',
+                'status' => '',
+                'remarks'=> '',
+            ],
 
-        MaterialRequest::create($data);
+            // Custom validation messages...
+         )->validate();
+
+        MaterialRequest::create($validated);
 
         // once sub task / material request is done, updte the cmStatus
 
-        CmTaskStatus::where('cm_number_id', $this->cm->id)->update(['task_status_id' => 2] );
-            $this->dispatch('taskStatusChangeRequest');
+        CmTaskStatus::where('cm_number_id', $this->cm->id)->update(['task_status_id' => 3] );
 
-
-        // $result= SparePart::create($validated);
-        $this->resetExcept('cm');
         session()->flash('created', 'New SUB CM has been Generated');
 
-        //add the spare parts to spare part table
+           $this->resetExcept('cm');
+    }
+
+    public function formUpdate()
+    {
+        // $validated = $this->validate();
+         $this->resetErrorBag();
+
+         $validated = Validator::make(
+            // Data to validate...
+            [
+                'sub_cm' => $this->sub_cm,
+                'date' => $this->date,
+                'expected_date' =>  $this->expected_date,
+
+            ],
+
+            // Validation rules to apply...
+            [
+                'sub_cm' => 'required|unique:material_requests,sub_cm,'.$this->editSubCm.'',
+                'date' => 'required|date|before:'.$this->expected_date.'',
+                'expected_date' => 'required|date|after:'.$this->date.'',
+            ],
+
+            // Custom validation messages...
+         )->validate();
+
+         MaterialRequest::find($this->editSubCm)->update($validated);
+
+         session()->flash('updated', 'SUB CM has been Updated');
 
 
-        //assign this part to cm for next usage
+
 
     }
 
-    public function formClose()
+    public function formCloseSubCm()
     {
     $this->resetErrorBag();
-    $this->dispatch('createNewSubCmModal');
+    // $this->dispatch('createNewSubCmModal');
+    $this->resetExcept('cm');
+        redirect()->route('admin_cm_show', ['id' => $this->cm->id]);
     }
 
     public function render()

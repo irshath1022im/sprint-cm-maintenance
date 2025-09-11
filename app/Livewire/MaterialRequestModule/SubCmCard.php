@@ -6,6 +6,7 @@ use App\Models\BatchOrderItems;
 use App\Models\CmEquipmentTag;
 use App\Models\MaterialRequest;
 use App\Models\MaterialRequestItems;
+use Hamcrest\Core\IsNot;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -21,7 +22,7 @@ class SubCmCard extends Component
     #[On('createNewSubCmModal')]
     public function createNewSubCmModal()
     {
-        $this->createNewSubCmModal = false;
+        // $this->createNewSubCmModal = false;
     }
 
     #[On('requestItemsModalClose')]
@@ -42,6 +43,39 @@ class SubCmCard extends Component
          $this->requestItemsModal = true;
     }
 
+    public function subCmEditRequest($item)
+    {
+        $this->createNewSubCmModal = true;
+        $this->dispatch('subCmEditRequestDispatch', $item);
+    }
+
+    public function deleteSubTask($mr)
+    {
+
+        // dd($mr);
+
+        // dd(count($mr['material_request_items']));
+
+        //    $query = MaterialRequest::find($mr->id);
+
+        if(count($mr['material_request_items']) > 0 )
+        {
+            // return false;
+              $this->js('mrDeleteStatus');
+        }elseif($mr['batch_order'] !== null){
+
+                $this->js('mrDeleteStatus');
+        }
+        else {
+
+            MaterialRequest::find($mr['id'])->delete();
+            // session()->flash('updated', 'updated');
+            redirect()->route('admin_cm_show', ['id' => $this->cm->id]);
+        }
+    }
+
+
+
     public function deletePartsLine($lineId)
     {
         //before delete, check the this item has batch Order or not
@@ -54,6 +88,7 @@ class SubCmCard extends Component
         }else{
 
             MaterialRequestItems::find($lineId)->Delete();
+
         }
         // session()->flash('Deleted', 'Spare Parts has been Deleted from Sub Cm');
     }

@@ -37,7 +37,7 @@ class MaterialRequestPolicy
      */
     public function update(User $user, MaterialRequest $materialRequest): bool
     {
-        return false;
+        return $user->is_admin || $user->is_moderator;
     }
 
     /**

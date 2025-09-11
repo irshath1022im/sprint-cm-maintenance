@@ -22,52 +22,52 @@
     }
 
     .card-body{
-        @apply bg-slate-50  px-3 py-2 font-['poppins'] xs:text-[10px] sm:text-sm md:text-base
+        @apply bg-slate-50  px-3 py-2 font-['poppins'] xs:text-[10px] sm:text-[12px] md:text-[14px]
     }
 
     .sm-card-group {
         @apply border rounded-md font-['poppins']
     }
     .sm-card {
-        @apply bg-slate-50  border rounded-md font-['poppins']  text-[12px];
+        @apply bg-slate-50  border rounded-md font-['poppins']  text-[12px] md:text-[14px];
     }
 
     .sm-card-header{
-        @apply px-3 py-2  border-b-2;
+        @apply px-3 py-2  border-b-2 md:text-[14px];
     }
     .sm-card-heading{
-        @apply  uppercase;
+        @apply  uppercase md:text-[14px];
     }
 
     .sm-card-body{
-        @apply bg-slate-50 font-medium px-3 py-2 ;
+        @apply bg-slate-50 font-medium px-3 py-2 md:text-[14px];
     }
 
     .sm-card-footer{
-        @apply font-semibold px-3 py-2 border-2 rounded-md;
+        @apply font-semibold px-3 py-2 border-2 rounded-md md:text-[14px];
     }
 
     .emptyData {
-        @apply p-2 bg-blue-200 rounded-md m-2 text-sm uppercase
+        @apply p-2 bg-blue-200 rounded-md m-2 text-sm uppercase md:text-[14px]
     }
 }
 
 @layer components {
 
     .modal {
-        @apply fixed inset-0 overflow-y-auto xs:text-[10px] sm:text-sm md:text-base
+        @apply fixed inset-0 overflow-y-auto xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
     .modal-overlay{
-        @apply fixed inset-0 bg-black bg-opacity-50 xs:text-[10px] sm:text-sm md:text-base
+        @apply fixed inset-0 bg-black bg-opacity-50 xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
     .modal-body{
-        @apply relative flex  items-center justify-center p-4 xs:text-[10px] sm:text-sm md:text-base
+        @apply relative flex  items-center justify-center p-4 xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
     .modal-content{
-        @apply relative w-full max-w-6xl overflow-y-auto rounded-xl bg-white p-12 shadow-lg mt-16 xs:text-[10px] sm:text-sm md:text-base
+        @apply relative w-full max-w-6xl overflow-y-auto rounded-xl bg-white p-12 shadow-lg mt-16 xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
 }
@@ -75,35 +75,35 @@
 
 @layer components{
     .form-controll{
-        @apply w-full my-2 rounded-md shadow-sm border border-gray-200 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 xs:text-[10px] sm:text-sm md:text-base
+        @apply w-full my-2 rounded-md shadow-sm border border-gray-200 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
     .form-label{
-        @apply p-2 bg-slate-300 font-['poppins']  rounded-md font-bold xs:text-[10px] sm:text-sm md:text-base
+        @apply p-2 bg-slate-300 font-['poppins']  rounded-md font-bold xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
     .btn-close {
-        @apply  bg-red-700 hover:bg-red-900 hover:text-white text-white xs:text-[10px] sm:text-sm md:text-base
+        @apply  bg-red-700 hover:bg-red-900 hover:text-white text-white xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
     .btn-submit {
-        @apply  bg-green-500 hover:bg-green-900 hover:text-white text-white xs:text-[10px] sm:text-sm md:text-base
+        @apply  bg-green-500 hover:bg-green-900 hover:text-white text-white xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
     .btn-update {
-        @apply bg-orange-500 hover:bg-orange-800 hover:text-white text-white  xs:text-[10px] sm:text-sm md:text-base
+        @apply bg-orange-500 hover:bg-orange-800 hover:text-white text-white  xs:text-[10px] sm:text-sm md:text-[14px]
     }
     .btn-info {
-        @apply bg-orange-600 hover:bg-orange-900 text-white hover:text-white xs:text-[10px] sm:text-sm md:text-base
+        @apply bg-orange-600 hover:bg-orange-900 text-white hover:text-white xs:text-[10px] sm:text-sm md:text-[14px]
     }
     .btn-blue {
-        @apply bg-blue-600 hover:bg-blue-900 text-white hover:text-white xs:text-[10px] sm:text-sm md:text-base
+        @apply bg-blue-600 hover:bg-blue-900 text-white hover:text-white xs:text-[10px] sm:text-sm md:text-[14px]
     }
      .btn-date {
-        @apply bg-blue-600 hover:bg-blue-900 text-white hover:text-white xs:text-[10px] sm:text-sm md:text-base
+        @apply bg-blue-600 hover:bg-blue-900 text-white hover:text-white xs:text-[10px] sm:text-sm md:text-[14px]
     }
     .form-group {
-        @apply p-3 xs:text-[10px] sm:text-sm md:text-base
+        @apply p-3 xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
 }
@@ -116,25 +116,25 @@
     }
 
     .table {
-        @apply w-full font-['poppins'] text-[10px] xs:text-[10px] sm:text-sm md:text-base
+        @apply w-full font-['poppins'] text-[10px] xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
     .table-md {
         @apply w-[80%]
     }
     .table-head{
-        @apply bg-gray-50 border-b-2 border-gray-200 font-['poppins'] xs:text-[10px] sm:text-sm md:text-base
+        @apply bg-gray-50 border-b-2 border-gray-200 font-['poppins'] xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
     .table-th{
-        @apply text-left tracking-wide whitespace-nowrap font-['poppins'] xs:text-[10px] sm:text-sm md:text-base
+        @apply text-left tracking-wide whitespace-nowrap font-['poppins'] xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
     .table-tr{
-        @apply uppercase divide-y font-['poppins'] xs:text-[10px] sm:text-sm md:text-base
+        @apply uppercase divide-y font-['poppins'] xs:text-[10px] sm:text-sm md:text-[14px]
     }
 
     .table-td{
-        @apply px-2 py-3 tracking-wide bg-slate-50 font-['poppins'] whitespace-nowrap xs:text-[10px] sm:text-sm md:text-base
+        @apply px-2 py-3 tracking-wide bg-slate-50 font-['poppins'] whitespace-nowrap xs:text-[10px] sm:text-sm md:text-[14px]
     }
 }

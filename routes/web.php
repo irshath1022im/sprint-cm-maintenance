@@ -1,5 +1,6 @@
 <?php
 
+use App\Exports\ReportExport;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BatchOrderReferenceController;
@@ -17,7 +18,7 @@ use App\Livewire\CorrectiveMaintenance\CmIndex;
 use App\Livewire\CorrectiveMaintenance\CmShow;
 use App\Livewire\DashBoard\DashBoardHome;
 use App\Livewire\Forms\CmCreate;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -52,3 +53,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
  Route::get('/', CmIndex::class)->name('cmHome');
+
+ Route::get('reports', function(){
+    return Excel::download(new ReportExport, 'report.xlsx') ;
+ });
